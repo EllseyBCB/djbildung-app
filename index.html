@@ -784,6 +784,9 @@
     .lead-msg{margin:12px 16px 0;padding:12px 14px;border-radius:10px;font-size:14px;line-height:1.5}
     .lead-ok{background:#eaf5ee;color:#1a6b3a}
     .lead-err{background:#fceaea;color:#c0392b}
+    .lead-consent{display:flex;gap:10px;align-items:flex-start;margin:14px 16px 0;font-size:13px;color:var(--ios-label);line-height:1.5;cursor:pointer}
+    .lead-consent input{width:20px;height:20px;flex:0 0 auto;margin-top:1px;accent-color:var(--gold)}
+    .lead-consent a{color:var(--gold-dark);font-weight:600}
   </style>
 
   <div class="section-label">Anfrage senden</div>
@@ -818,6 +821,10 @@
       <textarea id="lead-message" placeholder="Wie können wir Ihnen helfen?"></textarea>
     </div>
   </div>
+  <label class="lead-consent" for="lead-consent">
+    <input type="checkbox" id="lead-consent">
+    <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und willige ein, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. <span class="req">*</span></span>
+  </label>
   <button class="lead-submit-btn" id="lead-submit" onclick="sendLead()">Anfrage senden</button>
   <div id="lead-status"></div>
 
@@ -829,6 +836,22 @@
       <div class="qr-sub">Scannen Sie den Code um direkt zur Infoseite zu gelangen — oder zum Teilen mit Interessenten.</div>
       <div class="qr-url" id="qr-url-display">djbildung-arbeit40.netlify.app</div>
     </div>
+  </div>
+
+  <div class="section-label">Rechtliches</div>
+  <div class="contact-card">
+    <a href="impressum.html" class="contact-row">
+      <div class="contact-icon" style="background:#f2f2f7;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6C6C70" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+      </div>
+      <div><div class="contact-text">Impressum</div><div class="contact-sub">Anbieterkennzeichnung</div></div>
+    </a>
+    <a href="datenschutz.html" class="contact-row">
+      <div class="contact-icon" style="background:#f2f2f7;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6C6C70" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div><div class="contact-text">Datenschutz</div><div class="contact-sub">Datenschutzerklärung</div></div>
+    </a>
   </div>
 
   <div class="spacer"></div>
@@ -1248,6 +1271,10 @@ window.sendLead = async function(){
     status.innerHTML = '<div class="lead-msg lead-err">Bitte Name und eine gültige E-Mail-Adresse angeben.</div>';
     return;
   }
+  if(!g('lead-consent').checked){
+    status.innerHTML = '<div class="lead-msg lead-err">Bitte stimme der Datenschutzerklärung zu, um die Anfrage zu senden.</div>';
+    return;
+  }
   if(!window._sbLead){
     status.innerHTML = '<div class="lead-msg lead-err">Verbindung nicht verfügbar. Bitte später erneut versuchen oder direkt anrufen.</div>';
     return;
@@ -1262,7 +1289,7 @@ window.sendLead = async function(){
     if(res.error) throw res.error;
     status.innerHTML = '<div class="lead-msg lead-ok">Vielen Dank! Ihre Anfrage wurde gesendet – wir melden uns zeitnah bei Ihnen.</div>';
     g('lead-name').value=''; g('lead-email').value=''; g('lead-phone').value='';
-    g('lead-interest').value=''; g('lead-message').value='';
+    g('lead-interest').value=''; g('lead-message').value=''; g('lead-consent').checked=false;
   }catch(e){
     status.innerHTML = '<div class="lead-msg lead-err">Senden fehlgeschlagen: ' + (e.message || e) + '. Bitte später erneut versuchen.</div>';
   }finally{
