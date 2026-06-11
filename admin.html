@@ -76,6 +76,24 @@
     padding:12px 20px;border-radius:12px;font-size:14px;z-index:200;box-shadow:0 8px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s}
   .toast.show{opacity:1}
   .footer-note{text-align:center;color:var(--label);font-size:12px;padding:20px}
+
+  /* ===================== EDLER GOLD-AUF-DUNKEL LOOK (Logo-Stil) ===================== */
+  :root{
+    --bg:#101010; --card:#1b1b1d; --text:#F3EFE7; --label:#9c968b; --sep:#2b2924;
+    --blue:#dcb877; --green:#8fd6a8; --green-bg:rgba(120,200,150,0.14);
+    --red:#f0a3a3; --red-bg:rgba(230,120,120,0.14); --amber:#e6cd92; --amber-bg:rgba(201,169,97,0.16);
+  }
+  .card,.item,.tab{ border:0.5px solid rgba(201,169,97,0.15); }
+  .field input{ background:#161616; color:var(--text); }
+  .field input::placeholder{ color:#6f6a60; }
+  select.status{ background:#161616; color:var(--text); border-color:var(--sep); }
+  .item-msg{ background:#141414; }
+  .tab.active{ background:#000; color:#fff; border-color:var(--gold); }
+  .switch a, a.maillink{ color:var(--blue); }
+  .pill-neu{ background:rgba(120,170,230,0.16); color:#9ec6f2; }
+  .pill-in_bearbeitung,.pill-angefragt{ background:rgba(201,169,97,0.16); color:#e6cd92; }
+  .pill-erledigt,.pill-bestaetigt,.pill-abgeschlossen{ background:rgba(120,200,150,0.16); color:#8fd6a8; }
+  .pill-archiviert,.pill-storniert{ background:rgba(255,255,255,0.08); color:#aaa; }
 </style>
 </head>
 <body>

@@ -180,6 +180,43 @@
     #qr-canvas { border-radius: 8px; }
 
     .spacer { height: 20px; }
+
+    /* ===================== EDLER GOLD-AUF-DUNKEL LOOK (Logo-Stil) ===================== */
+    :root{
+      --ios-bg:#101010; --ios-card:#1b1b1d; --ios-text:#F3EFE7; --ios-label:#9c968b; --ios-sep:#2b2924;
+      --ios-blue:#dcb877;
+      --gold-bg:rgba(201,169,97,0.13); --gold-bg2:rgba(201,169,97,0.18);
+      --blue-bg:rgba(120,170,230,0.12); --blue-text:#9ec6f2; --blue-border:rgba(120,170,230,0.28);
+      --green-bg:rgba(120,200,150,0.12); --green-text:#8fd6a8; --green-border:rgba(120,200,150,0.28);
+      --red-bg:rgba(230,120,120,0.12); --red-text:#f0a3a3; --red-border:rgba(230,120,120,0.28);
+    }
+    body{ background:var(--ios-bg); }
+    /* feine goldene Haarlinie auf Karten = premium */
+    .stufe-btn,.slider-card,.metric-card,.breakdown-card,.payout-card,.contact-card,.ml-item,.foerd-card,.qr-card,.modul-card,.lead-card{ border:0.5px solid rgba(201,169,97,0.15); }
+    .stufe-btn.active{ border-color:var(--gold); }
+    .modul-card{ border-left:3px solid var(--gold); }
+    /* Eingabefelder dunkel */
+    .foerd-input{ background:#161616; }
+    .foerd-input:focus{ background:#161616; border-color:var(--gold); }
+    .foerd-input::placeholder{ color:#6f6a60; }
+    .foerd-btn{ color:#1b1b1d; }
+    .lead-field input,.lead-field select,.lead-field textarea{ background:#161616; color:var(--ios-text); }
+    .lead-field input::placeholder,.lead-field textarea::placeholder{ color:#6f6a60; }
+    .lead-ok{ background:var(--green-bg); color:var(--green-text); }
+    .lead-err{ background:var(--red-bg); color:var(--red-text); }
+    /* Kontakt-Icons golden statt hellblau */
+    .contact-icon{ background:rgba(201,169,97,0.12)!important; }
+    .contact-icon svg{ stroke:var(--gold)!important; }
+    .contact-text{ color:var(--ios-blue); }
+    /* Tab-Leiste dunkel */
+    .tabbar{ background:rgba(16,16,16,0.9)!important; }
+    /* Schieberegler-Knopf hell */
+    .slider-row input[type=range]::-webkit-slider-thumb{ background:#f3efe7; border:none; }
+    /* Farben in Tints besser lesbar */
+    .info-pill{ color:#e6cd92; }
+    .payout-header-txt{ color:#e6cd92; }
+    .stufe-btn-qual{ color:#f0a3a3; }
+    .ue-row-lbl{ color:#9ec6f2; }
   </style>
 </head>
 <body>
@@ -1088,9 +1125,9 @@ function berechneForederung(){
   const header=document.getElementById('foerd-result-header');
   document.getElementById('foerd-result-lbl').textContent=isNeg?'Eigene Kostenbeteiligung':'Nettozufluss Förderung für das Unternehmen';
   document.getElementById('foerd-result-amount').textContent=fmt(Math.abs(Math.round(gesamt)));
-  document.getElementById('foerd-result-amount').style.color=isNeg?'#8b1a1a':'#1a6b3a';
-  if(isNeg){ header.style.background='#fceaea'; document.getElementById('foerd-result-sub').textContent='Eigenanteil nach Zuschuss'; }
-  else{ header.style.background='#eaf5ee'; document.getElementById('foerd-result-sub').textContent='nicht rückzahlbarer Zuschuss'; }
+  document.getElementById('foerd-result-amount').style.color=isNeg?'#f0a3a3':'#8fd6a8';
+  if(isNeg){ header.style.background='rgba(230,120,120,0.15)'; document.getElementById('foerd-result-sub').textContent='Eigenanteil nach Zuschuss'; }
+  else{ header.style.background='rgba(120,200,150,0.16)'; document.getElementById('foerd-result-sub').textContent='nicht rückzahlbarer Zuschuss'; }
   const fmtN=n=>n.toLocaleString('de-DE',{style:'currency',currency:'EUR',minimumFractionDigits:0,maximumFractionDigits:0});
   let det=`
     <div class="foerd-detail-row"><span class="foerd-detail-lbl">Unternehmensgröße</span><span class="foerd-detail-val">${ma} Mitarbeiter</span></div>
@@ -1103,7 +1140,7 @@ function berechneForederung(){
     <div class="foerd-detail-row"><span class="foerd-detail-lbl">Teilnehmer</span><span class="foerd-detail-val">${tn2}</span></div>
     <div class="foerd-detail-row"><span class="foerd-detail-lbl">${isNeg?'Eigene Kostenbeteiligung':'Nettozufluss gesamt'}</span><span class="foerd-detail-val" style="color:${isNeg?'#8b1a1a':'#1a6b3a'};font-weight:700;">${fmtN(Math.round(Math.abs(gesamt)))}</span></div>`;
   document.getElementById('foerd-details').innerHTML=det;
-  el.style.background=isNeg?'#fceaea':'#eaf5ee';
+  el.style.background=isNeg?'rgba(230,120,120,0.15)':'rgba(120,200,150,0.16)';
   el.style.border=isNeg?'0.5px solid #f5b5b5':'0.5px solid #a8d5b5';
   el.style.borderRadius='14px';
   el.classList.add('show');
