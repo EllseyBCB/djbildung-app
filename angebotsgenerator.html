@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Angebot">
+
+<title>D+J Bildung | Kundenangebot Arbeit 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- PWA: installierbar machen -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1C1C1E">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<style>
+:root{--gold:#c9a961;--gold-dark:#b59650;--gold-bg:rgba(201,169,97,0.07);--black:#1a1a1a;--text:#2d2d2d;--text-light:#777;--bg:#f8f6f2;--white:#fff;--border:#e4e0d8;--success:#2d8a56;--red:#c0392b;--input-bg:#faf9f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.app-header{background:linear-gradient(135deg,var(--black),#2a2520);padding:28px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.app-header h1{font-family:'Playfair Display',serif;color:var(--white);font-size:22px;font-weight:600}.app-header h1 span{color:var(--gold)}
+.app-header .subtitle{color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.logo-mark{width:40px;height:40px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:16px;font-weight:700}
+.main{max-width:1000px;margin:0 auto;padding:30px 20px 60px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--black);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.card-title .num{width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--black);display:flex;align-items:center;justify-content:center;font-family:'DM Sans';font-size:13px;font-weight:700;flex-shrink:0}
+.card-desc{font-size:14px;color:var(--text-light);margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form-grid.three{grid-template-columns:1fr 1fr 1fr}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.5px}
+.form-group input{padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'DM Sans';background:var(--input-bg);transition:all 0.2s;color:var(--text)}
+.form-group input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,97,0.15);background:var(--white)}
+.form-group input::placeholder{color:#bbb}
+.divider{height:1px;background:var(--border);margin:20px 0}
+.result-area{display:none}.result-area.show{display:block}
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
+.scenario-card{border:1.5px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:all 0.3s}
+.scenario-card:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(201,169,97,0.12)}
+.scenario-card h4{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-light);margin-bottom:8px}
+.scenario-card .value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:4px}
+.scenario-card .value.positive{color:var(--success)}.scenario-card .value.negative{color:var(--red)}
+.scenario-card .sub{font-size:12px;color:var(--text-light)}
+.prov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.prov-card{background:var(--gold-bg);border:1px solid rgba(201,169,97,0.2);border-radius:8px;padding:14px;text-align:center}
+.prov-card h5{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--gold-dark);margin-bottom:6px}
+.prov-card .val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold-dark)}
+.prov-card .detail{font-size:11px;color:var(--text-light);margin-top:3px}
+.result-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.result-table th{background:var(--black);color:var(--white);padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600}
+.result-table th:not(:first-child){text-align:right}
+.result-table td{padding:10px 12px;border-bottom:1px solid var(--border)}.result-table td:not(:first-child){text-align:right;font-weight:500}
+.result-table tr:nth-child(even){background:var(--bg)}
+.result-table tr.total{background:var(--black)}.result-table tr.total td{color:var(--white);font-weight:700;border:none}.result-table tr.total td:not(:first-child){color:var(--gold);font-family:'Playfair Display',serif;font-size:16px}
+.result-table tr.highlight{background:var(--gold-bg)}.result-table tr.highlight td{color:var(--gold-dark);font-weight:600}
+.result-table tr.green td{color:var(--success);font-weight:600}
+.foerder-info{background:linear-gradient(135deg,rgba(201,169,97,0.06),rgba(201,169,97,0.02));border:1px solid rgba(201,169,97,0.2);border-radius:10px;padding:20px;margin:16px 0}
+.foerder-info h4{font-size:14px;color:var(--gold-dark);margin-bottom:8px}
+.foerder-info p{font-size:13px;color:var(--text-light);line-height:1.6}
+.optional-info{background:linear-gradient(135deg,rgba(45,138,86,0.06),rgba(45,138,86,0.02));border:1px solid rgba(45,138,86,0.25);border-radius:10px;padding:20px;margin:16px 0}
+.optional-info h4{font-size:14px;color:var(--success);margin-bottom:8px}
+.optional-info p{font-size:13px;color:var(--text-light);line-height:1.6}
+.btn-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{padding:14px 28px;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans';transition:all 0.2s;display:flex;align-items:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black);box-shadow:0 4px 16px rgba(201,169,97,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,169,97,0.4)}
+.btn-secondary{background:var(--black);color:var(--white)}.btn-secondary:hover{background:#333}
+.error-msg{color:var(--red);font-size:13px;margin-top:8px;display:none}.error-msg.show{display:block}
+/* Toggle Styles */
+.toggle-wrap{margin:20px 0 8px}
+.toggle-label{font-size:12px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.toggle-desc{font-size:13px;color:var(--text-light);margin-top:8px;line-height:1.5}
+.toggle-btns{display:inline-flex;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:4px;gap:4px}
+.toggle-btn{padding:10px 28px;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans';color:var(--text-light);background:transparent}
+.toggle-btn.active-ja{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black);box-shadow:0 2px 8px rgba(201,169,97,0.25)}
+.toggle-btn.active-nein{background:var(--black);color:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+@media(max-width:768px){.form-grid,.form-grid.three{grid-template-columns:1fr}.scenario-grid{grid-template-columns:1fr}.prov-grid{grid-template-columns:1fr 1fr}.btn-row{flex-direction:column}.app-header{padding:20px}.main{padding:20px 12px}.toggle-btns{width:100%}.toggle-btn{flex:1}}
+</style>
+</head>
+<body>
+<div class="app-header"><div><h1>D+J <span>Consult</span> · Kundenangebot</h1><div class="subtitle">Weiterbildung Arbeit 4.0 – Förderberechnung & Dokumentenerstellung</div></div><div class="logo-mark">D+J</div></div>
+<div class="main">
+    <div class="card"><div class="card-title"><span class="num">1</span> Kundendaten</div><div class="card-desc">Daten des Unternehmens.</div>
+        <div class="form-grid">
+            <div class="form-group"><label>Firmenname</label><input id="kundenFirma" placeholder="z.B. Mustermann GmbH"></div>
+            <div class="form-group"><label>Ansprechpartner</label><input id="kundenAnsprech" placeholder="Vor- und Nachname"></div>
+            <div class="form-group"><label>Straße & Hausnummer</label><input id="kundenStrasse" placeholder="Musterstraße 1"></div>
+            <div class="form-group"><label>PLZ & Ort</label><input id="kundenOrt" placeholder="12345 Musterstadt"></div>
+            <div class="form-group"><label>Anzahl Mitarbeitende</label><input type="number" id="kundenMA" min="1" placeholder="z.B. 200"></div>
+            <div class="form-group"><label>Anzahl Teilnehmende</label><input type="number" id="kundenTN" min="1" placeholder="z.B. 15"></div>
+        </div></div>
+
+    <div class="card"><div class="card-title"><span class="num">2</span> Vermittlerdaten</div><div class="card-desc">Daten des Vermittlers.</div>
+        <div class="form-grid">
+            <div class="form-group"><label>Name</label><input id="vermittlerName" placeholder="Vor- und Nachname"></div>
+            <div class="form-group"><label>Firma</label><input id="vermittlerFirma" placeholder="Optional"></div>
+            <div class="form-group"><label>Straße</label><input id="vermittlerStrasse" placeholder="Musterstraße 1"></div>
+            <div class="form-group"><label>PLZ & Ort</label><input id="vermittlerOrt" placeholder="12345 Musterstadt"></div>
+        </div></div>
+
+    <div class="card"><div class="card-title"><span class="num">3</span> Kalkulationsparameter</div><div class="card-desc">Gehalt, Szenarien und Kompaktkurs-Modell.</div>
+        <div class="form-grid three">
+            <div class="form-group"><label>Ø Bruttogehalt (€)</label><input type="number" id="bruttogehalt" min="1000" step="100" placeholder="3500"></div>
+            <div class="form-group"><label>Gef. TN – Low Case</label><input type="number" id="scenLow" min="0" placeholder="8"></div>
+            <div class="form-group"><label>Gef. TN – Real Case</label><input type="number" id="scenReal" min="0" placeholder="12"></div>
+            <div class="form-group"><label>Gef. TN – Best Case</label><input type="number" id="scenBest" min="0" placeholder="15"></div>
+            <div class="form-group"><label>Dozentenmonate gef. TN</label><input type="number" id="dozMonateGef" min="0" step="0.5" value="1"></div>
+            <div class="form-group"><label>Dozentenmonate n.gef. TN</label><input type="number" id="dozMonateNgef" min="0" step="0.5" value="0.5"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ══ KOMPAKTKURS-TOGGLE ══ -->
+        <div class="toggle-wrap">
+            <div class="toggle-label">Kompaktkurs-Pflicht: 2 nicht geförderte TN pro gefördertem TN</div>
+            <div class="toggle-btns">
+                <button type="button" id="toggleJa" class="toggle-btn active-ja" onclick="setKompakt('ja')">✅ Ja – zwingend</button>
+                <button type="button" id="toggleNein" class="toggle-btn" onclick="setKompakt('nein')">❌ Nein – nur geförderte</button>
+            </div>
+            <div class="toggle-desc" id="toggleDesc">
+                <strong>Ja:</strong> Für jeden genehmigten (geförderten) TN werden zwingend 2 weitere TN zum Kompaktkurs (6 Monate, à 5.100 €) angemeldet – maximal bis zur Gesamtteilnehmerzahl. Angebot und Provisionsvereinbarung spiegeln dies verbindlich wider.
+            </div>
+        </div>
+        <!-- ══ END TOGGLE ══ -->
+
+        <div class="divider"></div>
+        <div class="btn-row"><button class="btn btn-primary" onclick="berechne()">📊 Berechnung durchführen</button></div>
+        <div class="error-msg" id="errorMsg"></div>
+    </div>
+
+    <div class="result-area" id="resultArea">
+        <div class="card"><div class="card-title">Förderparameter</div><div id="foerderInfo"></div></div>
+        <div class="card"><div class="card-title">Szenarien – Saldo Unternehmen</div><div class="scenario-grid" id="scenarioCards"></div><table class="result-table" id="scenarioTable"></table><div id="kompaktHinweisResult"></div></div>
+        <div class="card"><div class="btn-row">
+            <button class="btn btn-primary" onclick="generateKundenHTML()">📄 Kundenangebot PDF herunterladen</button>
+            <button class="btn" style="background:linear-gradient(135deg,#2d8a56,#1e6e43);color:#fff;box-shadow:0 4px 16px rgba(45,138,86,0.3)" onclick="generateCashFlowPDF()">📊 Cash-Flow-Analyse (3 Szenarien)</button>
+            <button class="btn" style="background:linear-gradient(135deg,#007AFF,#005ECB);color:#fff;box-shadow:0 4px 16px rgba(0,122,255,0.3)" onclick="sendEmail()">✉️ PDFs erstellen & E-Mail vorbereiten</button>
+        </div></div>
+    </div>
+</div>
+
+<script>
+const{jsPDF}=window.jspdf;
+let calcData=null;
+let kompaktPflicht='ja'; // default: Ja (Kompaktkurs zwingend)
+
+function fmt(n){return n.toLocaleString('de-DE',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+function fmtP(n){return(n>=0?'+':'')+fmt(n);}
+
+function fp(ma,tn){
+    if(ma<50)return{s:0.75,a:8000,l:'Kleine Unternehmen (<50 MA)',p:'75'};
+    if(ma<500)return{s:0.50,a:tn<=4?8100:7100,l:'Mittlere Unternehmen (50-499 MA)',p:'50'};
+    return{s:0.25,a:9650,l:'Große Unternehmen (500+ MA)',p:'25'};
+}
+
+// ══ TOGGLE LOGIC ══
+function setKompakt(v){
+    kompaktPflicht=v;
+    const btnJa=document.getElementById('toggleJa');
+    const btnNein=document.getElementById('toggleNein');
+    const desc=document.getElementById('toggleDesc');
+    if(v==='ja'){
+        btnJa.className='toggle-btn active-ja';
+        btnNein.className='toggle-btn';
+        desc.innerHTML='<strong>Ja:</strong> Für jeden genehmigten (geförderten) TN werden grundsätzlich 2 weitere TN zum Kompaktkurs (6 Monate, à 5.100 €) angemeldet – maximal bis zur Gesamtteilnehmerzahl. <strong>Schutzklausel:</strong> Sollte die Anzahl der Selbstzahler zu einem negativen Saldo für das Unternehmen führen, reduziert sich die Anmeldepflicht automatisch auf genau die Anzahl, die durch den Nettozufluss aus der Förderung gedeckt ist. Kein Risiko.';
+    }else{
+        btnNein.className='toggle-btn active-nein';
+        btnJa.className='toggle-btn';
+        desc.innerHTML='<strong>Nein:</strong> Es werden nur die geförderten TN in der Kalkulation betrachtet. Im Angebot und in der Provisionsvereinbarung wird optional darauf hingewiesen, dass pro gefördertem TN bis zu 2 weitere TN zum Sonderpreis von 5.100 € am Kompaktkurs teilnehmen können – ohne Verpflichtung.';
+    }
+}
+
+function berechne(){
+    const v=id=>document.getElementById(id).value.trim(),n=id=>parseFloat(v(id))||0;
+    const errs=[];
+    if(!v('kundenFirma'))errs.push('Firma');if(n('kundenMA')<1)errs.push('MA');if(n('kundenTN')<1)errs.push('Min.1 TN');
+    if(n('bruttogehalt')<1000)errs.push('Gehalt');if(!v('vermittlerName'))errs.push('Vermittler');
+    const tn=n('kundenTN'),sL=n('scenLow'),sR=n('scenReal'),sB=n('scenBest');
+    if(sL>tn||sR>tn||sB>tn)errs.push('Gef>TN');if(sL>sR||sR>sB)errs.push('Low≤Real≤Best');
+    const e=document.getElementById('errorMsg');
+    if(errs.length){e.textContent='Fehler: '+errs.join(', ');e.classList.add('show');return;}e.classList.remove('show');
+
+    const ma=n('kundenMA'),b=n('bruttogehalt'),bNK=b*1.2,f=fp(ma,tn);
+    const lkz=(bNK/2)*f.s*12,net=lkz-f.a,k=5100;
+    const dMG=n('dozMonateGef'),dMN=n('dozMonateNgef');
+    const dEG=dMG*1500,dEN=dMN*1500,dUG=dMG*20,dUN=dMN*20;
+    const wK=(kompaktPflicht==='ja');
+    const sc=[{n:'Low Case',g:sL},{n:'Real Case',g:sR},{n:'Best Case',g:sB}];
+
+    sc.forEach(s=>{
+        // Wenn Kompaktkurs-Pflicht (ja): 2 n.gef. pro gef. TN (max. Restkapazität)
+        // ABER: Selbstzahler-Pflicht reduziert sich automatisch, sodass Saldo nie negativ wird
+        // Wenn nein: 0 n.gef. TN (nur geförderte betrachtet)
+        s.z=net*s.g;
+        if(wK){
+            let maxNg=Math.min(s.g*2,tn-s.g);
+            // Reduziere ng falls Kompaktkurs-Kosten den Nettozufluss übersteigen würden
+            if(maxNg*k>s.z){
+                maxNg=Math.max(0,Math.floor(s.z/k));
+            }
+            s.ng=maxNg;
+        }else{
+            s.ng=0;
+        }
+        s.kk=k*s.ng;
+        s.sal=s.z-s.kk;
+        s.pBG=1000*s.g+500*s.ng;
+        s.pD=dEG*s.g+dEN*s.ng;
+        s.pT=s.pBG+s.pD;
+        s.ue=dUG*s.g+dUN*s.ng;
+    });
+
+    // Worst Case: 0 gef. → immer 0 Kosten
+    const wp={n:'Worst Case',g:0,ng:0,pBG:0,pD:0,pT:0,ue:0};
+
+    calcData={k:{f:v('kundenFirma'),ap:v('kundenAnsprech'),st:v('kundenStrasse'),ort:v('kundenOrt'),ma,tn,worstTN:0},
+        vm:{n:v('vermittlerName'),f:v('vermittlerFirma'),st:v('vermittlerStrasse'),ort:v('vermittlerOrt')},
+        b,bNK,fp:f,lkz,net,komp:k,dMG,dMN,dEG,dEN,dUG,dUN,sc,wp,wK,reg:10200*tn,
+        dt:new Date().toLocaleDateString('de-DE')};
+    renderResults();
+}
+
+function renderResults(){
+    const d=calcData;
+    document.getElementById('resultArea').classList.add('show');
+    document.getElementById('foerderInfo').innerHTML=`<div class="foerder-info"><h4>${d.fp.l} – ${d.fp.p}% LKZ</h4><p>Brutto ${fmt(d.b)} + 20% NK = ${fmt(d.bNK)}/Mon · LKZ ${d.fp.p}% × 12 = <strong>${fmt(d.lkz)}</strong> · Abzug: ${fmt(d.fp.a)} · <strong>Netto/gef. TN: ${fmtP(d.net)}</strong></p></div>`;
+
+    const sc=d.sc;let ch='';
+    sc.forEach(s=>{ch+=`<div class="scenario-card"><h4>${s.n} (${s.g} gef.)</h4><div class="value ${s.sal>=0?'positive':'negative'}">${fmtP(s.sal)}</div><div class="sub">Statt ${fmt(d.reg)} regulär</div></div>`;});
+    document.getElementById('scenarioCards').innerHTML=ch;
+
+    const kompaktLabel=d.wK?'Kompaktkurs-TN (2× pro gef. TN, ggf. reduziert durch Schutzklausel)':'Optional Kompaktkurs-TN (2× pro gef. TN, à 5.100 €)';
+    const kompaktNote=d.wK
+        ?`✔ Kein Risiko: Die Selbstzahler-Pflicht reduziert sich automatisch, sodass das Unternehmen in keinem Szenario ein negatives Saldo trägt. Worst Case (0 Förderungen): 0 € Kosten, keine Verpflichtung.`
+        :`💡 Optional: Pro gefördertem TN können bis zu 2 weitere TN zum Sonderpreis von 5.100 € am Kompaktkurs (6 Monate) angemeldet werden – freiwillig und ohne jede Verpflichtung.`;
+
+    document.getElementById('scenarioTable').innerHTML=`<thead><tr><th>Position</th>${sc.map(s=>`<th>${s.n} (${s.g})</th>`).join('')}</tr></thead><tbody>
+        <tr><td>Geförderte TN</td>${sc.map(s=>`<td>${s.g}</td>`).join('')}</tr>
+        <tr><td>${kompaktLabel}</td>${sc.map(s=>`<td>${d.wK?s.ng:'–'}</td>`).join('')}</tr>
+        <tr class="green"><td><strong>Nettozufluss Förderung</strong></td>${sc.map(s=>`<td>${fmtP(s.z)}</td>`).join('')}</tr>
+        ${d.wK?`<tr><td>Kompaktkurs (à 5.100 €)</td>${sc.map(s=>`<td style="color:${s.kk?'var(--red)':'inherit'}">${s.kk?'–'+fmt(s.kk):'0 €'}</td>`).join('')}</tr>`:`<tr style="opacity:0.45"><td>Kompaktkurs (optional, à 5.100 €)</td>${sc.map(()=>`<td style="font-style:italic;color:#999">opt.</td>`).join('')}</tr>`}
+        <tr class="total"><td><strong>SALDO</strong></td>${sc.map(s=>`<td>${fmtP(s.sal)}</td>`).join('')}</tr>
+        <tr style="background:#f0faf4"><td colspan="${sc.length+1}" style="font-size:12px;color:#2d8a56;font-weight:600">${kompaktNote}</td></tr></tbody>`;
+
+    // Hinweis-Box: Kompaktkurs-Pflicht-Schutzklausel (nur bei Ja) / Optionaler Hinweis (nur bei Nein)
+    if(d.wK){
+        // Zeige reduzierte ng pro Szenario
+        const reduziertSz=sc.filter(s=>s.g>0&&s.ng<Math.min(s.g*2,d.k.tn-s.g));
+        const reduziertText=reduziertSz.length>0
+            ?`<strong style="color:var(--gold-dark)">📉 Automatische Anpassung:</strong> Im ${reduziertSz.map(s=>s.n+' ('+s.ng+' statt '+Math.min(s.g*2,d.k.tn-s.g)+' Selbstzahler)').join(', ')} wurde die Selbstzahler-Pflicht automatisch reduziert, sodass das Saldo für das Unternehmen stets ≤ 0 € Belastung bleibt.`
+            :`<strong style="color:var(--success)">✔ In allen Szenarien</strong> deckt der Nettozufluss die vollen 2 Selbstzahler pro gefördertem TN – keine Reduktion erforderlich.`;
+        document.getElementById('kompaktHinweisResult').innerHTML=`
+        <div style="background:rgba(201,169,97,0.07);border:1.5px solid rgba(201,169,97,0.35);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:16px 20px;margin-top:16px">
+            <h4 style="font-size:14px;color:var(--gold-dark);margin-bottom:8px">⚖️ Schutzklausel Kompaktkurs-Pflicht – Kein Risiko für ${d.k.f}</h4>
+            <p style="font-size:13px;color:var(--text);line-height:1.65">Grundsatz: Für jeden genehmigten (geförderten) TN werden 2 Selbstzahler zum Kompaktkurs (à 5.100 €) angemeldet. <strong>Schutzklausel:</strong> Sollte die Anzahl der Selbstzahler dazu führen, dass dem Unternehmen ein negativer Betrag entstünde, reduziert sich die Anmeldepflicht automatisch auf genau die Anzahl an Selbstzahlern, deren Kosten durch den Nettozufluss aus der Förderung vollständig gedeckt sind. <strong>Das Ergebnis für ${d.k.f} ist somit in jedem Szenario stets ≤ 0 € Belastung – kein Risiko, egal wie viele TN gefördert werden.</strong></p>
+            <p style="font-size:13px;color:var(--text-light);margin-top:8px;line-height:1.6">${reduziertText}</p>
+            <p style="font-size:12px;color:var(--text-light);margin-top:6px">Nettozufluss je Szenario: ${sc.map(s=>`<strong>${s.n}:</strong> ${s.g>0?fmtP(s.z):'–'} → ${s.ng} Selbstzahler`).join(' · ')}</p>
+        </div>
+        <div style="background:rgba(45,138,86,0.06);border:1.5px solid rgba(45,138,86,0.3);border-left:4px solid var(--success);border-radius:0 10px 10px 0;padding:16px 20px;margin-top:12px">
+            <h4 style="font-size:14px;color:var(--success);margin-bottom:8px">🎓 Exklusives Zusatzangebot: Selbstzahlerkurs ab 15 TN</h4>
+            <p style="font-size:13px;color:var(--text);line-height:1.65">Unabhängig von der Schutzklausel besteht mit Annahme dieses Angebotes die Möglichkeit, ab einer Mindestteilnehmerzahl von <strong>15 Teilnehmenden</strong> den exklusiven Selbstzahlerkurs zum Sonderpreis von <strong>5.100 € pro TN</strong> zu buchen – für bis zu <strong>${d.k.tn} Teilnehmende</strong> (maximale/gewünschte TN-Zahl). Dieses Angebot ist freiwillig und unabhängig von der Anzahl geförderter TN verfügbar.</p>
+        </div>`;
+    }else{
+        document.getElementById('kompaktHinweisResult').innerHTML=`<div class="optional-info"><h4>💡 Optionale Zusatzoption: Kompaktkurs</h4><p>Pro gefördertem TN können Sie bis zu 2 weitere Mitarbeitende (ohne Förderung) zum <strong>Sonderpreis von 5.100 € pro TN</strong> am Kompaktkurs (6 Monate) anmelden. Beispiel: ${sc[1].g} geförderte TN → bis zu ${Math.min(sc[1].g*2,d.k.tn-sc[1].g)} weitere TN möglich (= ${fmt(Math.min(sc[1].g*2,d.k.tn-sc[1].g)*5100)} optional). Diese Option besteht keinerlei Pflicht.</p></div>
+        <div style="background:rgba(45,138,86,0.06);border:1.5px solid rgba(45,138,86,0.3);border-left:4px solid var(--success);border-radius:0 10px 10px 0;padding:16px 20px;margin-top:12px">
+            <h4 style="font-size:14px;color:var(--success);margin-bottom:8px">🎓 Exklusives Zusatzangebot: Selbstzahlerkurs ab 15 TN</h4>
+            <p style="font-size:13px;color:var(--text);line-height:1.65">Unabhängig davon besteht mit Annahme dieses Angebotes die Möglichkeit, ab einer Mindestteilnehmerzahl von <strong>15 Teilnehmenden</strong> den exklusiven Selbstzahlerkurs zum Sonderpreis von <strong>5.100 € pro TN</strong> zu buchen – für bis zu <strong>${d.k.tn} Teilnehmende</strong> (maximale/gewünschte TN-Zahl). Dieses Angebot ist freiwillig und unabhängig von der Anzahl geförderter TN verfügbar.</p>
+        </div>`;
+    }
+
+
+    document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+// ═══ KUNDEN-HTML (öffnet neues Fenster) ═══
+function generateKundenHTML(){
+    if(!calcData)return;const d=calcData,sc=d.sc;
+    function scRow(label,vals,cls){return `<tr${cls?' class="'+cls+'"':''}><td>${label}</td>${vals.map(v=>`<td style="text-align:right;">${v}</td>`).join('')}</tr>`;}
+    const scHeaders=sc.map(s=>s.n+' ('+s.g+' gef.)');
+    const allHeaders=[...scHeaders,'Worst Case (0 gef.)'];
+    const allSc=[...sc,{n:'Worst Case (0 gef.)',g:0,ng:0,z:0,kk:0,sal:0}];
+
+    // Bedingte Texte je nach Kompaktkurs-Modell
+    const insightBox01 = d.wK
+        ? `<div class="insight-box"><p><strong>So funktioniert das Modell:</strong> D+J Consult stellt für alle ${d.k.tn} TN Förderanträge. Für jeden genehmigten (geförderten) TN werden grundsätzlich 2 weitere TN zum Sonderpreis von 5.100 € in den Kompaktkurs aufgenommen. <strong>Schutzklausel:</strong> Sollte daraus ein negatives Saldo entstehen, reduziert sich die Selbstzahler-Pflicht automatisch auf die durch den Nettozufluss gedeckte Anzahl. Bei 0 Genehmigungen: keine Kosten. Zusätzlich besteht ab 15 TN die Möglichkeit, den exklusiven Selbstzahlerkurs zu 5.100 €/TN für bis zu ${d.k.tn} TN zu buchen.</p></div>`
+        : `<div class="insight-box"><p><strong>So funktioniert das Modell:</strong> D+J Consult stellt für alle ${d.k.tn} TN Förderanträge. Für jeden genehmigten TN entstehen <strong>keinerlei weitere Verpflichtungen</strong>. Optional können pro gefördertem TN bis zu 2 weitere TN zum Sonderpreis von 5.100 € am Kompaktkurs (6 Monate) teilnehmen – freiwillig und ohne jede Pflicht. Bei 0 Genehmigungen: 0 € Kosten. Die Top-Dozenten aus Vorstandsetagen und Praxis sorgen für sofort anwendbares Wissen.</p></div>`;
+
+    const leadText05 = d.wK
+        ? `Für jeden genehmigten (geförderten) TN werden grundsätzlich 2 weitere TN im Kompaktkurs (6 Monate, 5.100 €) angemeldet. <strong>Schutzklausel:</strong> Sollte daraus ein negativer Betrag für das Unternehmen entstehen, reduziert sich die Anmeldepflicht automatisch auf die Anzahl Selbstzahler, die durch den Nettozufluss aus der Förderung gedeckt ist. <strong>Kein Risiko – das Saldo für ${d.k.f} ist stets ≤ 0 € Belastung.</strong> Bei 0 Förderungen: <strong>0 € Kosten, keine Verpflichtung.</strong>`
+        : `Geförderte TN erhalten die volle Lohnkostenförderung. Es besteht <strong>keinerlei Kompaktkurs-Pflicht</strong>. <strong>Optional</strong> können pro gefördertem TN bis zu 2 weitere Mitarbeitende zum Sonderpreis von 5.100 € am Kompaktkurs (6 Monate) teilnehmen – freiwillig und ohne Verpflichtung. Bei 0 Förderungen: <strong>0 € Kosten, keine Verpflichtung.</strong>`;
+
+    const kompaktRowLabel05 = d.wK
+        ? 'Kompaktkurs-TN (2× pro gef. TN, ggf. reduziert)'
+        : 'Optional Kompaktkurs-TN (à 5.100 €/TN)';
+
+    const schutzklauselBox05 = d.wK ? (()=>{
+        const reduziertSz=sc.filter(s=>s.g>0&&s.ng<Math.min(s.g*2,d.k.tn-s.g));
+        const reduziertHtml=reduziertSz.length>0
+            ?`<p style="font-size:13px;color:var(--gold-dark);margin-top:8px;line-height:1.6"><strong>📉 Automatische Anpassung:</strong> Im ${reduziertSz.map(s=>s.n+' ('+s.ng+' statt '+Math.min(s.g*2,d.k.tn-s.g)+' Selbstzahler)').join(', ')} wurde die Pflicht reduziert, sodass das Saldo stets ≤ 0 € Belastung bleibt.</p>`
+            :`<p style="font-size:13px;color:var(--success);margin-top:8px;line-height:1.6"><strong>✔ In allen Szenarien</strong> deckt der Nettozufluss die vollen 2 Selbstzahler pro gefördertem TN – keine Reduktion erforderlich.</p>`;
+        return `<div style="background:rgba(201,169,97,0.07);border:1px solid rgba(201,169,97,0.35);border-left:5px solid var(--gold);border-radius:0 8px 8px 0;padding:18px 22px;margin:18px 0">
+            <p style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:6px">⚖️ Schutzklausel Kompaktkurs-Pflicht (Vertragsbestandteil)</p>
+            <p style="font-size:13px;color:var(--text);line-height:1.65">Grundsatz: Für jeden genehmigten (geförderten) TN werden 2 Selbstzahler zum Kompaktkurs (à 5.100 €) angemeldet. <strong>Schutzklausel:</strong> Sollte die Anzahl der Selbstzahler dazu führen, dass dem Unternehmen ein negativer Betrag entstünde, reduziert sich die Anmeldepflicht automatisch auf genau die Anzahl an Selbstzahlern, deren Kosten durch den Nettozufluss aus der Förderung vollständig gedeckt sind. <strong>${d.k.f} trägt in keinem Szenario ein negatives Gesamtsaldo – kein Risiko, egal wie viele TN gefördert werden.</strong></p>
+            ${reduziertHtml}
+        </div>
+        <div style="background:rgba(45,138,86,0.06);border:1px solid rgba(45,138,86,0.3);border-left:5px solid #2d8a56;border-radius:0 8px 8px 0;padding:18px 22px;margin:18px 0">
+            <p style="font-size:13px;font-weight:700;color:#2d8a56;margin-bottom:6px">🎓 Exklusives Zusatzangebot: Selbstzahlerkurs ab 15 TN</p>
+            <p style="font-size:13px;color:var(--text);line-height:1.65">Unabhängig von der Schutzklausel besteht mit Annahme dieses Angebotes die Möglichkeit, ab einer Mindestteilnehmerzahl von <strong>15 Teilnehmenden</strong> den exklusiven Selbstzahlerkurs zum Sonderpreis von <strong>5.100 € pro TN</strong> zu buchen – für bis zu <strong>${d.k.tn} Teilnehmende</strong> (maximale/gewünschte TN-Zahl). Dieses Angebot ist freiwillig und unabhängig von der Anzahl geförderter TN verfügbar.</p>
+        </div>`;
+    })() : '';
+
+    const optionalBox05 = d.wK ? '' : `<div class="success-box" style="border-color:#c9a961;background:rgba(201,169,97,0.06)"><p><strong>💡 Optionaler Kompaktkurs:</strong> Pro gefördertem TN können Sie optional bis zu 2 weitere Mitarbeitende zum Sonderpreis von 5.100 € am Kompaktkurs teilnehmen lassen – <strong>ohne jede Verpflichtung</strong>. Diese Option kann nach Bekanntgabe der Genehmigungen frei in Anspruch genommen werden.</p></div>
+        <div style="background:rgba(45,138,86,0.06);border:1px solid rgba(45,138,86,0.3);border-left:5px solid #2d8a56;border-radius:0 8px 8px 0;padding:18px 22px;margin:18px 0">
+            <p style="font-size:13px;font-weight:700;color:#2d8a56;margin-bottom:6px">🎓 Exklusives Zusatzangebot: Selbstzahlerkurs ab 15 TN</p>
+            <p style="font-size:13px;color:var(--text);line-height:1.65">Unabhängig davon besteht mit Annahme dieses Angebotes die Möglichkeit, ab einer Mindestteilnehmerzahl von <strong>15 Teilnehmenden</strong> den exklusiven Selbstzahlerkurs zum Sonderpreis von <strong>5.100 € pro TN</strong> zu buchen – für bis zu <strong>${d.k.tn} Teilnehmende</strong>. Dieses Angebot ist freiwillig und unabhängig von der Anzahl geförderter TN verfügbar.</p>
+        </div>`;
+
+    const p06_text2 = d.wK
+        ? `D+J Consult übernimmt die vollständige Aufbereitung und Einreichung aller ${d.k.tn} Förderanträge bei der Agentur für Arbeit. Für geförderte Teilnehmende gelten die Konditionen gemäß QCG (${d.fp.l}). Für jeden genehmigten TN werden grundsätzlich 2 Selbstzahler zum Kompaktkurs (6 Monate, 5.100 €/TN) angemeldet. Die Anmeldepflicht reduziert sich automatisch, wenn der Nettozufluss aus der Förderung die Kompaktkurs-Kosten nicht vollständig deckt – kein negatives Saldo für ${d.k.f}. Zusätzlich besteht ab 15 TN die Möglichkeit, den exklusiven Selbstzahlerkurs zu 5.100 €/TN für bis zu ${d.k.tn} TN zu buchen.`
+        : `D+J Consult übernimmt die vollständige Aufbereitung und Einreichung aller ${d.k.tn} Förderanträge bei der Agentur für Arbeit. Für geförderte Teilnehmende gelten die Konditionen gemäß QCG (${d.fp.l}). Es besteht keinerlei Kompaktkurs-Pflicht. <strong>Optional</strong> können pro gefördertem TN bis zu 2 weitere TN zum Sonderpreis von 5.100 € am Kompaktkurs (6 Monate) teilnehmen – freiwillig und ohne jede Verpflichtung.`;
+
+    const p06_insightBox = d.wK
+        ? `<div class="insight-box"><p><strong>Beispiel-Mechanik:</strong> Bei ${sc[1].g} genehmigten TN → Nettozufluss ${fmtP(sc[1].z)}. Selbstzahler-Pflicht: ${sc[1].ng} TN à 5.100 € = ${fmt(sc[1].ng*5100)}. Saldo: ${fmtP(sc[1].sal)}. ${sc[1].ng<Math.min(sc[1].g*2,d.k.tn-sc[1].g)?'Die Pflicht wurde automatisch von '+Math.min(sc[1].g*2,d.k.tn-sc[1].g)+' auf '+sc[1].ng+' Selbstzahler reduziert (Schutzklausel).':'Volle 2× Pflicht greift, da Nettozufluss ausreicht.'}</p></div>`
+        : `<div class="insight-box" style="border-color:var(--gold);background:rgba(201,169,97,0.06)"><p><strong>💡 Optionaler Kompaktkurs – Beispiel:</strong> Bei ${sc[1].g} genehmigten TN (Real Case) könnten optional bis zu ${Math.min(sc[1].g*2, d.k.tn-sc[1].g)} weitere Mitarbeitende (ohne Förderung) am Kompaktkurs à 5.100 € teilnehmen. Diese Entscheidung trifft ${d.k.f} nach Bekanntgabe der Genehmigungen – völlig frei und ohne Zwang.</p></div>`;
+
+    const worstCaseText06 = `<div class="success-box"><p><strong>✅ Kein Risiko für ${d.k.f}:</strong> Sollte kein einziger Förderantrag genehmigt werden (Budget-Stopp Arbeitsagentur), entstehen <strong>0 € Kosten</strong> und <strong>keinerlei weitere Verpflichtungen</strong>. Der Worst Case ist buchstäblich Null. Die einzige Möglichkeit: eine signifikante Chance auf geförderte Weiterbildung mit Top-Dozenten und anerkanntem Zertifikat für Ihre Belegschaft.</p></div>`;
+
+    const html=`<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Angebot – ${d.k.f}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a961;--gold-light:#d4b872;--gold-dark:#b59650;--gold-bg:rgba(201,169,97,0.08);--black:#1a1a1a;--text:#333;--text-light:#666;--bg:#fdfcfa;--white:#fff;--border:#e8e4dd;--success:#2d8a56;--success-bg:rgba(45,138,86,0.08);--red:#c0392b;--red-bg:rgba(192,57,43,0.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;background:#1a1a1a;color:var(--text);line-height:1.65;font-size:15px;padding:30px;-webkit-font-smoothing:antialiased}
+.no-print{text-align:center;margin-bottom:20px}
+.no-print button{padding:14px 36px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black);border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Source Sans 3',sans-serif}
+.document{max-width:1100px;margin:0 auto;background:var(--white);border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.5);overflow:hidden}
+.cover{background:linear-gradient(165deg,#fdfcfa,#f5f2ed,#fdfcfa);padding:70px 70px 50px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+.cover::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cover-logo{margin-bottom:16px}.cover-logo svg{width:180px}
+.cover-badge{display:inline-block;border:1px solid rgba(201,169,97,0.5);color:var(--gold-dark);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:2px;margin-bottom:30px}
+.cover-title{font-family:'Playfair Display',serif;color:var(--black);font-size:42px;font-weight:700;line-height:1.15;margin-bottom:14px}.cover-title span{color:var(--gold)}
+.cover-subtitle{color:var(--text-light);font-size:18px;font-weight:300;max-width:620px;line-height:1.5;margin-bottom:35px}
+.cover-meta{display:flex;gap:50px;padding-top:22px;border-top:1px solid var(--border)}
+.cover-meta-item{color:var(--text-light);font-size:12px;text-transform:uppercase;letter-spacing:1.5px}.cover-meta-item strong{display:block;color:var(--black);font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;margin-top:4px}
+.confidential-stamp{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--red);padding:8px 18px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-top:12px;background:var(--red-bg)}
+.exec-summary{background:var(--bg);padding:35px 70px;display:grid;grid-template-columns:repeat(4,1fr);gap:25px;border-bottom:3px solid var(--gold);border-top:1px solid var(--border)}
+.exec-stat{text-align:center;padding:8px 0}.exec-stat-value{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}.exec-stat-label{font-size:11px;color:var(--text-light);text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
+.page{padding:50px 70px;border-bottom:1px solid var(--border);position:relative}.page:last-child{border-bottom:none}
+.page-number{position:absolute;top:26px;right:70px;font-size:11px;color:rgba(0,0,0,0.2);font-weight:600;letter-spacing:1px}
+.section-label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;position:relative;padding-left:22px}.section-label::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:14px;height:2px;background:var(--gold)}
+.page-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:20px}.page-title span{color:var(--gold)}
+.lead-text{font-size:16px;color:var(--text-light);line-height:1.7;margin-bottom:25px;font-weight:300}
+.content-text{font-size:15px;line-height:1.7;color:var(--text);margin-bottom:14px}.content-text strong{color:var(--black)}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+.kpi-card{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px 16px;text-align:center}
+.kpi-card-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:4px}.kpi-card-value.gold{color:var(--gold)}.kpi-card-value.success{color:var(--success)}
+.kpi-card-label{font-size:12px;color:var(--text-light);font-weight:500}.kpi-card-sub{font-size:11px;color:rgba(0,0,0,0.35);margin-top:3px}
+.insight-box{background:var(--gold-bg);border-left:4px solid var(--gold);padding:18px 22px;border-radius:0 8px 8px 0;margin:18px 0}.insight-box p{font-size:14px;line-height:1.65}.insight-box strong{color:var(--black)}
+.success-box{background:var(--success-bg);border-left:4px solid var(--success);padding:18px 22px;border-radius:0 8px 8px 0;margin:18px 0}.success-box p{font-size:14px;line-height:1.65}
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.module-card{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px 12px;position:relative;overflow:hidden}.module-card h4{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px}.module-card p{font-size:11.5px;color:var(--text-light);line-height:1.45}.module-number{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:1px;margin-bottom:3px}
+.price-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13px}
+.price-table thead th{background:var(--black);color:var(--white);padding:11px 14px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:1px}.price-table thead th:not(:first-child){text-align:right}
+.price-table tbody td{padding:11px 14px;border-bottom:1px solid var(--border)}.price-table tbody td:not(:first-child){text-align:right;font-weight:600;font-family:'Playfair Display',serif;font-size:14px}
+.price-table tbody tr:nth-child(even){background:var(--bg)}
+.price-table tbody tr.highlight-row{background:var(--gold-bg)}.price-table tbody tr.highlight-row td{color:var(--gold-dark);font-weight:600}
+.price-table tbody tr.total-row{background:var(--black)}.price-table tbody tr.total-row td{color:var(--white);font-weight:700;border-bottom:none}.price-table tbody tr.total-row td:not(:first-child){color:var(--gold);font-size:16px}
+.price-table tbody tr.savings-row{background:var(--success-bg)}.price-table tbody tr.savings-row td{color:var(--success);font-weight:700}
+.price-table tbody tr.optional-row td{color:#aaa;font-style:italic;font-family:'Source Sans 3',sans-serif;font-size:13px}
+.compliance-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0}
+.compliance-card{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px;display:flex;gap:12px;align-items:flex-start}
+.compliance-icon{width:34px;height:34px;border-radius:50%;background:var(--gold-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.compliance-card h5{font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px}.compliance-card p{font-size:12px;color:var(--text-light);line-height:1.5}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+.process-step{text-align:center;position:relative}.process-step::after{content:'→';position:absolute;right:-11px;top:24px;color:var(--gold);font-size:16px}.process-step:last-child::after{display:none}
+.step-number{width:40px;height:40px;border-radius:50%;background:var(--gold-bg);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);font-size:16px}
+.process-step h5{font-size:12px;font-weight:700;color:var(--black);margin-bottom:3px}.process-step p{font-size:11px;color:var(--text-light);line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:14px 0}
+.check-list{list-style:none;padding:0;margin:10px 0}.check-list li{padding:5px 0 5px 22px;position:relative;font-size:13px;line-height:1.5}.check-list li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:14px}
+.sig-area{margin-top:40px;padding-top:20px;border-top:2px solid var(--border)}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:30px}
+.sig-block{border-top:1px solid #999;padding-top:8px;margin-top:50px}
+.sig-block p{font-size:13px;color:var(--text-light)}
+.doc-footer{background:linear-gradient(135deg,#1a1a1a,#222);padding:35px 70px;display:flex;justify-content:space-between;align-items:center}
+.footer-left p{color:rgba(255,255,255,0.5);font-size:13px;line-height:1.6}.footer-left p strong{color:var(--gold);font-size:16px;display:block;margin-bottom:4px}
+.footer-right{text-align:right;color:rgba(255,255,255,0.35);font-size:12px;line-height:1.7}
+.footer-divider{width:1px;height:60px;background:rgba(255,255,255,0.1)}
+@media print{body{background:white!important;padding:0!important;font-size:13px!important}.no-print{display:none!important}.document{box-shadow:none!important;max-width:none!important}.cover{padding:45px 50px 30px!important}.exec-summary{padding:20px 50px!important;page-break-after:always}.page{padding:35px 50px!important;page-break-after:always;page-break-inside:avoid;break-inside:avoid}.page:last-of-type{page-break-after:avoid}.doc-footer{padding:25px 50px!important;page-break-before:avoid}h2,h3,h4,h5{page-break-after:avoid}.insight-box,.success-box,.kpi-grid,.price-table,.module-grid,.compliance-grid,.process-steps{page-break-inside:avoid;break-inside:avoid}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}}
+</style></head><body>
+<div class="no-print"><button onclick="window.print()">📄 Als PDF drucken / speichern (Strg+P)</button></div>
+<div class="document">
+    <div class="cover"><div>
+        <div class="cover-logo"><svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path d="M 20 20 Q 80 10,140 20 L 140 180 Q 80 170,20 180 Z" fill="none" stroke="#c9a961" stroke-width="8"/><path d="M 180 20 Q 120 10,60 20 L 60 180 Q 120 170,180 180 Z" fill="none" stroke="#c9a961" stroke-width="8"/><line x1="100" y1="20" x2="100" y2="180" stroke="#c9a961" stroke-width="6"/></g><text x="280" y="140" font-family="'Playfair Display',serif" font-size="72" font-weight="300" fill="#2a2a2a">D+J</text><text x="480" y="140" font-family="'Playfair Display',serif" font-size="72" font-weight="300" fill="#2a2a2a">Consult</text><text x="280" y="190" font-family="'Source Sans 3',sans-serif" font-size="28" font-weight="300" letter-spacing="8" fill="#999">ZIELE ERREICHEN</text></svg></div>
+        <div class="cover-badge">Vertrauliches Angebot</div>
+        <h1 class="cover-title">Zukunftskompetenz <span>Arbeit 4.0</span><br><span style="font-size:30px">für ${d.k.f}</span></h1>
+        <p class="cover-subtitle">Geförderte Weiterbildung für ${d.k.tn} Mitarbeitende – ${d.fp.l}, ${d.fp.p}% LKZ, zertifiziert, berufsbegleitend. <strong style="color:var(--gold)">Kein Risiko. Nur Chance.</strong></p>
+    </div><div>
+        <div class="cover-meta">
+            <div class="cover-meta-item">Erstellt für<strong>${d.k.f}</strong></div>
+            <div class="cover-meta-item">Datum<strong>${d.dt}</strong></div>
+            <div class="cover-meta-item">Ansprechpartner<strong>Jürgen Nedvidek</strong></div>
+        </div>
+        <div class="confidential-stamp"><span>⬥</span> Vertraulich – Weitergabe untersagt</div>
+    </div></div>
+
+    <div class="exec-summary">
+        <div class="exec-stat"><div class="exec-stat-value">${d.k.tn}</div><div class="exec-stat-label">Teilnehmende</div></div>
+        <div class="exec-stat"><div class="exec-stat-value">${fmtP(sc[2].sal)}</div><div class="exec-stat-label">Best Case</div></div>
+        <div class="exec-stat"><div class="exec-stat-value">${d.fp.p}%</div><div class="exec-stat-label">Lohnkostenzuschuss</div></div>
+        <div class="exec-stat"><div class="exec-stat-value" style="color:var(--success)">0 €</div><div class="exec-stat-label">Worst Case – kein Risiko</div></div>
+    </div>
+
+    <div class="page"><div class="page-number">01</div><div class="section-label">Executive Summary</div>
+        <h2 class="page-title">Geförderte Qualifizierung für <span>${d.k.f}</span></h2>
+        <p class="lead-text">Als Unternehmen mit ${d.k.ma} Mitarbeitenden qualifiziert sich ${d.k.f} für die Förderstufe „${d.fp.l}" nach dem Qualifizierungschancengesetz: <strong>${d.fp.p}% Lohnkostenzuschuss</strong>. D+J Consult übernimmt die vollständige Aufbereitung und Einreichung aller ${d.k.tn} Förderanträge. Für ${d.k.f} entsteht minimaler eigener Aufwand.</p>
+        <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-card-value gold">${fmt(d.reg)}</div><div class="kpi-card-label">Regulärer Gesamtpreis</div><div class="kpi-card-sub">${d.k.tn} TN × 10.200 €</div></div>
+            <div class="kpi-card"><div class="kpi-card-value success">${fmtP(sc[2].sal)}</div><div class="kpi-card-label">Best Case (${sc[2].g} gef.)</div><div class="kpi-card-sub">Alle TN gefördert</div></div>
+            <div class="kpi-card"><div class="kpi-card-value ${sc[1].sal>=0?'success':''}">${fmtP(sc[1].sal)}</div><div class="kpi-card-label">Real Case (${sc[1].g} gef.)</div><div class="kpi-card-sub">${sc[1].g} von ${d.k.tn} gefördert</div></div>
+        </div>
+        <div class="success-box"><p><strong>🏆 Kein Risiko – nur eine große Chance:</strong> ${sc[0].sal>=0?'In allen drei Szenarien erzielt '+d.k.f+' einen positiven Nettozufluss.':'Im Real und Best Case erzielt '+d.k.f+' einen positiven Nettozufluss.'} Statt ${fmt(d.reg)} regulärem Kurspreis. <strong>Worst Case: Sollten keinerlei Förderanträge genehmigt werden, entstehen 0 € Kosten</strong> – keine Verpflichtung, kein Kompaktkurs, kein Risiko.</p></div>
+        ${insightBox01}
+    </div>
+
+    <div class="page"><div class="page-number">02</div><div class="section-label">Strategischer Kontext</div>
+        <h2 class="page-title">Warum <span>jetzt</span> handeln?</h2>
+        <p class="lead-text">Regulatorische Anforderungen verschärfen sich. Die aktuelle Förderlandschaft bietet ein attraktives Fenster.</p>
+        <div class="compliance-grid">
+            <div class="compliance-card"><div class="compliance-icon">🤖</div><div><h5>EU AI-Act</h5><p>KI-Kompetenz muss nachgewiesen werden. Unser Kurs erfüllt und zertifiziert diese Anforderung.</p></div></div>
+            <div class="compliance-card"><div class="compliance-icon">🌱</div><div><h5>ESG & Nachhaltigkeit</h5><p>CSR-Berichtspflichten erfordern geschulte Mitarbeitende auf allen Ebenen.</p></div></div>
+            <div class="compliance-card"><div class="compliance-icon">🔐</div><div><h5>Cybersecurity & Datenschutz</h5><p>NIS2 und DSGVO verlangen nachweisbare, dokumentierte Schulungen.</p></div></div>
+            <div class="compliance-card"><div class="compliance-icon">📊</div><div><h5>Digitale Wettbewerbsfähigkeit</h5><p>Digitaler Vertrieb, Automatisierung und datengetriebene Entscheidungen.</p></div></div>
+        </div>
+        <div class="insight-box"><p><strong>Alle Pflichtschulungen in einem Programm:</strong> AI-Act, ESG, Cybersecurity und Datenschutz in einem zertifizierten Programm – mit anerkanntem Trägerzertifikat.</p></div>
+    </div>
+
+    <div class="page"><div class="page-number">03</div><div class="section-label">Das Programm</div>
+        <h2 class="page-title">Weiterbildung <span>„Arbeit 4.0"</span> – 12 Module, 1.200 UE</h2>
+        <p class="lead-text">Zertifizierte Weiterbildung, 12 Monate berufsbegleitend, Top-Dozenten aus der Praxis.</p>
+        <div class="two-col" style="margin-bottom:16px">
+            <div><h4 style="font-size:13px;font-weight:700;margin-bottom:6px">Durchführungsformat</h4><ul class="check-list"><li>Täglich 45 Min. Live-Online-Unterricht</li><li>Weitere Lernzeit flexibel – ca. 50% der Arbeitszeit</li><li>Dauer: 12 Monate berufsbegleitend</li></ul></div>
+            <div><h4 style="font-size:13px;font-weight:700;margin-bottom:6px">Qualitätsmerkmale</h4><ul class="check-list"><li>Zertifizierter Bildungsträger</li><li>Anerkanntes Trägerzertifikat</li><li>Top-Dozenten: Vorstände, Praxisexperten</li><li>Sofort umsetzbar im Berufsalltag</li></ul></div>
+        </div>
+        <div class="module-grid">
+            ${['Digitalisierung & Transformation','Künstliche Intelligenz','Social Media Marketing','Business Development','Kommunikation','Mitarbeiterführung','Work-Life-Balance','Digitale Tools & Projekte','Vertrieb','Nachhaltigkeit & ESG','Cybersecurity','Zukunft der Arbeit'].map((m,i)=>`<div class="module-card"><div class="module-number">MODUL ${String(i+1).padStart(2,'0')}</div><h4>${m}</h4></div>`).join('')}
+        </div>
+    </div>
+
+    <div class="page"><div class="page-number">04</div><div class="section-label">Förderung & Full-Service</div>
+        <h2 class="page-title">Förderstufe: <span>${d.fp.p}% Lohnkostenzuschuss</span></h2>
+        <p class="lead-text">${d.fp.l}. D+J Consult übernimmt die vollständige Antragstellung für alle ${d.k.tn} Teilnehmenden.</p>
+        <table class="price-table">
+            <thead><tr><th>Position</th><th>Pro TN</th><th>Gesamt (${d.k.tn} TN)</th></tr></thead>
+            <tbody>
+                <tr><td>Bruttogehalt + 20% NK</td><td style="text-align:right">${fmt(d.bNK)}/Mon</td><td>–</td></tr>
+                <tr><td>WB-Anteil (50% Arbeitszeit)</td><td style="text-align:right">${fmt(d.bNK/2)}/Mon</td><td>–</td></tr>
+                <tr class="savings-row"><td><strong>LKZ ${d.fp.p}% × 12 Monate</strong></td><td style="text-align:right">${fmt(d.lkz)}</td><td>${fmt(d.lkz*d.k.tn)}</td></tr>
+                <tr><td>Abzugsbetrag (Eigenanteil)</td><td style="text-align:right">${fmt(d.fp.a)}</td><td>${fmt(d.fp.a*d.k.tn)}</td></tr>
+                <tr class="highlight-row"><td><strong>Nettozufluss pro gef. TN</strong></td><td style="text-align:right"><strong>${fmtP(d.net)}</strong></td><td><strong>${fmtP(d.net*d.k.tn)}</strong></td></tr>
+            </tbody>
+        </table>
+        <div class="success-box"><p><strong>${d.net>=0?'Förderung übersteigt Kurskosten:':'Erhebliche Kostenreduktion:'}</strong> Pro gefördertem TN ${d.net>=0?'fließen dem Unternehmen netto <strong>'+fmtP(d.net)+'</strong> zu.':'reduzieren sich die Kosten auf nur <strong>'+fmt(Math.abs(d.net))+'</strong> statt 10.200 €.'}</p></div>
+        <div class="insight-box"><p><strong>Full-Service:</strong> Alle ${d.k.tn} Förderanträge werden von D+J Consult aufbereitet und eingereicht. Minimaler Aufwand für ${d.k.f}.</p></div>
+        <div class="process-steps">
+            <div class="process-step"><div class="step-number">1</div><h5>Datenübergabe</h5><p>MA-Daten bereitstellen</p></div>
+            <div class="process-step"><div class="step-number">2</div><h5>Antragstellung</h5><p>D+J erstellt Anträge</p></div>
+            <div class="process-step"><div class="step-number">3</div><h5>Genehmigung</h5><p>Begleitung</p></div>
+            <div class="process-step"><div class="step-number">4</div><h5>Kursstart</h5><p>Nach Bewilligung</p></div>
+        </div>
+    </div>
+
+    <div class="page"><div class="page-number">05</div><div class="section-label">Szenarien</div>
+        <h2 class="page-title">Szenarien – <span>Saldo Unternehmen</span></h2>
+        <p class="lead-text">${leadText05}</p>
+        <table class="price-table">
+            <thead><tr><th>Position</th>${allHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+            <tbody>
+                ${scRow('Geförderte TN',allSc.map(s=>''+s.g))}
+                ${d.wK
+                    ? scRow(kompaktRowLabel05,allSc.map(s=>''+s.ng))
+                    : `<tr class="optional-row"><td>${kompaktRowLabel05}</td>${allSc.map(()=>`<td style="text-align:right">optional</td>`).join('')}</tr>`
+                }
+                ${scRow('<strong>Nettozufluss Förderung</strong>',allSc.map(s=>fmtP(s.z)),'savings-row')}
+                ${d.wK
+                    ? scRow('Kompaktkurs (à 5.100 €)',allSc.map(s=>s.kk?'–'+fmt(s.kk):'0 €'))
+                    : `<tr class="optional-row"><td>Kompaktkurs (à 5.100 €, optional)</td>${allSc.map(s=>`<td style="text-align:right">opt. ${s.g>0?'bis '+fmt(Math.min(s.g*2,d.k.tn-s.g)*5100):'–'}</td>`).join('')}</tr>`
+                }
+                ${scRow('<strong>SALDO UNTERNEHMEN</strong>',allSc.map(s=>fmtP(s.sal)),'total-row')}
+            </tbody>
+        </table>
+        <div class="kpi-grid">
+            ${sc.map(s=>`<div class="kpi-card"><div class="kpi-card-value ${s.sal>=0?'success':''}" ${s.sal<0?'style="color:var(--red)"':''}>${fmtP(s.sal)}</div><div class="kpi-card-label">${s.n}</div><div class="kpi-card-sub">${s.g} von ${d.k.tn} gefördert</div></div>`).join('')}
+        </div>
+        ${optionalBox05}
+        ${schutzklauselBox05}
+        <div class="success-box"><p><strong>✅ Worst Case = 0 € – absolut kein Risiko:</strong> Sollten keinerlei Förderanträge genehmigt werden, entsteht ${d.k.f} keinerlei Verpflichtung und keinerlei Kosten. Es besteht ausschließlich die Chance auf erhebliche Nettozuflüsse und eine top ausgebildete Belegschaft.</p></div>
+    </div>
+
+    <div class="page"><div class="page-number">06</div><div class="section-label">Auftragsbestätigung</div>
+        <h2 class="page-title">Verbindliche <span>Teilnahmeerklärung</span></h2>
+        <p class="content-text">Hiermit bestätigt <strong>${d.k.f}</strong> die Teilnahme von bis zu <strong>${d.k.tn} Mitarbeitenden</strong> an der Weiterbildung „Arbeit 4.0" zu den in diesem Angebot dargestellten Konditionen.</p>
+        <p class="content-text">${p06_text2}</p>
+        ${worstCaseText06}
+        ${p06_insightBox}
+        ${schutzklauselBox05}
+        <table class="price-table">
+            <thead><tr><th>Kostenübersicht (Vertragsbestandteil)</th>${allHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+            <tbody>
+                ${scRow('Gefördert / Kompaktkurs-TN',allSc.map(s=>d.wK?s.g+' / '+s.ng:s.g+' gef.'))}
+                ${scRow('<strong>Saldo Unternehmen</strong>',allSc.map(s=>fmtP(s.sal)),'highlight-row')}
+            </tbody>
+        </table>
+        <div style="background:#f8f6f2;border:1.5px solid #c9a961;border-left:5px solid #c9a961;border-radius:0 8px 8px 0;padding:18px 22px;margin:20px 0">
+            <p style="font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px">📎 Vertragsbestandteil: Cash-Flow-Szenarien</p>
+            <p style="font-size:13px;color:#555;line-height:1.65">Die diesem Angebot beigefügten <strong>Cash-Flow-Analysen (Low Case, Real Case, Best Case)</strong> mit den voraussichtlichen Zahlungszeitpunkten sind integraler Bestandteil dieses Vertrages. Sie dokumentieren die erwarteten monatlichen Zahlungsströme zwischen <strong>${d.k.f}</strong> und D+J Consult sowie die voraussichtlichen Zahlungseingänge seitens der Bundesagentur für Arbeit für den jeweiligen Förderzeitraum von 12 Monaten. Abweichungen der tatsächlichen Zahlungstermine der Agentur für Arbeit von den dargestellten Prognosen begründen keine Gewährleistungsansprüche gegenüber D+J Consult.</p>
+        </div>
+        <div class="sig-area">
+            <div class="sig-grid">
+                <div><div class="sig-block"><p><strong>D+J Consult</strong>, Jürgen Nedvidek</p><p>Ort, Datum · Unterschrift</p></div></div>
+                <div><div class="sig-block"><p><strong>${d.k.f}</strong>${d.k.ap?', '+d.k.ap:''}</p><p>Ort, Datum · Unterschrift</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="doc-footer">
+        <div class="footer-left"><p><strong>D+J Consult</strong>Jürgen Nedvidek<br>+49 152 03081715 · jn@dj-bildung.de</p></div>
+        <div class="footer-divider"></div>
+        <div class="footer-right"><p>Vertraulich<br>Gültig bis: ${new Date(Date.now()+30*86400000).toLocaleDateString('de-DE')}<br><em style="color:var(--gold)">D+J Consult · Ziele Erreichen</em></p></div>
+    </div>
+</div></body></html>`;
+
+    // Auto-Download als PDF via html2pdf
+    var container=document.createElement('div');
+    container.id='_pdfTemp';
+    container.style.cssText='position:fixed;left:-9999px;top:0;width:1100px;';
+    container.innerHTML=html;
+    document.body.appendChild(container);
+    var docEl=container.querySelector('.document')||container;
+    var fname='Angebot_'+d.k.f.replace(/[^a-zA-Z0-9äöüÄÖÜß]/g,'_')+'_'+d.dt.replace(/\./g,'-')+'.pdf';
+    html2pdf().set({
+        margin:[10,10,10,10],
+        filename:fname,
+        image:{type:'jpeg',quality:0.95},
+        html2canvas:{scale:2,useCORS:true,scrollY:0},
+        jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+        pagebreak:{mode:['css','legacy'],avoid:'.kpi-grid,.insight-box,.success-box,.compliance-grid,.module-grid,.price-table'}
+    }).from(docEl).save().then(function(){
+        document.body.removeChild(container);
+    });
+}
+
+// ═══ PROVISIONS-PDF (jsPDF) ═══
+function generateProvisionPDF(){
+    if(!calcData)return;const d=calcData,doc=new jsPDF({unit:'mm',format:'a4'});
+    const F='F';let y=0;
+    const fE=(n)=>n.toLocaleString('de-DE',{minimumFractionDigits:0,maximumFractionDigits:0})+' EUR';
+    const fEP=(n)=>(n>=0?'+':'')+fE(n);
+
+    // Header
+    doc.setFillColor(26,26,26);doc.rect(0,0,210,28,F);
+    doc.setFont('helvetica','bold');doc.setFontSize(16);doc.setTextColor(201,169,97);doc.text('D+J Consult',14,12);
+    doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(255,255,255);doc.text('Provisionsvereinbarung - Vertraulich',14,20);
+    doc.setTextColor(150);doc.setFontSize(8);doc.text(d.dt,170,20);
+    y=38;
+
+    const pH2=(t)=>{doc.setFontSize(8);doc.setTextColor(201,169,97);doc.setFont('helvetica','bold');doc.text('---  '+t.toUpperCase(),14,y);y+=8;};
+    const pP=(t)=>{doc.setFontSize(10);doc.setTextColor(80);doc.setFont('helvetica','normal');const l=doc.splitTextToSize(t,182);doc.text(l,14,y);y+=l.length*5+4;};
+
+    pH2('Vermittlungsvereinbarung');
+    doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(60);pP('zwischen');
+    doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text('D+J Consult, Juergen Nedvidek',14,y);y+=5;
+    doc.setFont('helvetica','normal');doc.setTextColor(100);doc.text('(Provision) und',14,y);y+=5;
+    doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text('D+J Bildung, Daniela Nedvidek',14,y);y+=5;
+    doc.setFont('helvetica','normal');doc.setTextColor(100);doc.text('(Dozententaetigkeit)',14,y);y+=8;
+    pP('und');
+    const vN=d.vm.f?d.vm.f+', '+d.vm.n:d.vm.n;
+    doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text(vN,14,y);y+=5;
+    doc.setFont('helvetica','normal');doc.setTextColor(100);
+    if(d.vm.st){doc.text(d.vm.st,14,y);y+=5;}if(d.vm.ort){doc.text(d.vm.ort,14,y);y+=5;}
+    doc.text('(nachfolgend "Vermittler")',14,y);y+=10;
+
+    pH2('Par. 1 Gegenstand');
+    pP('Vermittlung '+d.k.f+' ('+d.k.ma+' MA), '+d.k.tn+' TN Weiterbildung "Arbeit 4.0".');
+
+    pH2('Par. 2 Provision Einlieferung Bildungsgutschein (D+J Consult)');
+    if(d.wK){
+        pP('Gefoerderte TN: 1.000 EUR/TN  -  Nicht gefoerderte TN (Kompaktkurs, grundsaetzlich 2 je gef. TN, Schutzklausel: Reduktion wenn Nettozufluss nicht ausreicht): 500 EUR/TN  -  Auszahlung nach Kursstart.');
+    }else{
+        pP('Gefoerderte TN: 1.000 EUR/TN  -  Nicht gefoerderte TN (Kompaktkurs, OPTIONAL): 500 EUR/TN  -  Auszahlung nach Kursstart. Der Kompaktkurs ist fuer das Unternehmen nicht verpflichtend; er wird nur abgerechnet, wenn das Unternehmen die Option aktiv in Anspruch nimmt.');
+    }
+
+    pH2('Par. 3 Dozententaetigkeit (D+J Bildung)');
+    const kompaktLabelPar3 = d.wK
+        ? 'Kompakt-TN (2 je gef. TN, ggf. reduziert durch Schutzklausel): '
+        : 'Optional Kompakt-TN (max. 2 je gef. TN, Sonderpreis 5.100 EUR/TN, KEINE Pflicht): ';
+    const kompaktEndPar3 = d.wK
+        ? '\n\n1 Monat = 20 Arbeitstage x 45 Min = 20 UE\n0,5 Monate = 10 Arbeitstage x 45 Min = 10 UE\nWorst Case (0 gef. TN): kein Kompaktkurs, 0 EUR'
+        : '\n\nKompakt-TN sind vollstaendig optional. Dozentenhonorar faellt nur an, wenn das Unternehmen den Kompaktkurs aktiv bucht.\n1 Monat = 20 Arbeitstage x 45 Min = 20 UE\n0,5 Monate = 10 Arbeitstage x 45 Min = 10 UE\nWorst Case (0 gef. TN): kein Kompaktkurs, 0 EUR';
+    pP('Gef. TN: '+d.dMG+' Mon = '+d.dUG+' UE (a 45 Min) x 75 EUR/UE = '+fE(d.dEG)+'\n'+kompaktLabelPar3+d.dMN+' Mon = '+d.dUN+' UE (a 45 Min) x 75 EUR/UE = '+fE(d.dEN)+kompaktEndPar3);
+
+    pH2('Par. 4 Provisionsuebersicht');
+    const sc=d.sc,wp=d.wp;
+    const tw=188,cols=[62,32,32,32,30],sx=11;
+    const drawRow=(cells,isBold,bgColor)=>{
+        if(bgColor){const[r,g,b]=bgColor;doc.setFillColor(r,g,b);doc.rect(sx,y-4,tw,7,F);}
+        doc.setFont('helvetica',isBold?'bold':'normal');doc.setFontSize(9);
+        let x=sx;cells.forEach((c,i)=>{
+            if(isBold&&i>0&&bgColor&&bgColor[0]===26)doc.setTextColor(201,169,97);
+            doc.text(String(c),i?x+cols[i]-2:x+2,y,i?{align:'right'}:{});x+=cols[i];
+        });y+=7;doc.setTextColor(60);
+    };
+    doc.setFillColor(26,26,26);doc.rect(sx,y-4,tw,7,F);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);
+    let x=sx;['Position','Worst(0)','Low('+sc[0].g+')','Real('+sc[1].g+')','Best('+sc[2].g+')'].forEach((h,i)=>{doc.text(h,i?x+cols[i]-2:x+2,y,i?{align:'right'}:{});x+=cols[i];});y+=7;
+    doc.setTextColor(60);
+    drawRow(['Einlieferung BG',fE(wp.pBG),...sc.map(s=>fE(s.pBG))]);
+    drawRow(['Dozententaetigkeit',fE(wp.pD),...sc.map(s=>fE(s.pD))]);
+    drawRow(['Provision gesamt',fE(wp.pT),...sc.map(s=>fE(s.pT))],true,[252,248,240]);
+    drawRow(['Dozenten-UE',wp.ue+' UE',...sc.map(s=>s.ue+' UE')]);
+    y+=4;
+
+    if(d.wK){
+        pP('Worst Case = 0 gefoerderte TN: kein Kompaktkurs, 0 EUR Kosten fuer das Unternehmen. Schutzklausel: Selbstzahler-Pflicht reduziert sich automatisch, sodass das Saldo fuer das Unternehmen stets <= 0 EUR Belastung bleibt. Ab 15 TN besteht zusaetzlich die Moeglichkeit, den exklusiven Selbstzahlerkurs zu 5.100 EUR/TN fuer bis zu '+d.k.tn+' TN zu buchen.');
+    }else{
+        pP('Tabelle zeigt Provision nur fuer gefoerderte TN (ohne optionalen Kompaktkurs).\nOptionaler Kompaktkurs: +500 EUR/Kompakt-TN (Einlieferung) + Dozentenhonorar ('+fE(d.dEN)+'/Kompakt-TN). Basis: max. 2 Kompakt-TN je gef. TN.\nWorst Case = 0 gefoerderte TN: 0 EUR Kosten fuer das Unternehmen, kein Kompaktkurs. Provision gesichert sobald TN genehmigt.');
+    }
+
+    pH2('Par. 5 Vertraulichkeit');
+    pP('Diese Vereinbarung ist strikt vertraulich. Weitergabe an Dritte ist untersagt.');
+
+    y+=10;doc.setDrawColor(200);
+    doc.line(14,y,90,y);doc.line(110,y,186,y);y+=5;
+    doc.setFontSize(9);doc.setTextColor(100);doc.text('D+J Consult, Juergen Nedvidek',14,y);doc.text(vN,110,y);y+=5;
+    doc.text('Ort, Datum',14,y);doc.text('Ort, Datum',110,y);y+=14;
+    doc.line(14,y,90,y);y+=5;doc.text('D+J Bildung, Daniela Nedvidek',14,y);y+=5;doc.text('(Dozententaetigkeit gem. Par. 3)',14,y);
+
+    doc.setFillColor(26,26,26);doc.rect(0,282,210,15,F);doc.setFontSize(7);doc.setTextColor(150);doc.text('D+J Consult - Vertraulich',14,289);
+    doc.save('Provision_'+d.vm.n.replace(/[^a-zA-Z0-9äöüÄÖÜß]/g,'_')+'.pdf');
+}
+
+// ═══ CASH-FLOW-PDF ═══
+function generateCashFlowPDF(){
+    if(!calcData)return;
+    const d=calcData,doc=new jsPDF({unit:'mm',format:'a4'});
+    const F='F';
+
+    // Preismodell analog CashFlow-Rechner
+    function cfModel(ma){
+        if(ma<50)  return{type:'small', label:'Kleine Unternehmen (<50 MA)',    adminFee:2000,coachingFee:500, hasCoaching:true, agencyPct:0.75,companyCost:0};
+        if(ma<500) return{type:'medium',label:'Mittlere Unternehmen (50-499 MA)',adminFee:2000,coachingFee:0,   hasCoaching:false,agencyPct:0.50,companyCost:5100};
+                   return{type:'large', label:'Große Unternehmen (500+ MA)',    adminFee:2000,coachingFee:0,   hasCoaching:false,agencyPct:0.25,companyCost:7650};
+    }
+    const model=cfModel(d.k.ma);
+    const agPerTNm=((d.b*1.20)/2)*model.agencyPct; // Agenturzahlung pro TN pro Monat
+    const perTN_m1=model.hasCoaching?model.adminFee+model.coachingFee:model.adminFee+model.companyCost;
+    const fE=n=>n.toLocaleString('de-DE',{minimumFractionDigits:0,maximumFractionDigits:0})+' EUR';
+    const fEs=n=>(n>=0?'+':'')+fE(n);
+
+    d.sc.forEach((sc,idx)=>{
+        if(idx>0)doc.addPage();
+        const tn=sc.g, ng=sc.ng;
+        let y=0;
+
+        // ── HEADER ──────────────────────────────────────────────────
+        doc.setFillColor(26,26,26);doc.rect(0,0,210,28,F);
+        doc.setFont('helvetica','bold');doc.setFontSize(15);doc.setTextColor(201,169,97);
+        doc.text('D+J Consult  ·  Cash-Flow-Analyse',14,11);
+        doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(210,210,210);
+        doc.text('Weiterbildung Arbeit 4.0  ·  Szenario: '+sc.n+' ('+tn+' gef. TN)',14,20);
+        doc.setFontSize(8);doc.setTextColor(140,140,140);
+        doc.text(d.dt,196,11,{align:'right'});doc.text(d.k.f,196,20,{align:'right'});
+        y=34;
+
+        // ── INFO-BOX ────────────────────────────────────────────────
+        doc.setFillColor(250,248,242);doc.setDrawColor(201,169,97);doc.setLineWidth(0.4);
+        doc.roundedRect(11,y,188,28,2,2,'FD');doc.setLineWidth(0.2);
+        const infoItems=[
+            [' Unternehmen:',d.k.f,' Ø Bruttogehalt:',fE(d.b),y+7],
+            [' Mitarbeitende:',d.k.ma+' MA',' Gef. TN ('+sc.n+'):',tn+' TN',y+14],
+            [' Fördermodell:',model.label,' Kompaktkurs-TN:',d.wK?(ng+' TN (Schutzklausel)'):'optional (nicht kalkuliert)',y+21]
+        ];
+        infoItems.forEach(([lbl1,val1,lbl2,val2,yt])=>{
+            doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(26,26,26);
+            doc.text(lbl1,13,yt);doc.setFont('helvetica','normal');doc.setTextColor(60);doc.text(String(val1),50,yt);
+            doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);
+            doc.text(lbl2,109,yt);doc.setFont('helvetica','normal');doc.setTextColor(60);doc.text(String(val2),153,yt);
+        });
+        y+=34;
+
+        // ── SEKTION-LABEL ────────────────────────────────────────────
+        doc.setFillColor(201,169,97);doc.rect(11,y,3,11,F);
+        doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(26,26,26);
+        doc.text('Cash-Flow-Verlauf  ·  '+sc.n,17,y+6);
+        doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(120);
+        const rightLabel=model.hasCoaching
+            ?'Adminkosten '+fE(model.adminFee)+' einmalig  /  Coaching '+fE(model.coachingFee)+' monatlich pro TN'
+            :'Adminkosten '+fE(model.adminFee)+' einmalig  /  Eigenanteil '+fE(model.companyCost)+' pro TN';
+        doc.text(rightLabel,199,y+6,{align:'right'});
+        doc.text('Modell: '+model.label,17,y+11);
+        y+=16;
+
+        // ── TABELLEN-HEADER ──────────────────────────────────────────
+        const tX=11,tW=188;
+        const colW=[82,34,36,36];
+        doc.setFillColor(26,26,26);doc.rect(tX,y,tW,7.5,F);
+        doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(255,255,255);
+        let hx=tX;
+        ['Position','Zeitraum','Betrag','Cash Flow kum.'].forEach((h,i)=>{
+            doc.text(h,i===0?hx+2:hx+colW[i]-2,y+5,i===0?{}:{align:'right'});hx+=colW[i];
+        });
+        y+=7.5;
+
+        // Row-Helfer
+        let alt=false; // kept for rSub reset compatibility
+        const rInfo=(lbl,bet='')=>{
+            doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(145);
+            doc.text('   '+lbl,tX+3,y+3.8);
+            if(bet){doc.setTextColor(100);doc.text(bet,tX+colW[0]+colW[1]+colW[2]-2,y+3.8,{align:'right'});}
+            doc.setDrawColor(232,228,222);doc.line(tX,y+5.5,tX+tW,y+5.5);y+=5.5;
+        };
+        const rData=(lbl,zeit,bet,cfk,pos)=>{
+            doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(40);doc.text(lbl,tX+2,y+4.2);
+            if(zeit){doc.setFontSize(7);doc.setTextColor(110);doc.text(zeit,tX+colW[0]+colW[1]-2,y+4.2,{align:'right'});}
+            if(bet){doc.setFontSize(8);doc.setTextColor(40);doc.text(bet,tX+colW[0]+colW[1]+colW[2]-2,y+4.2,{align:'right'});}
+            if(cfk!==undefined){
+                const p=(typeof pos!=='undefined')?pos:!cfk.startsWith('-');
+                doc.setFont('helvetica','bold');doc.setFontSize(8);
+                doc.setTextColor(p?39:192,p?130:57,p?65:43);doc.text(cfk,tX+tW-2,y+4.2,{align:'right'});
+            }
+            doc.setDrawColor(232,228,222);doc.line(tX,y+6,tX+tW,y+6);y+=6;
+        };
+        const rSub=(lbl,cfk)=>{
+            doc.setFillColor(238,235,229);doc.rect(tX,y,tW,7,F);
+            doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(30);doc.text(lbl,tX+2,y+4.8);
+            const p=!cfk.startsWith('-');
+            doc.setTextColor(p?39:192,p?130:57,p?65:43);doc.text(cfk,tX+tW-2,y+4.8,{align:'right'});
+            doc.setDrawColor(201,169,97);doc.line(tX,y+7,tX+tW,y+7);y+=7;alt=false;
+        };
+
+        // ── ZEILEN NACH SZENARIO ────────────────────────────────────
+        if(tn===0){
+            rData('Worst Case: Kein Förderantrag genehmigt','','0 EUR','0 EUR',true);
+            rData('Kein Kompaktkurs, keine Verpflichtung, 0 EUR Kosten','','','',true);
+            y+=3;
+            doc.setFillColor(26,26,26);doc.rect(tX,y,tW,9,F);
+            doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(255,255,255);
+            doc.text('GESAMTSALDO',tX+3,y+6.3);
+            doc.setTextColor(39,180,80);doc.text('0 EUR',tX+tW-3,y+6.3,{align:'right'});
+            y+=9;
+        } else {
+            let cf=0,totR=0,totA=0;
+            const kkPerTNPerMon=425;               // 425 EUR × 12 Monate = 5.100 EUR
+            const kkMonBetrag=kkPerTNPerMon*ng;    // Gesamt pro Monat für alle Kompaktkurs-TN
+            const showKK=d.wK&&ng>0;
+
+            // ─ Monate 1–3 (einzeln, Zwischensumme nur nach Monat 3) ─
+            const eigenMonBetrag=model.hasCoaching?0:Math.round(model.companyCost/12); // 1/12 Eigenanteil pro Monat (nur mittel/groß)
+            [1,2,3].forEach(m=>{
+                const isFirst=(m===1);
+                if(isFirst){
+                    // Monat 1: Admin (einmalig) für alle TN + 1. Rate Eigenanteil (mittel/groß) oder Admin+Coaching (klein)
+                    let m1inv;
+                    if(model.hasCoaching){
+                        m1inv=(model.adminFee+model.coachingFee)*tn;
+                        rInfo('Admin '+fE(model.adminFee*tn)+' + Coaching '+fE(model.coachingFee*tn)+' = '+fE(m1inv));
+                    } else {
+                        m1inv=(model.adminFee*tn)+(eigenMonBetrag*tn);
+                        rInfo('Admin '+fE(model.adminFee*tn)+' (einmalig) + 1. Rate Eigenanteil '+fE(eigenMonBetrag*tn)+' (1/12) = '+fE(m1inv));
+                    }
+                    cf-=m1inv;totR+=m1inv;
+                    rData('1. Rechnung an Unternehmen ('+tn+' gef. TN)','Monat 1',fE(m1inv),fEs(cf),false);
+                    const m1ag=agPerTNm*tn;
+                    cf+=m1ag;totA+=m1ag;
+                    rData('1. Zahlung durch Arbeitsagentur ('+tn+' TN)','Monat 1',fE(m1ag),fEs(cf),cf>=0);
+                } else {
+                    // Monate 2+3
+                    let inv;
+                    if(model.hasCoaching){
+                        inv=model.coachingFee*tn;
+                        rInfo('Coaching '+fE(model.coachingFee*tn)+' / '+tn+' TN');
+                    } else {
+                        inv=eigenMonBetrag*tn;
+                        rInfo(m+'. Rate Eigenanteil '+fE(eigenMonBetrag*tn)+' (1/12)');
+                    }
+                    cf-=inv;totR+=inv;
+                    rData(m+'. Rechnung an Unternehmen ('+tn+' gef. TN)','Monat '+m,fE(inv),fEs(cf),false);
+                    const ag=agPerTNm*tn;
+                    cf+=ag;totA+=ag;
+                    rData(m+'. Zahlung durch Arbeitsagentur ('+tn+' TN)','Monat '+m,fE(ag),fEs(cf),cf>=0);
+                }
+                if(showKK){
+                    cf-=kkMonBetrag;totR+=kkMonBetrag;
+                    rData(m+'. Rechnung Unternehmen Kompaktkurs ('+ng+' TN x 425 EUR)','Monat '+m,fE(kkMonBetrag),fEs(cf),false);
+                }
+            });
+            // Einzige Zwischensumme: nach Monat 3
+            rSub('Zwischensumme nach Monat 3',fEs(cf));
+
+            // ─ Monate 4–12 (9× zusammengefasst) ─
+            let inv9;
+            if(model.hasCoaching){
+                inv9=model.coachingFee*tn*9;
+                rInfo('Coaching 9x a '+fE(model.coachingFee*tn)+'/Mon = '+fE(inv9));
+            } else {
+                inv9=eigenMonBetrag*tn*9;
+                rInfo('Raten 4–12 Eigenanteil: 9x '+fE(eigenMonBetrag*tn)+' = '+fE(inv9)+' (je 1/12 pro Monat)');
+            }
+            cf-=inv9;totR+=inv9;
+            rData('Rechnungen an Unternehmen (9x)','Monat 4–12',fE(inv9),fEs(cf),false);
+            const ag9=agPerTNm*tn*9;
+            cf+=ag9;totA+=ag9;
+            rData('Zahlungen Arbeitsagentur (9x)','Monat 4–12',fE(ag9),fEs(cf),cf>=0);
+            if(showKK){
+                const kk9=kkMonBetrag*9;
+                cf-=kk9;totR+=kk9;
+                rData('4.–12. Rechnung Unternehmen Kompaktkurs (9x, '+ng+' TN x 425 EUR)','Monat 4–12',fE(kk9),fEs(cf),false);
+            }
+            if(!showKK&&!d.wK&&ng>0){
+                rInfo('Kompaktkurs optional – nicht kalkuliert (max. '+ng+' TN x 5.100 EUR = '+fE(ng*5100)+' moeglich)');
+            }
+
+            // ─ Gesamtsaldo ─
+            y+=3;
+            const isPos=cf>=0;
+            doc.setFillColor(26,26,26);doc.rect(tX,y,tW,9,F);
+            doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(255,255,255);
+            doc.text('GESAMTSALDO',tX+3,y+6.3);
+            doc.setTextColor(isPos?39:220,isPos?180:60,isPos?80:50);doc.setFontSize(11);
+            doc.text(fEs(cf),tX+tW-3,y+6.3,{align:'right'});
+            y+=13;
+
+            // ─ Summary-Box ─
+            doc.setFillColor(250,248,242);doc.setDrawColor(201,169,97);doc.setLineWidth(0.4);
+            doc.roundedRect(tX,y,tW,40,2,2,'FD');doc.setLineWidth(0.2);
+            doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(26,26,26);
+            doc.text('Zusammenfassung Cash-Flow',tX+4,y+7);
+            const summRows=[
+                ['Rechnungen an Unternehmen gesamt:','–'+fE(totR),false],
+                ['Zahlungen Arbeitsagentur gesamt:','+'+fE(totA),true],
+                ...(showKK?[['  davon Kompaktkurs ('+ng+' TN × 425 EUR × 12 Mon):','–'+fE(kkMonBetrag*12),false]]:[]),
+                ['Netto-Cash-Flow:',fEs(cf),isPos]
+            ];
+            summRows.forEach(([lbl,val,pos],i)=>{
+                const sy=y+7+(i+1)*8;
+                const isLast=i===summRows.length-1;
+                doc.setFont('helvetica',isLast?'bold':'normal');doc.setFontSize(isLast?10:8);doc.setTextColor(isLast?26:80);
+                doc.text(lbl,tX+4,sy);
+                doc.setFont('helvetica','bold');doc.setTextColor(pos?39:192,pos?130:57,pos?65:43);
+                doc.text(val,tX+tW-4,sy,{align:'right'});
+            });
+
+            // ─ Modell-Hinweis ─
+            y+=48;
+            const hinweis=model.hasCoaching
+                ? 'Kleines Unternehmen: Admin '+fE(model.adminFee)+' + Coaching '+fE(model.coachingFee)+'/Mon x 12. Agentur: ((Brutto + 20%) / 2) x 75%. Kompaktkurs: 425 EUR/TN/Mon x 12 Monate = 5.100 EUR/TN.'
+                : (model.type==='medium'
+                    ? 'Mittleres Unternehmen: Admin '+fE(model.adminFee)+' einmalig (Monat 1) + Eigenanteil '+fE(model.companyCost)+'/TN verteilt auf 12 Monatsraten a '+fE(eigenMonBetrag)+'. Agentur: ((Brutto + 20%) / 2) x 50%. Kompaktkurs: 425 EUR/TN/Mon x 12 Monate = 5.100 EUR/TN.'
+                    : 'Grosses Unternehmen: Admin '+fE(model.adminFee)+' einmalig (Monat 1) + Eigenanteil '+fE(model.companyCost)+'/TN verteilt auf 12 Monatsraten a '+fE(eigenMonBetrag)+'. Agentur: ((Brutto + 20%) / 2) x 25%. Kompaktkurs: 425 EUR/TN/Mon x 12 Monate = 5.100 EUR/TN.');
+            doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(160);
+            doc.text(hinweis,tX,y,{maxWidth:tW});
+        }
+
+        // ── FOOTER ──────────────────────────────────────────────────
+        doc.setFillColor(26,26,26);doc.rect(0,282,210,15,F);
+        doc.setFontSize(7);doc.setTextColor(150);
+        doc.text('D+J Consult  ·  Cash-Flow-Analyse  ·  Vertraulich',14,289);
+        doc.setTextColor(201,169,97);doc.text('Seite '+(idx+1)+' / '+d.sc.length,196,289,{align:'right'});
+    });
+
+    doc.save('CashFlow_'+d.k.f.replace(/[^a-zA-Z0-9äöüÄÖÜß]/g,'_')+'_'+d.dt.replace(/\./g,'-')+'.pdf');
+}
+
+// ═══ IMPORT ═══
+function importData(){
+    const raw=document.getElementById('importCode').value.trim();
+    const errEl=document.getElementById('importError');
+    const succEl=document.getElementById('importSuccess');
+    errEl.classList.remove('show');succEl.style.display='none';
+    if(!raw){errEl.textContent='Bitte Code einfuegen.';errEl.classList.add('show');return;}
+    let data;
+    try{data=JSON.parse(raw);}catch(e){errEl.textContent='Ungueltiges Format. Bitte den vollstaendigen JSON-Code einfuegen.';errEl.classList.add('show');return;}
+    if(data._format!=='DJ_CONSULT_VERMITTLER_V1'){errEl.textContent='Unbekanntes Format. Bitte Code aus dem Vermittler-Eingabetool verwenden.';errEl.classList.add('show');return;}
+    const s=(id,v)=>{if(v!==undefined&&v!==null&&v!=='')document.getElementById(id).value=v;};
+    s('kundenFirma',data.kunde.firma);
+    s('kundenAnsprech',data.kunde.ansprechpartner);
+    s('kundenStrasse',data.kunde.strasse);
+    s('kundenOrt',data.kunde.ort);
+    s('kundenMA',data.kunde.mitarbeitende);
+    s('kundenTN',data.kunde.teilnehmende);
+    s('bruttogehalt',data.kunde.bruttogehalt);
+    s('vermittlerName',data.vermittler.name);
+    s('vermittlerFirma',data.vermittler.firma);
+    s('vermittlerStrasse',data.vermittler.strasse);
+    s('vermittlerOrt',data.vermittler.ort);
+    const tn=data.kunde.teilnehmende||15;
+    s('scenLow',Math.round(tn*0.5));
+    s('scenReal',Math.round(tn*0.8));
+    s('scenBest',tn);
+    // ── Kompaktkurs-Pflicht automatisch setzen wenn im Code enthalten ──
+    const kp = data.kompaktkurs_pflicht;
+    if(kp === 'ja' || kp === 'nein'){
+        setKompakt(kp);
+    }
+    const kpLabel = (kp === 'nein')
+        ? '<span style="background:rgba(45,138,86,0.12);color:#2d8a56;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-left:6px">Kompaktkurs: OPTIONAL</span>'
+        : '<span style="background:rgba(201,169,97,0.15);color:#b59650;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-left:6px">Kompaktkurs: ZWINGEND</span>';
+    succEl.innerHTML='<strong>Importiert:</strong> Vermittler '+data.vermittler.name+' / Kunde '+data.kunde.firma+' ('+data.kunde.mitarbeitende+' MA, '+data.kunde.teilnehmende+' TN, '+data.kunde.bruttogehalt+' EUR Brutto). Szenarien vorausgefuellt – bitte pruefen.'+kpLabel+' <span style="color:var(--success);font-weight:700">✔ Kein Risiko: Worst Case = 0 €</span>';
+    succEl.style.display='block';
+    document.getElementById('kundenFirma').scrollIntoView({behavior:'smooth'});
+}
+
+function loadFile(e){
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=(ev)=>{document.getElementById('importCode').value=ev.target.result;importData();};
+    reader.readAsText(file);e.target.value='';
+}
+
+// ═══ E-MAIL MIT PDF-DOWNLOADS ═══
+function sendEmail(){
+    if(!calcData)return;
+    var d=calcData;
+
+    // Info-Banner
+    var banner=document.createElement('div');
+    banner.style.cssText='position:fixed;top:0;left:0;right:0;background:#1a1a1a;color:#c9a961;padding:16px 20px;text-align:center;font-weight:600;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.3);';
+    banner.innerHTML='⏳ PDFs werden erstellt und heruntergeladen...';
+    document.body.appendChild(banner);
+
+    // Schritt 1: Cash-Flow PDF herunterladen
+    generateCashFlowPDF();
+
+    // Schritt 2: Kundenangebot PDF herunterladen (3.5s Pause verhindert Browser-Warnung)
+    setTimeout(function(){
+        banner.innerHTML='📄 Kundenangebot wird als PDF erstellt...';
+        generateKundenHTML();
+    }, 3500);
+
+    // Schritt 3: E-Mail öffnen (genug Zeit für beide Downloads)
+    setTimeout(function(){
+        banner.innerHTML='✅ Beide PDFs heruntergeladen! E-Mail wird geöffnet...';
+        setTimeout(function(){ try{document.body.removeChild(banner);}catch(e){} }, 3000);
+        var vName=d.vm.n||'';
+        var subj=encodeURIComponent('Angebot für Firma '+d.k.f+' – Weiterbildung Arbeit 4.0'+(vName?' (Berater: '+vName+')':''));
+        var body=encodeURIComponent('Sehr geehrte Damen und Herren,\n\nanbei erhalten Sie das Angebot zur geförderten Weiterbildung "Arbeit 4.0" für '+d.k.f+' mit '+d.k.tn+' Teilnehmenden.\n\nFörderstufe: '+d.fp.l+' ('+d.fp.p+'% LKZ)\nBest Case Nettozufluss: '+(d.sc[2].sal>=0?'+':'')+d.sc[2].sal.toLocaleString('de-DE')+' EUR\n\nDie zwei PDFs befinden sich in Ihren Downloads:\n1. Cash-Flow-Analyse\n2. Kundenangebot\n\nBitte hängen Sie diese an die E-Mail an.\n\nBei Fragen stehe ich Ihnen jederzeit zur Verfügung.\n\nMit freundlichen Grüßen\nJürgen Nedvidek\nD+J Bildung\n+49 152 03081715');
+        var cc=encodeURIComponent('info@dj-bildung.de');
+        window.location.href='mailto:?subject='+subj+'&body='+body+'&cc='+cc;
+    }, 12000);
+}
+
+// ═══ URL-PARAMETER AUSLESEN & FELDER BEFÜLLEN ═══
+window.addEventListener('DOMContentLoaded',function(){
+    var params=new URLSearchParams(window.location.search);
+    var ma=params.get('ma');
+    var tn=params.get('tn');
+    var gehalt=params.get('gehalt');
+    if(ma) document.getElementById('kundenMA').value=ma;
+    if(tn){
+        document.getElementById('kundenTN').value=tn;
+        var t=parseInt(tn);
+        if(t>0){
+            document.getElementById('scenLow').value=Math.round(t*0.5);
+            document.getElementById('scenReal').value=Math.round(t*0.8);
+            document.getElementById('scenBest').value=t;
+        }
+    }
+    if(gehalt) document.getElementById('bruttogehalt').value=gehalt;
+    if(ma||tn||gehalt){
+        var hint=document.createElement('div');
+        hint.style.cssText='margin:0 auto 16px;max-width:900px;padding:12px 16px;background:rgba(45,138,86,0.08);border:1px solid rgba(45,138,86,0.3);border-radius:8px;color:#2d8a56;font-weight:600;font-size:14px;text-align:center;';
+        hint.textContent='\u2714 Daten aus dem Förderrechner übernommen \u2014 bitte Kundendaten & Vermittlerdaten ergänzen';
+        var main=document.querySelector('.main');
+        if(main) main.insertBefore(hint,main.firstChild);
+    }
+});
+</script>
+<script>
+/* PWA: Service Worker registrieren */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('service-worker.js').catch(function (e) { console.warn('SW-Registrierung fehlgeschlagen:', e); });
+  });
+}
+</script>
+</body>
+</html>

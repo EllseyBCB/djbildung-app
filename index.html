@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Beratung D+J Bildung">
+  <title>Beratung D+J Bildung</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+
+  <!-- PWA: installierbar machen -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1C1C1E">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    :root {
+      --gold: #c9a961; --gold-dark: #a88940; --gold-bg: #faf6ee; --gold-bg2: #f3ead8;
+      --blue-bg: #eaf3fb; --blue-text: #1a5c96; --blue-border: #b5d4f4;
+      --green-bg: #eaf5ee; --green-text: #1a6b3a; --green-border: #a8d5b5;
+      --red-bg: #fceaea; --red-text: #8b1a1a; --red-border: #f5b5b5;
+      --ios-bg: #F2F2F7; --ios-card: #ffffff; --ios-label: #6C6C70;
+      --ios-text: #1C1C1E; --ios-sep: #E5E5EA; --ios-blue: #007AFF;
+      --safe-top: env(safe-area-inset-top, 0px); --safe-bot: env(safe-area-inset-bottom, 0px);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif; background: var(--ios-bg); color: var(--ios-text); min-height: 100vh; padding-bottom: calc(90px + var(--safe-bot)); }
+    .topbar { background: var(--ios-card); border-bottom: 0.5px solid var(--ios-sep); padding: calc(var(--safe-top) + 52px) 16px 12px; position: sticky; top: 0; z-index: 100; }
+    .topbar-title { font-size: 17px; font-weight: 600; color: var(--ios-text); text-align: center; }
+    .topbar-inner { position: relative; display: flex; align-items: center; justify-content: center; }
+    .topbar-home { position: absolute; right: 0; background: none; border: none; padding: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .topbar-home svg { stroke: var(--ios-label); }
+    .topbar-sub { font-size: 12px; color: var(--ios-label); text-align: center; margin-top: 2px; }
+    .hero { background: #1C1C1E; padding: 20px 16px 16px; }
+    .hero-label { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+    .hero-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .hero-sub { font-size: 13px; color: #AEAEB2; }
+    .hero-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .hero-logo-name { font-size: 17px; font-weight: 300; color: #EAD6B9; letter-spacing: 0.3px; }
+    .section-label { font-size: 13px; font-weight: 600; color: var(--ios-label); text-transform: uppercase; letter-spacing: 0.4px; padding: 20px 16px 8px; }
+    .stufen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; }
+    .stufe-btn { background: var(--ios-card); border: 1.5px solid var(--ios-sep); border-radius: 14px; padding: 14px 12px; text-align: left; cursor: pointer; transition: border-color 0.15s, background 0.15s; -webkit-appearance: none; width: 100%; }
+    .stufe-btn.active { border-color: var(--gold); background: var(--gold-bg); }
+    .stufe-btn-num { font-size: 11px; font-weight: 600; color: var(--ios-label); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+    .stufe-btn.active .stufe-btn-num { color: var(--gold-dark); }
+    .stufe-btn-title { font-size: 13px; font-weight: 600; color: var(--ios-text); line-height: 1.3; margin-bottom: 6px; }
+    .stufe-btn-rate { font-size: 20px; font-weight: 700; color: var(--gold); line-height: 1; }
+    .stufe-btn-sub { font-size: 11px; color: var(--ios-label); margin-top: 3px; line-height: 1.3; }
+    .stufe-btn-ue { font-size: 11px; font-weight: 600; color: var(--gold-dark); margin-top: 4px; }
+    .stufe-btn-qual { font-size: 10px; color: #8b1a1a; margin-top: 3px; line-height: 1.3; font-style: italic; }
+    .slider-card { background: var(--ios-card); border-radius: 14px; margin: 0 16px; padding: 16px; }
+    .slider-row { display: flex; align-items: center; gap: 12px; }
+    .slider-row input[type=range] { flex: 1; height: 4px; -webkit-appearance: none; appearance: none; background: var(--ios-sep); border-radius: 2px; outline: none; }
+    .slider-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--ios-card); border: 0.5px solid rgba(0,0,0,0.12); box-shadow: 0 2px 8px rgba(0,0,0,0.18); cursor: pointer; }
+    .slider-val { font-size: 17px; font-weight: 600; color: var(--ios-text); min-width: 52px; text-align: right; }
+    .metrics { display: grid; gap: 10px; padding: 0 16px; }
+    .metrics-2 { grid-template-columns: 1fr 1fr; }
+    .metrics-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .metric-card { background: var(--ios-card); border-radius: 12px; padding: 12px; }
+    .metric-label { font-size: 11px; color: var(--ios-label); margin-bottom: 4px; }
+    .metric-val { font-size: 20px; font-weight: 700; color: var(--ios-text); line-height: 1.1; }
+    .metric-val.gold { color: var(--gold); }
+    .metric-val.blue { color: var(--blue-text); }
+    .ue-box { background: var(--blue-bg); border: 0.5px solid var(--blue-border); border-radius: 14px; padding: 14px 16px; margin: 0 16px; }
+    .ue-box-title { font-size: 13px; font-weight: 600; color: var(--blue-text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .ue-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 0.5px solid var(--blue-border); }
+    .ue-row:last-child { border-bottom: none; font-weight: 600; }
+    .ue-row-lbl { color: #3a75b0; }
+    .ue-row-val { color: var(--blue-text); font-weight: 500; }
+    .breakdown-card { background: var(--ios-card); border-radius: 14px; margin: 0 16px; overflow: hidden; }
+    .breakdown-title { font-size: 13px; font-weight: 600; color: var(--ios-label); padding: 12px 14px 8px; border-bottom: 0.5px solid var(--ios-sep); }
+    .brow { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 14px; border-bottom: 0.5px solid var(--ios-sep); font-size: 14px; }
+    .brow:last-child { border-bottom: none; }
+    .brow-lbl { color: var(--ios-label); flex: 1; padding-right: 8px; line-height: 1.35; }
+    .brow-val { font-weight: 600; color: var(--ios-text); white-space: nowrap; }
+    .brow.total .brow-lbl { color: var(--ios-text); font-weight: 600; }
+    .brow.total .brow-val { color: var(--gold); font-size: 17px; }
+    .bar-section { padding: 0 16px; }
+    .bar-legend { display: flex; gap: 14px; font-size: 12px; color: var(--ios-label); margin-bottom: 6px; flex-wrap: wrap; }
+    .bar-legend span { display: flex; align-items: center; gap: 5px; }
+    .bar-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .bar-track { background: var(--ios-sep); border-radius: 5px; height: 10px; overflow: hidden; display: flex; }
+    .bar-fill-1 { background: var(--gold); height: 10px; transition: width 0.35s ease; }
+    .bar-fill-2 { background: #EF9F27; height: 10px; transition: width 0.35s ease; }
+    .payout-card { background: var(--ios-card); border-radius: 14px; margin: 0 16px; overflow: hidden; }
+    .payout-header { background: var(--gold-bg2); padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--gold); }
+    .payout-header-txt { font-size: 13px; font-weight: 600; color: var(--gold-dark); }
+    .payout-body { padding: 12px 14px; font-size: 13px; color: var(--ios-label); line-height: 1.6; }
+    .payout-body strong { color: var(--ios-text); font-weight: 600; }
+    .contact-card { background: var(--ios-card); border-radius: 14px; margin: 0 16px; overflow: hidden; }
+    .contact-row { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-bottom: 0.5px solid var(--ios-sep); text-decoration: none; }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-text { font-size: 14px; color: var(--ios-blue); }
+    .contact-sub { font-size: 12px; color: var(--ios-label); }
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(242,242,247,0.92); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-top: 0.5px solid var(--ios-sep); display: flex; padding-bottom: var(--safe-bot); z-index: 200; }
+    .tab { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 8px 0 4px; cursor: pointer; border: none; background: none; -webkit-appearance: none; }
+    .tab svg { width: 22px; height: 22px; stroke: var(--ios-label); fill: none; stroke-width: 1.8; }
+    .tab-lbl { font-size: 10px; margin-top: 3px; color: var(--ios-label); }
+    .tab.active .tab-lbl { color: var(--gold); }
+    .tab.active svg { stroke: var(--gold); }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .modul-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 16px; }
+    .modul-card { background: var(--ios-card); border-radius: 12px; padding: 12px; border-left: 3px solid var(--gold); }
+    .modul-title { font-size: 13px; font-weight: 600; color: var(--ios-text); margin-bottom: 3px; }
+    .modul-sub { font-size: 11px; color: var(--ios-label); line-height: 1.4; }
+
+
+
+    /* Splash Screen */
+    .splash { display: flex; flex-direction: column; align-items: center; background: #151515; min-height: 100vh; padding: calc(var(--safe-top) + 60px) 20px 40px; }
+    .splash-book { margin-bottom: 16px; }
+    .splash-name { font-size: 28px; font-weight: 300; color: #EAD6B9; letter-spacing: 0.5px; margin-bottom: 4px; text-align: center; }
+    .splash-claim { font-size: 10px; color: #888; letter-spacing: 3px; text-transform: uppercase; text-align: center; }
+    .splash-divider { width: 40px; height: 1px; background: #c9a961; margin: 18px auto 20px; opacity: 0.5; }
+    .splash-tagline { font-size: 13px; color: #AEAEB2; text-align: center; line-height: 1.65; margin-bottom: 40px; max-width: 280px; }
+    .splash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-bottom: 12px; }
+    .splash-btn { background: #1e1e1e; border: 0.5px solid #2a2a2a; border-radius: 18px; padding: 18px 12px 14px; display: flex; flex-direction: column; align-items: center; gap: 9px; cursor: pointer; -webkit-tap-highlight-color: transparent; border: none; width: 100%; }
+    .splash-btn:active { background: #252525; }
+    .splash-btn-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; }
+    .splash-btn-label { font-size: 13px; font-weight: 500; color: #fff; text-align: center; line-height: 1.3; }
+    .splash-btn-sub { font-size: 10px; color: #666; text-align: center; line-height: 1.3; }
+    .splash-full { background: #1e1e1e; border: none; border-radius: 18px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; width: 100%; -webkit-tap-highlight-color: transparent; }
+    .splash-full:active { background: #252525; }
+    .splash-full-text { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+    .splash-full-label { font-size: 14px; font-weight: 500; color: #fff; }
+    .splash-full-sub { font-size: 11px; color: #666; }
+    /* Modul-Akkordeon */
+    .modul-list { padding: 0 16px; display: flex; flex-direction: column; gap: 8px; }
+    .ml-item { background: var(--ios-card); border-radius: 14px; overflow: hidden; cursor: pointer; }
+    .ml-header { display: flex; align-items: center; gap: 12px; padding: 14px; }
+    .ml-num { font-size: 13px; font-weight: 700; color: var(--gold); min-width: 24px; }
+    .ml-info { flex: 1; }
+    .ml-title { font-size: 14px; font-weight: 600; color: var(--ios-text); line-height: 1.3; }
+    .ml-sub { font-size: 11px; color: var(--ios-label); margin-top: 2px; }
+    .ml-arrow { font-size: 13px; color: var(--ios-label); transition: transform 0.25s ease; }
+    .ml-arrow.open { transform: rotate(90deg); color: var(--gold); }
+    .ml-body { display: none; border-top: 0.5px solid var(--ios-sep); padding: 12px 14px; background: var(--gold-bg); }
+    .ml-body.open { display: block; }
+    .ml-sub-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 0.5px solid var(--ios-sep); }
+    .ml-sub-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .ml-sub-title { font-size: 13px; font-weight: 600; color: var(--ios-text); margin-bottom: 5px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .ml-ue { font-size: 11px; font-weight: 400; color: var(--gold-dark); white-space: nowrap; }
+    .ml-points { display: flex; flex-direction: column; gap: 3px; }
+    .ml-points span { font-size: 12px; color: var(--ios-label); padding-left: 4px; line-height: 1.4; }
+    /* Förderrechner */
+    .foerd-card { background: var(--ios-card); border-radius: 14px; margin: 0 16px; overflow: hidden; }
+    .foerd-input-row { padding: 12px 14px; border-bottom: 0.5px solid var(--ios-sep); }
+    .foerd-input-row:last-of-type { border-bottom: none; }
+    .foerd-lbl { font-size: 12px; color: var(--ios-label); margin-bottom: 5px; }
+    .foerd-input { width: 100%; background: var(--ios-bg); border: 0.5px solid var(--ios-sep); border-radius: 8px; padding: 10px 12px; font-size: 15px; color: var(--ios-text); font-family: inherit; outline: none; -webkit-appearance: none; }
+    .foerd-input:focus { border-color: var(--gold); background: #fff; }
+    .foerd-btn { display: block; width: calc(100% - 32px); margin: 10px 16px 0; background: var(--gold); color: #fff; border: none; border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; -webkit-appearance: none; }
+    .foerd-result { margin: 12px 16px 0; border-radius: 14px; overflow: hidden; display: none; }
+    .foerd-result.show { display: block; }
+    .foerd-result-header { padding: 14px; text-align: center; }
+    .foerd-result-lbl { font-size: 12px; color: var(--ios-label); margin-bottom: 4px; }
+    .foerd-result-amount { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+    .foerd-result-sub { font-size: 12px; color: var(--ios-label); }
+    .foerd-details { background: var(--ios-bg); border-top: 0.5px solid var(--ios-sep); padding: 12px 14px; }
+    .foerd-detail-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 0.5px solid var(--ios-sep); }
+    .foerd-detail-row:last-child { border-bottom: none; font-weight: 600; }
+    .foerd-detail-lbl { color: var(--ios-label); }
+    .foerd-detail-val { color: var(--ios-text); font-weight: 500; }
+    .info-pill { background: var(--gold-bg); border: 0.5px solid var(--gold); border-radius: 10px; margin: 0 16px; padding: 10px 14px; font-size: 13px; color: var(--gold-dark); line-height: 1.5; }
+
+    /* QR-Code */
+    .qr-section { margin: 0 16px; }
+    .qr-card { background: var(--ios-card); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .qr-title { font-size: 14px; font-weight: 600; color: var(--ios-text); text-align: center; }
+    .qr-sub { font-size: 12px; color: var(--ios-label); text-align: center; line-height: 1.5; }
+    .qr-placeholder { width: 180px; height: 180px; background: var(--ios-bg); border-radius: 12px; border: 1.5px dashed var(--ios-sep); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .qr-placeholder-txt { font-size: 12px; color: var(--ios-label); text-align: center; line-height: 1.5; padding: 0 12px; }
+    .qr-url { font-size: 13px; color: var(--ios-blue); word-break: break-all; text-align: center; }
+    #qr-canvas { border-radius: 8px; }
+
+    .spacer { height: 20px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ SCREEN 1: PROVISION ═══ -->
+<div class="screen" id="screen-rechner">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="topbar-title">Provisionsrechner</div>
+        <div class="topbar-sub">Kurs Arbeit 4.0 · D+J Consult</div>
+      </div>
+      <button class="topbar-home" onclick="showScreen('splash')" aria-label="Zur Startseite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-logo">
+      <svg width="44" height="44" viewBox="0 0 115 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg1" x1="57.5" y1="90.111" x2="57.5" y2="0.884" gradientUnits="userSpaceOnUse"><stop stop-color="#A17D5E"/><stop offset="1" stop-color="#EAD6B9"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 18.2392C68.4735 6.73652 81.9461 2.58742 92.7776 1.34515C98.5115 0.687543 103.544 0.838183 107.147 1.15321C108.951 1.31091 110.404 1.51036 111.414 1.67241C111.92 1.75347 112.315 1.82525 112.59 1.87793C112.727 1.90427 112.834 1.92585 112.909 1.94143C112.947 1.94922 112.977 1.95551 112.999 1.96015L113.025 1.96585L113.034 1.96774L113.037 1.96844C113.038 1.96872 113.039 1.96897 112.5 4.41012L113.039 1.96897L115 2.40209V68.9417L111.964 68.272L111.963 68.2718L111.961 68.2714L111.957 68.2705L111.915 68.2617C111.876 68.2534 111.812 68.2404 111.725 68.2234C111.55 68.1893 111.283 68.1395 110.931 68.0803C110.226 67.962 109.182 67.8068 107.859 67.6665C105.209 67.3857 101.454 67.1665 97.0684 67.4185C88.2786 67.9236 77.1071 70.3113 67.1875 77.732L64.1925 73.7283C75.1529 65.529 87.3864 62.9666 96.7816 62.4267C101.489 62.1562 105.521 62.3908 108.386 62.6944C108.974 62.7567 109.513 62.822 110 62.8866V6.51399C109.146 6.38902 108.035 6.24987 106.712 6.13422C103.363 5.84143 98.676 5.70145 93.3474 6.31259C82.6858 7.53536 69.6073 11.7398 59.3938 23.5921L57.5 25.7898L55.6062 23.5921C45.3927 11.7398 32.3142 7.53536 21.6526 6.31259C16.324 5.70145 11.6373 5.84143 8.28802 6.13422C6.965 6.24987 5.85448 6.38902 5 6.51399V62.8857C5.81073 62.7779 6.7681 62.668 7.8526 62.5732C11.4564 62.2582 16.4885 62.1075 22.2224 62.7652C32.2444 63.9146 44.5275 67.5526 55 77.2017V43.3801H60V90.111L55.6062 85.0121C45.3927 73.1598 32.3142 68.9554 21.6526 67.7326C16.324 67.1215 11.6373 67.2614 8.28802 67.5542C6.61552 67.7004 5.28262 67.8842 4.37726 68.0294C3.92475 68.1019 3.57958 68.1647 3.35277 68.2083C3.23939 68.2301 3.15564 68.247 3.10291 68.2579L3.04727 68.2696L3.03924 68.2713L3.03761 68.2716L0 68.9426V2.40209L1.96076 1.96897L2.5 4.41012L1.96076 1.96897L1.9619 1.96872L1.96316 1.96844L1.96633 1.96774L1.97499 1.96585L2.00145 1.96015C2.02315 1.95551 2.05292 1.94922 2.0906 1.94143C2.16596 1.92585 2.27294 1.90427 2.41017 1.87793C2.68458 1.82525 3.08014 1.75347 3.58564 1.67241C4.59628 1.51036 6.04855 1.31091 7.8526 1.15321C11.4564 0.838183 16.4885 0.687543 22.2224 1.34515C33.0539 2.58742 46.5265 6.73652 57.5 18.2392Z" fill="url(#lg1)"/>
+      </svg>
+      <span class="hero-logo-name">D+J Bildung</span>
+    </div>
+    <div class="hero-label">Vergütungsmodell</div>
+    <div class="hero-title">Ihre Provision</div>
+    <div class="hero-sub">Wählen Sie Stufe und Teilnehmerzahl</div>
+  </div>
+
+  <div class="section-label">Vergütungsstufe</div>
+  <div class="stufen-grid">
+    <button class="stufe-btn active" data-s="1" onclick="setStufe(1)">
+      <div class="stufe-btn-num">Stufe 1</div>
+      <div class="stufe-btn-title">Reiner Tippgeber</div>
+      <div class="stufe-btn-rate">500 €</div>
+      <div class="stufe-btn-sub">pro TN · keine Dozentenleistung</div>
+    </button>
+    <button class="stufe-btn" data-s="2" onclick="setStufe(2)">
+      <div class="stufe-btn-num">Stufe 2</div>
+      <div class="stufe-btn-title">Bildungs&shy;gutschein (eigene Antragstellung)</div>
+      <div class="stufe-btn-rate">1.000 €</div>
+      <div class="stufe-btn-sub">pro TN · keine Dozentenleistung</div>
+    </button>
+    <button class="stufe-btn" data-s="3" onclick="setStufe(3)">
+      <div class="stufe-btn-num">Stufe 3</div>
+      <div class="stufe-btn-title">Tippgeber + Dozentenleistung</div>
+      <div class="stufe-btn-rate">2.000 €</div>
+      <div class="stufe-btn-sub">pro TN (Monat 1)</div>
+      <div class="stufe-btn-ue">20 UE pro gewonnenem TN</div>
+      <div class="stufe-btn-qual">* nur mit nachweisbarer Qualifikation</div>
+    </button>
+    <button class="stufe-btn" data-s="4" onclick="setStufe(4)">
+      <div class="stufe-btn-num">Stufe 4 – Premium</div>
+      <div class="stufe-btn-title">Bildungs&shy;gutschein + Dozentenleistung</div>
+      <div class="stufe-btn-rate">2.500 €</div>
+      <div class="stufe-btn-sub">pro TN (Monat 1)</div>
+      <div class="stufe-btn-ue">20 UE pro gewonnenem TN</div>
+      <div class="stufe-btn-qual">* nur mit nachweisbarer Qualifikation</div>
+    </button>
+  </div>
+
+  <div class="section-label">Anzahl Teilnehmer</div>
+  <div class="slider-card">
+    <div class="slider-row">
+      <input type="range" id="tn-slider" min="1" max="50" step="1" value="10" oninput="setTN(this.value)">
+      <span class="slider-val"><span id="tn-disp">10</span> TN</span>
+    </div>
+  </div>
+
+  <div class="section-label">Ergebnis</div>
+  <div class="metrics metrics-2" id="metrics-nodozent">
+    <div class="metric-card"><div class="metric-label">Teilnehmer</div><div class="metric-val" id="m-tn-a">10</div></div>
+    <div class="metric-card"><div class="metric-label">Gesamtprovision</div><div class="metric-val gold" id="m-total-a">5.000 €</div></div>
+  </div>
+  <div class="metrics metrics-3" id="metrics-dozent" style="display:none;">
+    <div class="metric-card"><div class="metric-label">Teilnehmer</div><div class="metric-val" id="m-tn-b">10</div></div>
+    <div class="metric-card"><div class="metric-label">Gesamtvergütung</div><div class="metric-val gold" id="m-total-b">20.000 €</div></div>
+    <div class="metric-card"><div class="metric-label">UE gesamt</div><div class="metric-val blue" id="m-ue">200 UE</div></div>
+  </div>
+
+  <div id="ue-box-wrap" style="display:none; padding-top: 10px;">
+    <div class="ue-box">
+      <div class="ue-box-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1a5c96" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Dozentenleistung – Unterrichtseinheiten
+      </div>
+      <div class="ue-row"><span class="ue-row-lbl">UE pro gewonnenem Teilnehmer</span><span class="ue-row-val">20 UE = 1 Monat</span></div>
+      <div class="ue-row"><span class="ue-row-lbl">Vergütung pro Monat</span><span class="ue-row-val">1.500 €</span></div>
+      <div class="ue-row"><span class="ue-row-lbl">Gesamt-UE bei <span id="ue-tn-lbl">10</span> TN</span><span class="ue-row-val" id="ue-total-val">200 UE</span></div>
+      <div class="ue-row"><span class="ue-row-lbl">Dozentenhonorar gesamt</span><span class="ue-row-val" id="ue-honorar">15.000 €</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Aufschlüsselung</div>
+  <div class="breakdown-card">
+    <div class="breakdown-title">Berechnung im Detail</div>
+    <div id="brows"></div>
+  </div>
+
+  <div id="bar-wrap" style="display:none; padding-top: 12px;">
+    <div class="bar-section">
+      <div class="bar-legend" id="bar-legend"></div>
+      <div class="bar-track">
+        <div class="bar-fill-1" id="bf1" style="width:33%"></div>
+        <div class="bar-fill-2" id="bf2" style="width:67%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Auszahlung · Kurs Arbeit 4.0</div>
+  <div class="payout-card">
+    <div class="payout-header">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a88940" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      <span class="payout-header-txt">Zahlungsmodalität</span>
+    </div>
+    <div class="payout-body">
+      Sowohl die <strong>Vermittlungsprovision</strong> als auch das <strong>Dozentenhonorar</strong> werden nach Eingang der Administrationsgebühr <strong>monatlich im Nachhinein</strong> ausgezahlt – jeweils nach nachgewiesener Durchführung der Unterrichtseinheiten des betreffenden Monats.
+    </div>
+  </div>
+
+  <!-- ── AI-Act Provision ── -->
+  <div class="section-label">AI-Act Grundlagenschulung · Provision</div>
+  <div class="stufen-grid">
+    <button class="stufe-btn" data-aiact="1" onclick="setAiStufe(1)" id="ai-btn-1">
+      <div class="stufe-btn-num">Stufe 1</div>
+      <div class="stufe-btn-title">Reiner Tippgeber</div>
+      <div class="stufe-btn-rate">10 %</div>
+      <div class="stufe-btn-sub">vom Auftragsvolumen · 29–49 € pro TN</div>
+    </button>
+    <button class="stufe-btn" data-aiact="2" onclick="setAiStufe(2)" id="ai-btn-2">
+      <div class="stufe-btn-num">Stufe 2</div>
+      <div class="stufe-btn-title">Tippgeber + Live-Webinar Durchführung</div>
+      <div class="stufe-btn-rate">Individuell</div>
+      <div class="stufe-btn-sub">mind. 290 € pro TN · als Dozentenrechnung</div>
+      <div class="stufe-btn-qual">* nur mit nachweisbarer Qualifikation</div>
+    </button>
+  </div>
+
+  <div class="section-label">Teilnehmer & Preis (AI-Act)</div>
+  <div class="slider-card">
+    <div style="margin-bottom:12px;">
+      <div style="font-size:12px;color:var(--ios-label);margin-bottom:6px;">Anzahl Teilnehmer</div>
+      <div class="slider-row">
+        <input type="range" id="ai-tn-slider" min="1" max="100" step="1" value="30" oninput="setAiTN(this.value)">
+        <span class="slider-val"><span id="ai-tn-disp">30</span> TN</span>
+      </div>
+    </div>
+    <div id="ai-preis-row" style="display:none;">
+      <div style="font-size:12px;color:var(--ios-label);margin-bottom:6px;">Preis pro Teilnehmer (€)</div>
+      <div class="slider-row">
+        <input type="range" id="ai-preis-slider" min="290" max="490" step="10" value="290" oninput="setAiPreis(this.value)">
+        <span class="slider-val"><span id="ai-preis-disp">290</span> €</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="ai-result-wrap">
+    <div class="section-label">Ergebnis (AI-Act)</div>
+    <div class="metrics metrics-2" id="ai-metrics">
+      <div class="metric-card"><div class="metric-label">Teilnehmer</div><div class="metric-val" id="ai-m-tn">30</div></div>
+      <div class="metric-card"><div class="metric-label" id="ai-m-label">Ihre Provision</div><div class="metric-val gold" id="ai-m-total">870 €</div></div>
+    </div>
+    <div class="breakdown-card" style="margin-top:10px;">
+      <div class="breakdown-title">Berechnung im Detail</div>
+      <div id="ai-brows"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Auszahlung · AI-Act Schulung</div>
+  <div class="payout-card">
+    <div class="payout-header">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a88940" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      <span class="payout-header-txt">Zahlungsmodalität</span>
+    </div>
+    <div class="payout-body">
+      <strong>Stufe 1:</strong> Provisionszahlung nach Zahlungseingang des Unternehmens beim Bildungsträger.<br><br>
+      <strong>Stufe 2:</strong> Honorarzahlung als Dozentenrechnung nach Durchführung und Zahlungseingang. Die Admingebühr von <strong>150 € pro TN wird vom Bildungsträger einbehalten</strong>.
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- ═══ SCREEN 2: MODULE ═══ -->
+<!-- ═══ SCREEN 0: SPLASH ═══ -->
+<div class="screen active" id="screen-splash">
+  <div class="splash">
+    <div class="splash-book">
+      <svg width="72" height="58" viewBox="0 0 115 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="spl" x1="57.5" y1="90.111" x2="57.5" y2="0.884" gradientUnits="userSpaceOnUse"><stop stop-color="#A17D5E"/><stop offset="1" stop-color="#EAD6B9"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 18.2392C68.4735 6.73652 81.9461 2.58742 92.7776 1.34515C98.5115 0.687543 103.544 0.838183 107.147 1.15321C108.951 1.31091 110.404 1.51036 111.414 1.67241C111.92 1.75347 112.315 1.82525 112.59 1.87793C112.727 1.90427 112.834 1.92585 112.909 1.94143C112.947 1.94922 112.977 1.95551 112.999 1.96015L113.025 1.96585L113.034 1.96774L113.037 1.96844C113.038 1.96872 113.039 1.96897 112.5 4.41012L113.039 1.96897L115 2.40209V68.9417L111.964 68.272L111.963 68.2718L111.961 68.2714L111.957 68.2705L111.915 68.2617C111.876 68.2534 111.812 68.2404 111.725 68.2234C111.55 68.1893 111.283 68.1395 110.931 68.0803C110.226 67.962 109.182 67.8068 107.859 67.6665C105.209 67.3857 101.454 67.1665 97.0684 67.4185C88.2786 67.9236 77.1071 70.3113 67.1875 77.732L64.1925 73.7283C75.1529 65.529 87.3864 62.9666 96.7816 62.4267C101.489 62.1562 105.521 62.3908 108.386 62.6944C108.974 62.7567 109.513 62.822 110 62.8866V6.51399C109.146 6.38902 108.035 6.24987 106.712 6.13422C103.363 5.84143 98.676 5.70145 93.3474 6.31259C82.6858 7.53536 69.6073 11.7398 59.3938 23.5921L57.5 25.7898L55.6062 23.5921C45.3927 11.7398 32.3142 7.53536 21.6526 6.31259C16.324 5.70145 11.6373 5.84143 8.28802 6.13422C6.965 6.24987 5.85448 6.38902 5 6.51399V62.8857C5.81073 62.7779 6.7681 62.668 7.8526 62.5732C11.4564 62.2582 16.4885 62.1075 22.2224 62.7652C32.2444 63.9146 44.5275 67.5526 55 77.2017V43.3801H60V90.111L55.6062 85.0121C45.3927 73.1598 32.3142 68.9554 21.6526 67.7326C16.324 67.1215 11.6373 67.2614 8.28802 67.5542C6.61552 67.7004 5.28262 67.8842 4.37726 68.0294C3.92475 68.1019 3.57958 68.1647 3.35277 68.2083C3.23939 68.2301 3.15564 68.247 3.10291 68.2579L3.04727 68.2696L3.03924 68.2713L3.03761 68.2716L0 68.9426V2.40209L1.96076 1.96897L2.5 4.41012L1.96076 1.96897L1.9619 1.96872L1.96316 1.96844L1.96633 1.96774L1.97499 1.96585L2.00145 1.96015C2.02315 1.95551 2.05292 1.94922 2.0906 1.94143C2.16596 1.92585 2.27294 1.90427 2.41017 1.87793C2.68458 1.82525 3.08014 1.75347 3.58564 1.67241C4.59628 1.51036 6.04855 1.31091 7.8526 1.15321C11.4564 0.838183 16.4885 0.687543 22.2224 1.34515C33.0539 2.58742 46.5265 6.73652 57.5 18.2392Z" fill="url(#spl)"/>
+      </svg>
+    </div>
+    <div class="splash-name">D+J Bildung</div>
+    <div class="splash-claim">Ziele erreichen</div>
+    <div class="splash-divider"></div>
+    <div class="splash-tagline">Geförderte Weiterbildung · KI-Schulungen · Beratung für Unternehmen</div>
+
+    <div class="splash-grid">
+      <button class="splash-btn" onclick="showScreen('module')">
+        <div class="splash-btn-icon" style="background:#0f1f0f;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5DCAA5" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="splash-btn-label">Arbeit 4.0</div>
+        <div class="splash-btn-sub">12 Module · Lehrplan</div>
+      </button>
+      <button class="splash-btn" onclick="showScreen('foerder')">
+        <div class="splash-btn-icon" style="background:#0f1520;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="splash-btn-label">Förderung</div>
+        <div class="splash-btn-sub">Rechner für Unternehmen</div>
+      </button>
+      <button class="splash-btn" onclick="showScreen('aiact')">
+        <div class="splash-btn-icon" style="background:#200f0f;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F09595" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M9 8l2 2 4-4"/></svg>
+        </div>
+        <div class="splash-btn-label">EU AI-Act</div>
+        <div class="splash-btn-sub">Pflichtschulung · 4 Std.</div>
+      </button>
+      <button class="splash-btn" onclick="showScreen('kontakt')">
+        <div class="splash-btn-icon" style="background:#0f0f20;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#AFA9EC" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.59 6.59l.95-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="splash-btn-label">Kontakt</div>
+        <div class="splash-btn-sub">jn@dj-bildung.de</div>
+      </button>
+    </div>
+
+    <div class="splash-grid">
+      <button class="splash-btn" onclick="showScreen('rechner')">
+        <div class="splash-btn-icon" style="background:#201800;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="splash-btn-label">Provision</div>
+        <div class="splash-btn-sub">Arbeit 4.0 · AI-Act</div>
+      </button>
+      <button class="splash-btn" onclick="window.open('https://www.dj-bildung.com','_blank')">
+        <div class="splash-btn-icon" style="background:#0f1a1a;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5DCAA5" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="splash-btn-label">Website</div>
+        <div class="splash-btn-sub">www.dj-bildung.com</div>
+      </button>
+    </div>
+
+    <button class="splash-btn" onclick="openFreshChat()" style="width:100%;display:flex;flex-direction:row;align-items:center;gap:14px;padding:14px 18px;">
+      <div class="splash-btn-icon" style="background:#1a0f20;flex-shrink:0;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A0E8" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><circle cx="12" cy="12" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></svg>
+      </div>
+      <div style="text-align:left;">
+        <div class="splash-btn-label">Ihre Fragen im Chat beantwortet</div>
+        <div class="splash-btn-sub">KI-Chatbot · sofort Antworten</div>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" style="margin-left:auto;flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+  </div>
+</div>
+
+<div class="screen" id="screen-module">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="topbar-title">Kursmodule</div>
+        <div class="topbar-sub">12 Module · 1200 Unterrichtseinheiten</div>
+      </div>
+      <button class="topbar-home" onclick="showScreen('splash')" aria-label="Zur Startseite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-logo">
+      <svg width="44" height="44" viewBox="0 0 115 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg2" x1="57.5" y1="90.111" x2="57.5" y2="0.884" gradientUnits="userSpaceOnUse"><stop stop-color="#A17D5E"/><stop offset="1" stop-color="#EAD6B9"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 18.2392C68.4735 6.73652 81.9461 2.58742 92.7776 1.34515C98.5115 0.687543 103.544 0.838183 107.147 1.15321C108.951 1.31091 110.404 1.51036 111.414 1.67241C111.92 1.75347 112.315 1.82525 112.59 1.87793C112.727 1.90427 112.834 1.92585 112.909 1.94143C112.947 1.94922 112.977 1.95551 112.999 1.96015L113.025 1.96585L113.034 1.96774L113.037 1.96844C113.038 1.96872 113.039 1.96897 112.5 4.41012L113.039 1.96897L115 2.40209V68.9417L111.964 68.272L111.963 68.2718L111.961 68.2714L111.957 68.2705L111.915 68.2617C111.876 68.2534 111.812 68.2404 111.725 68.2234C111.55 68.1893 111.283 68.1395 110.931 68.0803C110.226 67.962 109.182 67.8068 107.859 67.6665C105.209 67.3857 101.454 67.1665 97.0684 67.4185C88.2786 67.9236 77.1071 70.3113 67.1875 77.732L64.1925 73.7283C75.1529 65.529 87.3864 62.9666 96.7816 62.4267C101.489 62.1562 105.521 62.3908 108.386 62.6944C108.974 62.7567 109.513 62.822 110 62.8866V6.51399C109.146 6.38902 108.035 6.24987 106.712 6.13422C103.363 5.84143 98.676 5.70145 93.3474 6.31259C82.6858 7.53536 69.6073 11.7398 59.3938 23.5921L57.5 25.7898L55.6062 23.5921C45.3927 11.7398 32.3142 7.53536 21.6526 6.31259C16.324 5.70145 11.6373 5.84143 8.28802 6.13422C6.965 6.24987 5.85448 6.38902 5 6.51399V62.8857C5.81073 62.7779 6.7681 62.668 7.8526 62.5732C11.4564 62.2582 16.4885 62.1075 22.2224 62.7652C32.2444 63.9146 44.5275 67.5526 55 77.2017V43.3801H60V90.111L55.6062 85.0121C45.3927 73.1598 32.3142 68.9554 21.6526 67.7326C16.324 67.1215 11.6373 67.2614 8.28802 67.5542C6.61552 67.7004 5.28262 67.8842 4.37726 68.0294C3.92475 68.1019 3.57958 68.1647 3.35277 68.2083C3.23939 68.2301 3.15564 68.247 3.10291 68.2579L3.04727 68.2696L3.03924 68.2713L3.03761 68.2716L0 68.9426V2.40209L1.96076 1.96897L2.5 4.41012L1.96076 1.96897L1.9619 1.96872L1.96316 1.96844L1.96633 1.96774L1.97499 1.96585L2.00145 1.96015C2.02315 1.95551 2.05292 1.94922 2.0906 1.94143C2.16596 1.92585 2.27294 1.90427 2.41017 1.87793C2.68458 1.82525 3.08014 1.75347 3.58564 1.67241C4.59628 1.51036 6.04855 1.31091 7.8526 1.15321C11.4564 0.838183 16.4885 0.687543 22.2224 1.34515C33.0539 2.58742 46.5265 6.73652 57.5 18.2392Z" fill="url(#lg2)"/>
+      </svg>
+      <span class="hero-logo-name">D+J Bildung</span>
+    </div>
+    <div class="hero-label">Arbeit 4.0</div>
+    <div class="hero-title">Weiterbildung</div>
+    <div class="hero-sub">12 Monate · täglich 45 Min. Live-Online</div>
+  </div>
+  <div class="section-label">1200 UE · 12 Monate · täglich 45 Min.</div>
+  <div class="modul-list" id="modul-list">
+
+    <div class="ml-item" onclick="toggleModul(0)">
+      <div class="ml-header">
+        <div class="ml-num">01</div>
+        <div class="ml-info"><div class="ml-title">Digitalisierung & Transformation</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr0">▸</div>
+      </div>
+      <div class="ml-body" id="body0">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Grundlagen der Digitalisierung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Digitale Prozesse, IT-Sicherheit, Big Data</span><span>→ Veränderung von Unternehmensstrukturen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Automatisierung & Prozessoptimierung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ RPA und Workflow-Management</span><span>→ Analyse und Optimierung eigener Prozesse</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Digitale Technologien & Innovation <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Neue Technologien und betriebliche Einsatzmöglichkeiten</span><span>→ Innovationsstrategien für zukunftssichere Unternehmen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Regulatorische Aspekte <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ DSGVO, Compliance und IT-Governance</span><span>→ Vermeidung rechtlicher Fallstricke</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(1)">
+      <div class="ml-header">
+        <div class="ml-num">02</div>
+        <div class="ml-info"><div class="ml-title">Künstliche Intelligenz (KI)</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr1">▸</div>
+      </div>
+      <div class="ml-body" id="body1">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Grundlagen der KI <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ KI, Machine Learning und Deep Learning</span><span>→ Verständnis für KI-Systeme und Entscheidungsfindung</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. KI-gestützte Prozesse <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Chatbots und virtuelle Assistenten</span><span>→ KI-Einsatz im eigenen Arbeitsumfeld</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. KI im Entscheidungsmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Datenanalyse mit KI</span><span>→ Grenzen datenbasierter Entscheidungen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Ethische & rechtliche Aspekte <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Bias, Diskriminierung und Transparenz</span><span>→ Gesetzliche Anforderungen und AI-Act</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(2)">
+      <div class="ml-header">
+        <div class="ml-num">03</div>
+        <div class="ml-info"><div class="ml-title">Social Media Marketing</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr2">▸</div>
+      </div>
+      <div class="ml-body" id="body2">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Grundlagen Social Media <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Plattformen, Algorithmen und Reichweite</span><span>→ Rechtliche Rahmenbedingungen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Content-Strategie <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Content-Planung und Redaktionsplanung</span><span>→ Zielgruppengerechte Inhalte</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Community Management <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Aufbau und Pflege von Communities</span><span>→ Krisenmanagement in sozialen Medien</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Erfolgsmessung & Analyse <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ KPIs und Social-Media-Analytics</span><span>→ Optimierung von Kampagnen</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(3)">
+      <div class="ml-header">
+        <div class="ml-num">04</div>
+        <div class="ml-info"><div class="ml-title">Business Development</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr3">▸</div>
+      </div>
+      <div class="ml-body" id="body3">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Marktanalyse <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Wettbewerbsanalyse und Trendforschung</span><span>→ Identifikation von Geschäftschancen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Produktentwicklung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Design Thinking und Lean Start-up</span><span>→ Prototyping und iterative Tests</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Kooperationen & Partnerschaften <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Innovation durch Start-up-Kooperationen</span><span>→ Erfolgsfaktoren für Partnerschaften</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Skalierung & Wachstum <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Internationalisierung und neue Marktsegmente</span><span>→ Kontrollierte Skalierung mit Erfolgskennzahlen</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(4)">
+      <div class="ml-header">
+        <div class="ml-num">05</div>
+        <div class="ml-info"><div class="ml-title">Kommunikation & digitale Interaktion</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr4">▸</div>
+      </div>
+      <div class="ml-body" id="body4">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Digitale Kommunikation <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ E-Mail, Chat und virtuelle Meetings</span><span>→ Effektive digitale Kommunikationsgestaltung</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Psychologie & Gesprächsführung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Empathie und Vertrauenskultur</span><span>→ Techniken für schwierige Gespräche</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Storytelling & Präsentation <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Digitales Storytelling</span><span>→ Visuelle und sprachliche Werkzeuge</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Wissensmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Intranet und Wikis</span><span>→ Strategischer Erfolgsfaktor</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(5)">
+      <div class="ml-header">
+        <div class="ml-num">06</div>
+        <div class="ml-info"><div class="ml-title">Mitarbeiterführung digital</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr5">▸</div>
+      </div>
+      <div class="ml-body" id="body5">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Führung 4.0 – Digital Leadership <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Remote Leadership und agile Steuerung</span><span>→ Führungsstile für hybride Arbeitskontexte</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Veränderungsmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Begleitung von Veränderungsprozessen</span><span>→ Gestaltung zukunftsfähiger Unternehmenskultur</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Talentmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Gewinnung, Bindung und Entwicklung</span><span>→ Digitale Tools im Recruiting</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Team-Dynamik <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Virtuelle Teams und deren Dynamiken</span><span>→ Konfliktprävention und digitale Zusammenarbeit</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(6)">
+      <div class="ml-header">
+        <div class="ml-num">07</div>
+        <div class="ml-info"><div class="ml-title">Work-Life-Balance & Resilienz</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr6">▸</div>
+      </div>
+      <div class="ml-body" id="body6">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Selbstmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Zeitmanagement und Priorisierung</span><span>→ Kontrolle digitaler Ablenkungen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Stressbewältigung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Achtsamkeit und kognitive Strategien</span><span>→ Individuelle Bewältigungswege</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Gesundheitsmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Ergonomie, Bewegung und Ernährung</span><span>→ Digitale Gesundheitsangebote</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Digital Detox <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Reduzierung von Bildschirmzeit</span><span>→ Nachhaltige Work-Life-Balance</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(7)">
+      <div class="ml-header">
+        <div class="ml-num">08</div>
+        <div class="ml-info"><div class="ml-title">Digitale Tools & agile Methoden</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr7">▸</div>
+      </div>
+      <div class="ml-body" id="body7">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Projektmanagement <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Wasserfall vs. SCRUM/Kanban</span><span>→ Auswahl passender Management-Modelle</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Agile Methoden <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ SCRUM und Sprintplanung</span><span>→ Agilität in der Organisation</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Kollaboration & Tools <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ JIRA, Trello, MS Teams</span><span>→ Technische und teambezogene Reflexion</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Erfolgsfaktoren <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Stakeholder-Management</span><span>→ Best Practices und Lessons Learned</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(8)">
+      <div class="ml-header">
+        <div class="ml-num">09</div>
+        <div class="ml-info"><div class="ml-title">Vertrieb & Kundenbeziehung</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr8">▸</div>
+      </div>
+      <div class="ml-body" id="body8">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Digitaler Vertrieb <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Omnichannel-Strategien</span><span>→ Nahtlose Kundenerlebnisse</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. CRM <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ CRM-Systeme zur Kundendatenanalyse</span><span>→ Kundenbindung und -reaktivierung</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Digitale Beratung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Überzeugende digitale Beratung</span><span>→ Digitale Vertragsabschlüsse</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. KPI-Steuerung <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Conversion Rate und Cross-Selling</span><span>→ Verbesserung durch Monitoring</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(9)">
+      <div class="ml-header">
+        <div class="ml-num">10</div>
+        <div class="ml-info"><div class="ml-title">Nachhaltigkeit & Verantwortung</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr9">▸</div>
+      </div>
+      <div class="ml-body" id="body9">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. ESG-Kriterien <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Umwelt-, Sozial- und Governance-Faktoren</span><span>→ Nachhaltige Geschäftsmodelle</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Corporate Social Responsibility <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ CSR als Unternehmensstrategie</span><span>→ Gesellschaftliches Engagement</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Regulierungen <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ EU-Taxonomie und Lieferkettengesetz</span><span>→ Integration in Geschäftsprozesse</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Kommunikation <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Glaubwürdige Nachhaltigkeitskommunikation</span><span>→ Vermeidung von Greenwashing</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(10)">
+      <div class="ml-header">
+        <div class="ml-num">11</div>
+        <div class="ml-info"><div class="ml-title">Cybersecurity & IT-Sicherheit</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr10">▸</div>
+      </div>
+      <div class="ml-body" id="body10">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. Grundlagen IT-Sicherheit <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Phishing, Social Engineering, Malware</span><span>→ Risikoerkennung und Gegenmaßnahmen</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Sicherheit digitaler Plattformen <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Firewalls und Zwei-Faktor-Authentifizierung</span><span>→ Architektur sicherer Systeme</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Datenschutz & Compliance <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ DSGVO und betriebliche Umsetzung</span><span>→ Datenschutzkonzepte entwickeln</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Mitarbeiter-Awareness <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ IT-Sicherheitsbewusstsein fördern</span><span>→ Schließung von Sicherheitslücken</span></div></div>
+      </div>
+    </div>
+
+    <div class="ml-item" onclick="toggleModul(11)">
+      <div class="ml-header">
+        <div class="ml-num">12</div>
+        <div class="ml-info"><div class="ml-title">Zukunft der Arbeit</div><div class="ml-sub">100 UE · 4 Untermodule</div></div>
+        <div class="ml-arrow" id="arr11">▸</div>
+      </div>
+      <div class="ml-body" id="body11">
+        <div class="ml-sub-item"><div class="ml-sub-title">1. New Work <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Remote Work und Coworking</span><span>→ Auswirkungen auf Führung und Kultur</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">2. Automatisierung & Robotik <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Moderne Automatisierungslösungen</span><span>→ Mensch-Maschine-Dialog</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">3. Plattform-Ökonomie <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Neue Formen der Wertschöpfung</span><span>→ Chancen und Risiken für Geschäftsmodelle</span></div></div>
+        <div class="ml-sub-item"><div class="ml-sub-title">4. Zukunftsstrategien <span class="ml-ue">25 UE</span></div><div class="ml-points"><span>→ Langfristige Positionierung</span><span>→ Megatrends erkennen und nutzen</span></div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ═══ SCREEN 3: FÖRDERRECHNER ═══ -->
+<div class="screen" id="screen-foerder">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="topbar-title">Förderrechner</div>
+        <div class="topbar-sub">QCG – Förderung Kurs Arbeit 4.0</div>
+      </div>
+      <button class="topbar-home" onclick="showScreen('splash')" aria-label="Zur Startseite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-logo">
+      <svg width="44" height="44" viewBox="0 0 115 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg3" x1="57.5" y1="90.111" x2="57.5" y2="0.884" gradientUnits="userSpaceOnUse"><stop stop-color="#A17D5E"/><stop offset="1" stop-color="#EAD6B9"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 18.2392C68.4735 6.73652 81.9461 2.58742 92.7776 1.34515C98.5115 0.687543 103.544 0.838183 107.147 1.15321C108.951 1.31091 110.404 1.51036 111.414 1.67241C111.92 1.75347 112.315 1.82525 112.59 1.87793C112.727 1.90427 112.834 1.92585 112.909 1.94143C112.947 1.94922 112.977 1.95551 112.999 1.96015L113.025 1.96585L113.034 1.96774L113.037 1.96844C113.038 1.96872 113.039 1.96897 112.5 4.41012L113.039 1.96897L115 2.40209V68.9417L111.964 68.272L111.963 68.2718L111.961 68.2714L111.957 68.2705L111.915 68.2617C111.876 68.2534 111.812 68.2404 111.725 68.2234C111.55 68.1893 111.283 68.1395 110.931 68.0803C110.226 67.962 109.182 67.8068 107.859 67.6665C105.209 67.3857 101.454 67.1665 97.0684 67.4185C88.2786 67.9236 77.1071 70.3113 67.1875 77.732L64.1925 73.7283C75.1529 65.529 87.3864 62.9666 96.7816 62.4267C101.489 62.1562 105.521 62.3908 108.386 62.6944C108.974 62.7567 109.513 62.822 110 62.8866V6.51399C109.146 6.38902 108.035 6.24987 106.712 6.13422C103.363 5.84143 98.676 5.70145 93.3474 6.31259C82.6858 7.53536 69.6073 11.7398 59.3938 23.5921L57.5 25.7898L55.6062 23.5921C45.3927 11.7398 32.3142 7.53536 21.6526 6.31259C16.324 5.70145 11.6373 5.84143 8.28802 6.13422C6.965 6.24987 5.85448 6.38902 5 6.51399V62.8857C5.81073 62.7779 6.7681 62.668 7.8526 62.5732C11.4564 62.2582 16.4885 62.1075 22.2224 62.7652C32.2444 63.9146 44.5275 67.5526 55 77.2017V43.3801H60V90.111L55.6062 85.0121C45.3927 73.1598 32.3142 68.9554 21.6526 67.7326C16.324 67.1215 11.6373 67.2614 8.28802 67.5542C6.61552 67.7004 5.28262 67.8842 4.37726 68.0294C3.92475 68.1019 3.57958 68.1647 3.35277 68.2083C3.23939 68.2301 3.15564 68.247 3.10291 68.2579L3.04727 68.2696L3.03924 68.2713L3.03761 68.2716L0 68.9426V2.40209L1.96076 1.96897L2.5 4.41012L1.96076 1.96897L1.9619 1.96872L1.96316 1.96844L1.96633 1.96774L1.97499 1.96585L2.00145 1.96015C2.02315 1.95551 2.05292 1.94922 2.0906 1.94143C2.16596 1.92585 2.27294 1.90427 2.41017 1.87793C2.68458 1.82525 3.08014 1.75347 3.58564 1.67241C4.59628 1.51036 6.04855 1.31091 7.8526 1.15321C11.4564 0.838183 16.4885 0.687543 22.2224 1.34515C33.0539 2.58742 46.5265 6.73652 57.5 18.2392Z" fill="url(#lg3)"/>
+      </svg>
+      <span class="hero-logo-name">D+J Bildung</span>
+    </div>
+    <div class="hero-label">Für Unternehmen</div>
+    <div class="hero-title">Wie viel Förderung?</div>
+    <div class="hero-sub">Berechnung nach Unternehmensgröße</div>
+  </div>
+
+  <div class="section-label">Eingabe</div>
+  <div class="info-pill">Die Förderung richtet sich nach der Unternehmensgröße und wird pro Teilnehmer berechnet. Lohnnebenkosten werden mit 20 % angesetzt.</div>
+
+  <div style="height: 10px;"></div>
+  <div class="foerd-card">
+    <div class="foerd-input-row">
+      <div class="foerd-lbl">Anzahl Mitarbeiter im Unternehmen</div>
+      <input type="number" class="foerd-input" id="f-mitarbeiter" min="1" placeholder="z. B. 45">
+    </div>
+    <div class="foerd-input-row">
+      <div class="foerd-lbl">Anzahl vorgesehener Teilnehmer</div>
+      <input type="number" class="foerd-input" id="f-teilnehmer" min="1" placeholder="z. B. 10">
+    </div>
+    <div class="foerd-input-row">
+      <div class="foerd-lbl">Durchschnittl. Bruttogehalt der Teilnehmer (€)</div>
+      <input type="number" class="foerd-input" id="f-gehalt" min="0" step="100" placeholder="z. B. 3.500">
+    </div>
+  </div>
+
+  <button class="foerd-btn" onclick="berechneForederung()">Förderung berechnen</button>
+
+  <div class="foerd-result" id="foerd-result">
+    <div class="foerd-result-header" id="foerd-result-header">
+      <div class="foerd-result-lbl" id="foerd-result-lbl">Nettozufluss Förderung</div>
+      <div class="foerd-result-amount" id="foerd-result-amount">0 €</div>
+      <div class="foerd-result-sub" id="foerd-result-sub"></div>
+    </div>
+    <div class="foerd-details" id="foerd-details"></div>
+  </div>
+
+  <div class="section-label">Kundenangebot & CashFlow</div>
+  <div class="payout-card">
+    <div class="payout-header">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a88940" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="payout-header-txt">Vollständiger Angebots-Generator</span>
+    </div>
+    <div class="payout-body">
+      Erstellen Sie ein <strong>professionelles Kundenangebot</strong> mit 3 Szenarien und <strong>Cash-Flow-Analyse</strong> (12 Monate) als PDF — direkt per E-Mail versendbar.
+    </div>
+  </div>
+  <div style="padding: 0 16px;">
+    <a href="#" onclick="openAngebot(); return false;" style="display:block;background:var(--gold);border-radius:12px;padding:15px;text-align:center;text-decoration:none;">
+      <div style="font-size:15px;font-weight:600;color:#fff;">Angebot & CashFlow erstellen</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:3px;">Kundenangebot · Cash-Flow-Analyse</div>
+    </a>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- ═══ SCREEN 4: KONTAKT ═══ -->
+<div class="screen" id="screen-kontakt">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="topbar-title">Kontakt</div>
+        <div class="topbar-sub">D+J Consult</div>
+      </div>
+      <button class="topbar-home" onclick="showScreen('splash')" aria-label="Zur Startseite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-logo">
+      <svg width="44" height="44" viewBox="0 0 115 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg4" x1="57.5" y1="90.111" x2="57.5" y2="0.884" gradientUnits="userSpaceOnUse"><stop stop-color="#A17D5E"/><stop offset="1" stop-color="#EAD6B9"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 18.2392C68.4735 6.73652 81.9461 2.58742 92.7776 1.34515C98.5115 0.687543 103.544 0.838183 107.147 1.15321C108.951 1.31091 110.404 1.51036 111.414 1.67241C111.92 1.75347 112.315 1.82525 112.59 1.87793C112.727 1.90427 112.834 1.92585 112.909 1.94143C112.947 1.94922 112.977 1.95551 112.999 1.96015L113.025 1.96585L113.034 1.96774L113.037 1.96844C113.038 1.96872 113.039 1.96897 112.5 4.41012L113.039 1.96897L115 2.40209V68.9417L111.964 68.272L111.963 68.2718L111.961 68.2714L111.957 68.2705L111.915 68.2617C111.876 68.2534 111.812 68.2404 111.725 68.2234C111.55 68.1893 111.283 68.1395 110.931 68.0803C110.226 67.962 109.182 67.8068 107.859 67.6665C105.209 67.3857 101.454 67.1665 97.0684 67.4185C88.2786 67.9236 77.1071 70.3113 67.1875 77.732L64.1925 73.7283C75.1529 65.529 87.3864 62.9666 96.7816 62.4267C101.489 62.1562 105.521 62.3908 108.386 62.6944C108.974 62.7567 109.513 62.822 110 62.8866V6.51399C109.146 6.38902 108.035 6.24987 106.712 6.13422C103.363 5.84143 98.676 5.70145 93.3474 6.31259C82.6858 7.53536 69.6073 11.7398 59.3938 23.5921L57.5 25.7898L55.6062 23.5921C45.3927 11.7398 32.3142 7.53536 21.6526 6.31259C16.324 5.70145 11.6373 5.84143 8.28802 6.13422C6.965 6.24987 5.85448 6.38902 5 6.51399V62.8857C5.81073 62.7779 6.7681 62.668 7.8526 62.5732C11.4564 62.2582 16.4885 62.1075 22.2224 62.7652C32.2444 63.9146 44.5275 67.5526 55 77.2017V43.3801H60V90.111L55.6062 85.0121C45.3927 73.1598 32.3142 68.9554 21.6526 67.7326C16.324 67.1215 11.6373 67.2614 8.28802 67.5542C6.61552 67.7004 5.28262 67.8842 4.37726 68.0294C3.92475 68.1019 3.57958 68.1647 3.35277 68.2083C3.23939 68.2301 3.15564 68.247 3.10291 68.2579L3.04727 68.2696L3.03924 68.2713L3.03761 68.2716L0 68.9426V2.40209L1.96076 1.96897L2.5 4.41012L1.96076 1.96897L1.9619 1.96872L1.96316 1.96844L1.96633 1.96774L1.97499 1.96585L2.00145 1.96015C2.02315 1.95551 2.05292 1.94922 2.0906 1.94143C2.16596 1.92585 2.27294 1.90427 2.41017 1.87793C2.68458 1.82525 3.08014 1.75347 3.58564 1.67241C4.59628 1.51036 6.04855 1.31091 7.8526 1.15321C11.4564 0.838183 16.4885 0.687543 22.2224 1.34515C33.0539 2.58742 46.5265 6.73652 57.5 18.2392Z" fill="url(#lg4)"/>
+      </svg>
+      <span class="hero-logo-name">D+J Bildung</span>
+    </div>
+    <div class="hero-label">D+J Consult</div>
+    <div class="hero-title">Jürgen Nedvidek</div>
+    <div class="hero-sub">Ziele erreichen</div>
+  </div>
+
+  <div class="section-label">Direkt erreichen</div>
+  <div class="contact-card">
+    <a href="tel:+4915203081715" class="contact-row">
+      <div class="contact-icon" style="background:#eaf3fb;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.59 6.59l.95-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div><div class="contact-text">+49 152 03081715</div><div class="contact-sub">Anrufen</div></div>
+    </a>
+    <a href="mailto:jn@dj-bildung.de" class="contact-row">
+      <div class="contact-icon" style="background:#eaf3fb;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div><div class="contact-text">jn@dj-bildung.de</div><div class="contact-sub">E-Mail schreiben</div></div>
+    </a>
+    <a href="https://www.dj-bildung.com" target="_blank" class="contact-row">
+      <div class="contact-icon" style="background:#eaf3fb;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div><div class="contact-text">www.dj-bildung.com</div><div class="contact-sub">Besuchen Sie unsere Website</div></div>
+    </a>
+    <a href="#" onclick="openFreshChat();return false;" class="contact-row">
+      <div class="contact-icon" style="background:#faf6ee;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div><div class="contact-text" style="color:var(--gold);">Chat starten</div><div class="contact-sub">Fragen? Direkt im Chat antworten</div></div>
+    </a>
+  </div>
+
+  <div class="section-label">Infoseite teilen</div>
+  <div class="qr-section">
+    <div class="qr-card">
+      <div class="qr-title">QR-Code zur Infoseite</div>
+      <canvas id="qr-canvas" width="180" height="180"></canvas>
+      <div class="qr-sub">Scannen Sie den Code um direkt zur Infoseite zu gelangen — oder zum Teilen mit Interessenten.</div>
+      <div class="qr-url" id="qr-url-display">djbildung-arbeit40.netlify.app</div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+
+<!-- ═══ SCREEN 5: EU AI-ACT ═══ -->
+<div class="screen" id="screen-aiact">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="topbar-title">EU AI-Act Schulung</div>
+        <div class="topbar-sub">KI-Grundlagenkurs · D+J Bildung</div>
+      </div>
+      <button class="topbar-home" onclick="showScreen('splash')" aria-label="Zur Startseite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-logo">
+      <svg width="44" height="44" viewBox="0 0 115 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lg5" x1="57.5" y1="90.111" x2="57.5" y2="0.884" gradientUnits="userSpaceOnUse"><stop stop-color="#A17D5E"/><stop offset="1" stop-color="#EAD6B9"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 18.2392C68.4735 6.73652 81.9461 2.58742 92.7776 1.34515C98.5115 0.687543 103.544 0.838183 107.147 1.15321C108.951 1.31091 110.404 1.51036 111.414 1.67241C111.92 1.75347 112.315 1.82525 112.59 1.87793C112.727 1.90427 112.834 1.92585 112.909 1.94143C112.947 1.94922 112.977 1.95551 112.999 1.96015L113.025 1.96585L113.034 1.96774L113.037 1.96844C113.038 1.96872 113.039 1.96897 112.5 4.41012L113.039 1.96897L115 2.40209V68.9417L111.964 68.272L111.963 68.2718L111.961 68.2714L111.957 68.2705L111.915 68.2617C111.876 68.2534 111.812 68.2404 111.725 68.2234C111.55 68.1893 111.283 68.1395 110.931 68.0803C110.226 67.962 109.182 67.8068 107.859 67.6665C105.209 67.3857 101.454 67.1665 97.0684 67.4185C88.2786 67.9236 77.1071 70.3113 67.1875 77.732L64.1925 73.7283C75.1529 65.529 87.3864 62.9666 96.7816 62.4267C101.489 62.1562 105.521 62.3908 108.386 62.6944C108.974 62.7567 109.513 62.822 110 62.8866V6.51399C109.146 6.38902 108.035 6.24987 106.712 6.13422C103.363 5.84143 98.676 5.70145 93.3474 6.31259C82.6858 7.53536 69.6073 11.7398 59.3938 23.5921L57.5 25.7898L55.6062 23.5921C45.3927 11.7398 32.3142 7.53536 21.6526 6.31259C16.324 5.70145 11.6373 5.84143 8.28802 6.13422C6.965 6.24987 5.85448 6.38902 5 6.51399V62.8857C5.81073 62.7779 6.7681 62.668 7.8526 62.5732C11.4564 62.2582 16.4885 62.1075 22.2224 62.7652C32.2444 63.9146 44.5275 67.5526 55 77.2017V43.3801H60V90.111L55.6062 85.0121C45.3927 73.1598 32.3142 68.9554 21.6526 67.7326C16.324 67.1215 11.6373 67.2614 8.28802 67.5542C6.61552 67.7004 5.28262 67.8842 4.37726 68.0294C3.92475 68.1019 3.57958 68.1647 3.35277 68.2083C3.23939 68.2301 3.15564 68.247 3.10291 68.2579L3.04727 68.2696L3.03924 68.2713L3.03761 68.2716L0 68.9426V2.40209L1.96076 1.96897L2.5 4.41012L1.96076 1.96897L1.9619 1.96872L1.96316 1.96844L1.96633 1.96774L1.97499 1.96585L2.00145 1.96015C2.02315 1.95551 2.05292 1.94922 2.0906 1.94143C2.16596 1.92585 2.27294 1.90427 2.41017 1.87793C2.68458 1.82525 3.08014 1.75347 3.58564 1.67241C4.59628 1.51036 6.04855 1.31091 7.8526 1.15321C11.4564 0.838183 16.4885 0.687543 22.2224 1.34515C33.0539 2.58742 46.5265 6.73652 57.5 18.2392Z" fill="url(#lg5)"/>
+      </svg>
+      <span class="hero-logo-name">D+J Bildung</span>
+    </div>
+    <div class="hero-label">Pflichtschulung · AI-Act konform</div>
+    <div class="hero-title">KI-Grundlagenkurs</div>
+    <div class="hero-sub">4 Stunden die Ihr Unternehmen schützen</div>
+  </div>
+
+  <div style="padding: 14px 16px 0;">
+    <div style="font-size: 13px; color: var(--ios-label); line-height: 1.6;">Der EU AI-Act ist in Kraft – Nichtbeachtung kann zu Strafen führen.</div>
+  </div>
+
+  <!-- Vorteile -->
+  <div class="section-label">4 Gründe für diesen Kurs</div>
+  <div class="payout-card">
+    <div style="padding: 11px 14px; border-bottom: 0.5px solid var(--ios-sep); display:flex; gap:10px; align-items:flex-start;">
+      <div style="width:26px;height:26px;border-radius:7px;background:#fceaea;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8b1a1a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div style="font-size:13px;font-weight:600;color:var(--ios-text);">Rechtssicherheit</div><div style="font-size:12px;color:var(--ios-label);margin-top:2px;">Zertifizierter Nachweis durch anerkannten Bildungsträger</div></div>
+    </div>
+    <div style="padding: 11px 14px; border-bottom: 0.5px solid var(--ios-sep); display:flex; gap:10px; align-items:flex-start;">
+      <div style="width:26px;height:26px;border-radius:7px;background:#eaf5ee;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1a6b3a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div style="font-size:13px;font-weight:600;color:var(--ios-text);">Effizienzsteigerung 20–40 %</div><div style="font-size:12px;color:var(--ios-label);margin-top:2px;">Praktisches KI-Know-how für alle Arbeitsbereiche</div></div>
+    </div>
+    <div style="padding: 11px 14px; border-bottom: 0.5px solid var(--ios-sep); display:flex; gap:10px; align-items:flex-start;">
+      <div style="width:26px;height:26px;border-radius:7px;background:#eaf5ee;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1a6b3a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div style="font-size:13px;font-weight:600;color:var(--ios-text);">Doppeltes Zertifikat</div><div style="font-size:12px;color:var(--ios-label);margin-top:2px;">Für Unternehmen (Compliance) und Mitarbeitende (Lebenslauf)</div></div>
+    </div>
+    <div style="padding: 11px 14px; display:flex; gap:10px; align-items:flex-start;">
+      <div style="width:26px;height:26px;border-radius:7px;background:#eaf5ee;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1a6b3a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div style="font-size:13px;font-weight:600;color:var(--ios-text);">Wettbewerbsvorteil</div><div style="font-size:12px;color:var(--ios-label);margin-top:2px;">KI-Nutzung während Konkurrenz still steht</div></div>
+    </div>
+  </div>
+
+  <!-- AI-Act Artikel -->
+  <div class="section-label">Das sagt der AI-Act</div>
+  <div class="breakdown-card">
+    <div class="breakdown-title">Gesetzliche Grundlagen</div>
+    <div style="padding: 12px 14px; border-bottom: 0.5px solid var(--ios-sep);">
+      <div style="font-size:12px;font-weight:600;color:var(--gold-dark);margin-bottom:4px;">Artikel 4 – KI-Kompetenz</div>
+      <div style="font-size:12px;color:var(--ios-label);line-height:1.5;">Anbieter und Nutzer von KI-Systemen müssen sicherstellen, dass ihr Personal über ein angemessenes Maß an KI-Kompetenz verfügt.</div>
+      <div style="font-size:12px;font-weight:600;color:#8b1a1a;margin-top:6px;">→ Ohne Schulungsnachweis keine rechtskonforme KI-Nutzung!</div>
+    </div>
+    <div style="padding: 12px 14px;">
+      <div style="font-size:12px;font-weight:600;color:var(--gold-dark);margin-bottom:4px;">Artikel 71 – Sanktionen</div>
+      <div style="font-size:12px;color:var(--ios-label);line-height:1.5;">Bußgelder bis zu <strong style="color:#8b1a1a;">35.000.000 €</strong> oder <strong style="color:#8b1a1a;">7 % des weltweiten Jahresumsatzes</strong> – je nachdem, welcher Betrag höher ist.</div>
+    </div>
+  </div>
+
+  <!-- Kursinhalte -->
+  <div class="section-label">4 Module · je 1 Stunde</div>
+  <div class="modul-list">
+    <div class="ml-item" onclick="toggleModul('ai0')">
+      <div class="ml-header">
+        <div class="ml-num">01</div>
+        <div class="ml-info"><div class="ml-title">Rechtliche Grundlagen</div><div class="ml-sub">1 Stunde · AI-Act Artikel 4 & 71</div></div>
+        <div class="ml-arrow" id="arrai0">▸</div>
+      </div>
+      <div class="ml-body" id="bodyai0">
+        <div class="ml-sub-item"><div class="ml-points"><span>→ AI-Act: Die wichtigsten Regelungen im Überblick</span><span>→ Artikel 4 & 71: Kompetenzanforderungen und Sanktionen</span><span>→ Pflichten für Unternehmen und Mitarbeitende</span><span>→ Risikoklassen und deren Bedeutung</span><span>→ Dokumentationspflichten und Compliance</span></div></div>
+      </div>
+    </div>
+    <div class="ml-item" onclick="toggleModul('ai1')">
+      <div class="ml-header">
+        <div class="ml-num">02</div>
+        <div class="ml-info"><div class="ml-title">KI-Grundlagen verstehen</div><div class="ml-sub">1 Stunde · Chancen & Grenzen</div></div>
+        <div class="ml-arrow" id="arrai1">▸</div>
+      </div>
+      <div class="ml-body" id="bodyai1">
+        <div class="ml-sub-item"><div class="ml-points"><span>→ Was ist KI und wie funktioniert sie?</span><span>→ Chancen und Grenzen von KI-Systemen</span><span>→ Datenschutz und Vertraulichkeit</span><span>→ Ethische Aspekte der KI-Nutzung</span></div></div>
+      </div>
+    </div>
+    <div class="ml-item" onclick="toggleModul('ai2')">
+      <div class="ml-header">
+        <div class="ml-num">03</div>
+        <div class="ml-info"><div class="ml-title">Sichere KI-Anwendung</div><div class="ml-sub">1 Stunde · Do's & Don'ts</div></div>
+        <div class="ml-arrow" id="arrai2">▸</div>
+      </div>
+      <div class="ml-body" id="bodyai2">
+        <div class="ml-sub-item"><div class="ml-points"><span>→ Do's and Don'ts im Unternehmenskontext</span><span>→ Umgang mit sensiblen Daten</span><span>→ Qualitätssicherung von KI-Ergebnissen</span><span>→ Verantwortungsvoller Einsatz im Team</span></div></div>
+      </div>
+    </div>
+    <div class="ml-item" onclick="toggleModul('ai3')">
+      <div class="ml-header">
+        <div class="ml-num">04</div>
+        <div class="ml-info"><div class="ml-title">Praxis & Effizienzsteigerung</div><div class="ml-sub">1 Stunde · KI im Arbeitsalltag</div></div>
+        <div class="ml-arrow" id="arrai3">▸</div>
+      </div>
+      <div class="ml-body" id="bodyai3">
+        <div class="ml-sub-item"><div class="ml-points"><span>→ KI-Tools für verschiedene Arbeitsbereiche</span><span>→ Prompt-Engineering für optimale Ergebnisse</span><span>→ Workflow-Integration und Automatisierung</span><span>→ Best Practices aus erfolgreichen Unternehmen</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preise -->
+  <div class="section-label">Investition in Ihre Rechtssicherheit</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding: 0 16px;">
+    <div style="background:var(--ios-card);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:11px;color:var(--ios-label);margin-bottom:4px;">Einzelbuchung</div>
+      <div style="font-size:26px;font-weight:700;color:var(--ios-text);">490 €</div>
+      <div style="font-size:11px;color:var(--ios-label);margin-top:2px;">pro Teilnehmer</div>
+    </div>
+    <div style="background:var(--ios-card);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:11px;color:var(--ios-label);margin-bottom:4px;">Ab 10 Teilnehmende</div>
+      <div style="font-size:26px;font-weight:700;color:var(--gold);">390 €</div>
+      <div style="font-size:11px;color:#1a6b3a;margin-top:2px;font-weight:600;">20 % Ersparnis</div>
+    </div>
+  </div>
+  <div style="padding: 10px 16px 0;">
+    <div style="background:var(--ios-card);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:11px;color:var(--ios-label);margin-bottom:4px;">Ab 20 Teilnehmende</div>
+      <div style="font-size:26px;font-weight:700;color:var(--gold);">290 €</div>
+      <div style="font-size:11px;color:#1a6b3a;margin-top:2px;font-weight:600;">40 % Ersparnis</div>
+    </div>
+  </div>
+
+  <div class="section-label">Ohne Schulung</div>
+  <div class="breakdown-card">
+    <div class="breakdown-title">Was passiert OHNE diese Schulung?</div>
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--ios-sep);font-size:13px;color:var(--ios-label);"><span style="color:#8b1a1a;font-weight:600;">Komplettes KI-Verbot</span> – ChatGPT, Copilot & Co. müssen unternehmensweit untersagt werden</div>
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--ios-sep);font-size:13px;color:var(--ios-label);"><span style="color:#8b1a1a;font-weight:600;">Persönliche Haftung</span> – Geschäftsführung haftet bei Verstößen</div>
+    <div style="padding:10px 14px;font-size:13px;color:var(--ios-label);"><span style="color:#8b1a1a;font-weight:600;">Betriebsprüfungen</span> – Aufsichtsbehörden prüfen verstärkt die Einhaltung</div>
+  </div>
+
+  <div class="section-label">Mit Schulung</div>
+  <div class="breakdown-card">
+    <div class="breakdown-title">Was gewinnen Sie MIT dieser Schulung?</div>
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--ios-sep);font-size:13px;color:var(--ios-label);"><span style="color:#1a6b3a;font-weight:600;">Wettbewerbsvorteil</span> – Mit KI/AI 30 % effizienter als der Wettbewerb arbeiten</div>
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--ios-sep);font-size:13px;color:var(--ios-label);"><span style="color:#1a6b3a;font-weight:600;">Rechtssicherheit</span> – Zertifizierter Nachweis schützt vor Bußgeldern und Haftungsrisiken</div>
+    <div style="padding:10px 14px;font-size:13px;color:var(--ios-label);"><span style="color:#1a6b3a;font-weight:600;">Mitarbeiterkompetenz</span> – Ihr Team nutzt KI sicher, souverän und produktiv im Alltag</div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding: 12px 16px 0;">
+    <a href="mailto:jn@dj-bildung.de?subject=Anfrage AI-Act Schulung" style="display:block;background:var(--gold);border-radius:12px;padding:15px;text-align:center;text-decoration:none;">
+      <div style="font-size:15px;font-weight:600;color:#fff;">Schulungstermin anfragen</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:3px;">jn@dj-bildung.de</div>
+    </a>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- ═══ TAB BAR ═══ -->
+<nav class="tabbar">
+  <button class="tab active" id="tab-module" onclick="showScreen('module')">
+    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    <span class="tab-lbl">Arbeit 4.0</span>
+  </button>
+  <button class="tab" id="tab-foerder" onclick="showScreen('foerder')">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    <span class="tab-lbl">Förderung</span>
+  </button>
+  <button class="tab" id="tab-aiact" onclick="showScreen('aiact')">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/><path d="M9 8l2 2 4-4"/></svg>
+    <span class="tab-lbl">AI-Act</span>
+  </button>
+  <button class="tab" id="tab-kontakt" onclick="showScreen('kontakt')">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.59 6.59l.95-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="tab-lbl">Kontakt</span>
+  </button>
+  <button class="tab" id="tab-rechner" onclick="showScreen('rechner')">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <span class="tab-lbl">Provision</span>
+  </button>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ── Provisionsrechner ── */
+const STUFEN = { 1:{tipp:500,dozent:0}, 2:{tipp:1000,dozent:0}, 3:{tipp:500,dozent:1500}, 4:{tipp:1000,dozent:1500} };
+let stufe=1, tn=10;
+function fmt(n){ return n.toLocaleString('de-DE')+'\u00a0€'; }
+function setStufe(s){ stufe=s; document.querySelectorAll('.stufe-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.s)===s)); update(); }
+function setTN(v){ tn=parseInt(v); document.getElementById('tn-disp').textContent=tn; update(); }
+function update(){
+  const s=STUFEN[stufe], tipp=s.tipp*tn, doz=s.dozent*tn, total=tipp+doz, hasDoz=s.dozent>0, ue=tn*20;
+  document.getElementById('m-tn-a').textContent=tn;
+  document.getElementById('m-total-a').textContent=fmt(total);
+  document.getElementById('m-tn-b').textContent=tn;
+  document.getElementById('m-total-b').textContent=fmt(total);
+  document.getElementById('m-ue').textContent=ue+' UE';
+  document.getElementById('metrics-nodozent').style.display=hasDoz?'none':'grid';
+  document.getElementById('metrics-dozent').style.display=hasDoz?'grid':'none';
+  document.getElementById('ue-box-wrap').style.display=hasDoz?'block':'none';
+  document.getElementById('bar-wrap').style.display=hasDoz?'block':'none';
+  if(hasDoz){ document.getElementById('ue-tn-lbl').textContent=tn; document.getElementById('ue-total-val').textContent=ue+' UE'; document.getElementById('ue-honorar').textContent=fmt(doz); }
+  let rows='';
+  const tippLbl=(stufe===1||stufe===3)?tn+' TN \u00d7 '+s.tipp.toLocaleString('de-DE')+' \u20ac (Tippgeber)':tn+' TN \u00d7 '+s.tipp.toLocaleString('de-DE')+' \u20ac (Bildungsgutschein)';
+  rows+=`<div class="brow"><span class="brow-lbl">${tippLbl}</span><span class="brow-val">${fmt(tipp)}</span></div>`;
+  if(hasDoz) rows+=`<div class="brow"><span class="brow-lbl">${tn} Monate \u00d7 20 UE \u00d7 1.500\u00a0\u20ac (Dozentenhonorar)</span><span class="brow-val">${fmt(doz)}</span></div>`;
+  rows+=`<div class="brow total"><span class="brow-lbl">Gesamtvergütung</span><span class="brow-val">${fmt(total)}</span></div>`;
+  document.getElementById('brows').innerHTML=rows;
+  if(hasDoz){ const p1=Math.round((tipp/total)*100),p2=100-p1; document.getElementById('bf1').style.width=p1+'%'; document.getElementById('bf2').style.width=p2+'%'; document.getElementById('bar-legend').innerHTML=`<span><span class="bar-dot" style="background:#c9a961;"></span>Vermittlung ${p1}%</span><span><span class="bar-dot" style="background:#EF9F27;"></span>Dozentenhonorar ${p2}%</span>`; }
+}
+
+/* ── Förderrechner ── */
+function berechneForederung(){
+  const ma=parseInt(document.getElementById('f-mitarbeiter').value);
+  const tn2=parseInt(document.getElementById('f-teilnehmer').value);
+  const gehalt=parseFloat(document.getElementById('f-gehalt').value);
+  if(!ma||!tn2||!gehalt){ alert('Bitte alle Felder ausfüllen.'); return; }
+  const bruttoPlusNK=gehalt*1.20;
+  let foerderProPerson=0, satz='', abzug=0;
+  if(ma<50){ foerderProPerson=((bruttoPlusNK/2)*0.75*12)-8000; satz='75 %'; abzug=8000; }
+  else if(ma<500){ abzug=tn2<=4?8100:7100; foerderProPerson=((bruttoPlusNK/2)*0.50*12)-abzug; satz='50 %'; }
+  else{ foerderProPerson=((bruttoPlusNK/2)*0.25*12)-9650; satz='25 %'; abzug=9650; }
+  const gesamt=foerderProPerson*tn2;
+  const isNeg=gesamt<0;
+  const el=document.getElementById('foerd-result');
+  const header=document.getElementById('foerd-result-header');
+  document.getElementById('foerd-result-lbl').textContent=isNeg?'Eigene Kostenbeteiligung':'Nettozufluss Förderung für das Unternehmen';
+  document.getElementById('foerd-result-amount').textContent=fmt(Math.abs(Math.round(gesamt)));
+  document.getElementById('foerd-result-amount').style.color=isNeg?'#8b1a1a':'#1a6b3a';
+  if(isNeg){ header.style.background='#fceaea'; document.getElementById('foerd-result-sub').textContent='Eigenanteil nach Zuschuss'; }
+  else{ header.style.background='#eaf5ee'; document.getElementById('foerd-result-sub').textContent='nicht rückzahlbarer Zuschuss'; }
+  const fmtN=n=>n.toLocaleString('de-DE',{style:'currency',currency:'EUR',minimumFractionDigits:0,maximumFractionDigits:0});
+  let det=`
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Unternehmensgröße</span><span class="foerd-detail-val">${ma} Mitarbeiter</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Bruttogehalt</span><span class="foerd-detail-val">${fmtN(gehalt)}</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">+ 20 % Lohnnebenkosten</span><span class="foerd-detail-val">${fmtN(gehalt*0.20)}</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Gesamtkosten p. Person</span><span class="foerd-detail-val">${fmtN(bruttoPlusNK)}</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Fördersatz</span><span class="foerd-detail-val">${satz} der halben Gesamtkosten</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Abzug pro Person</span><span class="foerd-detail-val">${fmtN(abzug)}</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Förderung pro Person</span><span class="foerd-detail-val">${fmtN(Math.round(foerderProPerson))}</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">Teilnehmer</span><span class="foerd-detail-val">${tn2}</span></div>
+    <div class="foerd-detail-row"><span class="foerd-detail-lbl">${isNeg?'Eigene Kostenbeteiligung':'Nettozufluss gesamt'}</span><span class="foerd-detail-val" style="color:${isNeg?'#8b1a1a':'#1a6b3a'};font-weight:700;">${fmtN(Math.round(Math.abs(gesamt)))}</span></div>`;
+  document.getElementById('foerd-details').innerHTML=det;
+  el.style.background=isNeg?'#fceaea':'#eaf5ee';
+  el.style.border=isNeg?'0.5px solid #f5b5b5':'0.5px solid #a8d5b5';
+  el.style.borderRadius='14px';
+  el.classList.add('show');
+}
+
+/* ── Screen-Wechsel ── */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  var tab=document.getElementById('tab-'+id);
+  if(tab) tab.classList.add('active');
+
+  if(id==='chat') openFreshChat();
+}
+
+function openFreshChat(){
+  function doOpen(){
+    if(window.chatbase){
+      try{ window.chatbase.resetChat(); }catch(e){}
+      setTimeout(function(){
+        try{ window.chatbase('open'); }catch(e){}
+      }, 300);
+    } else {
+      setTimeout(doOpen, 500);
+    }
+  }
+  doOpen();
+}
+
+/* ── AI-Act Provisionsrechner ── */
+var aiStufe=1, aiTN=30, aiPreis=290;
+function setAiStufe(s){
+  aiStufe=s;
+  document.getElementById('ai-btn-1').classList.toggle('active',s===1);
+  document.getElementById('ai-btn-2').classList.toggle('active',s===2);
+  document.getElementById('ai-preis-row').style.display=s===2?'block':'none';
+  updateAi();
+}
+function setAiTN(v){ aiTN=parseInt(v); document.getElementById('ai-tn-disp').textContent=aiTN; updateAi(); }
+function setAiPreis(v){ aiPreis=parseInt(v); document.getElementById('ai-preis-disp').textContent=aiPreis; updateAi(); }
+function updateAi(){
+  var rows='', total=0, lbl='';
+  if(aiStufe===1){
+    var vol=aiTN*290; total=Math.round(vol*0.10); lbl='Ihre Provision (10 %)';
+    rows='<div class="brow"><span class="brow-lbl">'+aiTN+' TN × 290\u00a0€ (Auftragsvolumen)</span><span class="brow-val">'+vol.toLocaleString('de-DE')+'\u00a0€</span></div>';
+    rows+='<div class="brow"><span class="brow-lbl">10 % Provision</span><span class="brow-val">'+total.toLocaleString('de-DE')+'\u00a0€</span></div>';
+    rows+='<div class="brow total"><span class="brow-lbl">Ihre Provision</span><span class="brow-val">'+total.toLocaleString('de-DE')+'\u00a0€</span></div>';
+  } else {
+    var vol2=aiTN*aiPreis, admin=aiTN*150; total=vol2-admin; lbl='Ihr Dozentenhonorar';
+    rows='<div class="brow"><span class="brow-lbl">'+aiTN+' TN × '+aiPreis+'\u00a0€ (Auftragsvolumen)</span><span class="brow-val">'+vol2.toLocaleString('de-DE')+'\u00a0€</span></div>';
+    rows+='<div class="brow"><span class="brow-lbl">Admingebühr '+aiTN+' × 150\u00a0€ (vom Bildungsträger einbehalten)</span><span class="brow-val">– '+admin.toLocaleString('de-DE')+'\u00a0€</span></div>';
+    rows+='<div class="brow total"><span class="brow-lbl">Ihr Dozentenhonorar</span><span class="brow-val">'+(total>0?total.toLocaleString('de-DE'):'0')+'\u00a0€</span></div>';
+  }
+  document.getElementById('ai-m-tn').textContent=aiTN;
+  document.getElementById('ai-m-label').textContent=lbl;
+  document.getElementById('ai-m-total').textContent=(total>0?total.toLocaleString('de-DE'):'0')+'\u00a0€';
+  document.getElementById('ai-brows').innerHTML=rows;
+}
+setAiStufe(1);
+
+function openAngebot(){
+  var ma=document.getElementById('f-mitarbeiter').value||'';
+  var tn=document.getElementById('f-teilnehmer').value||'';
+  var gehalt=document.getElementById('f-gehalt').value||'';
+  var params=[];
+  if(ma) params.push('ma='+encodeURIComponent(ma));
+  if(tn) params.push('tn='+encodeURIComponent(tn));
+  if(gehalt) params.push('gehalt='+encodeURIComponent(gehalt));
+  var url='angebotsgenerator.html'+(params.length?'?'+params.join('&'):'');
+  window.open(url,'_blank');
+}
+
+/* ── Modul-Akkordeon ── */
+function toggleModul(i){
+  var body=document.getElementById('body'+i);
+  var arr=document.getElementById('arr'+i);
+  if(!body) return;
+  var open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  arr.classList.toggle('open',!open);
+}
+
+/* ── QR-Code ── */
+const INFO_URL='https://djbildung-arbeit40.netlify.app/';
+var _qrDiv=null;
+function generateQR(url){
+  if(typeof QRCode==='undefined'){ setTimeout(function(){generateQR(url);},400); return; }
+  if(!_qrDiv){ _qrDiv=document.createElement('div'); _qrDiv.style.display='none'; document.body.appendChild(_qrDiv); }
+  _qrDiv.innerHTML='';
+  new QRCode(_qrDiv,{text:url,width:180,height:180,colorDark:'#1C1C1E',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  var canvas=document.getElementById('qr-canvas');
+  function draw(){
+    var img=_qrDiv.querySelector('img');
+    if(img&&img.complete&&img.naturalWidth>0){
+      canvas.getContext('2d').clearRect(0,0,180,180);
+      canvas.getContext('2d').drawImage(img,0,0,180,180);
+    } else if(img){ img.onload=draw; } else { setTimeout(draw,100); }
+  }
+  setTimeout(draw,200);
+}
+window.addEventListener('load',function(){generateQR(INFO_URL);});
+
+update();
+</script>
+
+<!-- Chatbase Widget (unsichtbar - nur für resetChat API) -->
+<script>
+window.embeddedChatbotConfig = {
+  chatbotId: "yk0EydUF1wEq9M5czwvUy",
+  domain: "www.chatbase.co"
+};
+</script>
+<script src="https://www.chatbase.co/embed.min.js" defer></script>
+<style>
+  /* Chatbase-Bubble verstecken - Chat wird über unseren Button geöffnet */
+  #chatbase-bubble-button { display:none !important; }
+</style>
+<script>
+// Inaktivitäts-Timer: Chat wird nach 3 Minuten automatisch zurückgesetzt
+var cbInactivityTimer;
+function startCbInactivityTimer(){
+  clearTimeout(cbInactivityTimer);
+  cbInactivityTimer=setTimeout(function(){
+    if(window.chatbase && typeof window.chatbase.resetChat==='function'){
+      window.chatbase.resetChat();
+    }
+  }, 3*60*1000);
+}
+// Events registrieren sobald Chatbase geladen ist
+function setupCbEvents(){
+  if(window.chatbase && window.chatbase.addEventListener){
+    window.chatbase.addEventListener('user-message', startCbInactivityTimer);
+    window.chatbase.addEventListener('assistant-message', startCbInactivityTimer);
+  } else {
+    setTimeout(setupCbEvents, 1000);
+  }
+}
+window.addEventListener('load', function(){ setTimeout(setupCbEvents, 2000); });
+</script>
+<script>
+/* PWA: Service Worker registrieren */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('service-worker.js').catch(function (e) { console.warn('SW-Registrierung fehlgeschlagen:', e); });
+  });
+}
+</script>
+</body>
+</html>

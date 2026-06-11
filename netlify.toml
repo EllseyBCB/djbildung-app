@@ -1,0 +1,17 @@
+# Netlify-Konfiguration für D+J Bildung
+# Statische Seite – kein Build-Schritt nötig, alles liegt im Hauptordner.
+[build]
+  publish = "."
+  command = ""
+
+# Service Worker und Manifest immer frisch ausliefern (kein langes Caching),
+# damit Nutzer Updates schnell bekommen.
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
