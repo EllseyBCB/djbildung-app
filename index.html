@@ -770,6 +770,57 @@
     </a>
   </div>
 
+  <style>
+    .lead-card{background:var(--ios-card);border-radius:14px;margin:0 16px;padding:16px}
+    .lead-field{margin-bottom:12px}
+    .lead-field:last-child{margin-bottom:0}
+    .lead-field label{display:block;font-size:13px;font-weight:600;color:var(--ios-label);margin-bottom:6px}
+    .lead-field label .req{color:#c0392b}
+    .lead-field input,.lead-field select,.lead-field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--ios-sep);border-radius:10px;font-size:16px;font-family:inherit;background:#fff;color:var(--ios-text);-webkit-appearance:none;appearance:none}
+    .lead-field input:focus,.lead-field select:focus,.lead-field textarea:focus{outline:none;border-color:var(--gold)}
+    .lead-field textarea{resize:vertical;min-height:92px}
+    .lead-submit-btn{display:block;width:calc(100% - 32px);margin:14px 16px 0;padding:15px;border:none;border-radius:12px;font-size:16px;font-weight:600;font-family:inherit;color:#1C1C1E;background:linear-gradient(135deg,var(--gold),var(--gold-dark));cursor:pointer}
+    .lead-submit-btn:disabled{opacity:.6}
+    .lead-msg{margin:12px 16px 0;padding:12px 14px;border-radius:10px;font-size:14px;line-height:1.5}
+    .lead-ok{background:#eaf5ee;color:#1a6b3a}
+    .lead-err{background:#fceaea;color:#c0392b}
+  </style>
+
+  <div class="section-label">Anfrage senden</div>
+  <div class="lead-card" id="lead-form-card">
+    <div class="lead-field">
+      <label for="lead-name">Name <span class="req">*</span></label>
+      <input type="text" id="lead-name" autocomplete="name" placeholder="Ihr Name">
+    </div>
+    <div class="lead-field">
+      <label for="lead-email">E-Mail <span class="req">*</span></label>
+      <input type="email" id="lead-email" autocomplete="email" placeholder="ihre@email.de">
+    </div>
+    <div class="lead-field">
+      <label for="lead-phone">Telefon</label>
+      <input type="tel" id="lead-phone" autocomplete="tel" placeholder="optional">
+    </div>
+    <div class="lead-field">
+      <label for="lead-interest">Interesse</label>
+      <select id="lead-interest">
+        <option value="">Bitte wählen…</option>
+        <option>Arbeit 4.0 – Geförderte Weiterbildung</option>
+        <option>KI-Grundlagenkurs (AI-Act)</option>
+        <option>KI-Kurs für Führungskräfte</option>
+        <option>Unternehmerakademie 4.0</option>
+        <option>Online-Dozent 4.0</option>
+        <option>Förderberatung</option>
+        <option>Sonstiges</option>
+      </select>
+    </div>
+    <div class="lead-field">
+      <label for="lead-message">Nachricht</label>
+      <textarea id="lead-message" placeholder="Wie können wir Ihnen helfen?"></textarea>
+    </div>
+  </div>
+  <button class="lead-submit-btn" id="lead-submit" onclick="sendLead()">Anfrage senden</button>
+  <div id="lead-status"></div>
+
   <div class="section-label">Infoseite teilen</div>
   <div class="qr-section">
     <div class="qr-card">
@@ -1169,6 +1220,55 @@ function setupCbEvents(){
   }
 }
 window.addEventListener('load', function(){ setTimeout(setupCbEvents, 2000); });
+</script>
+<!-- Supabase: Anfrage-Formular an die Datenbank anbinden -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(function(){
+  try{
+    if(window.SUPABASE_URL && typeof supabase!=='undefined'){
+      window._sbLead = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+    }
+  }catch(e){ console.warn('Supabase-Init fehlgeschlagen:', e); }
+})();
+
+window.sendLead = async function(){
+  var g = function(id){ return document.getElementById(id); };
+  var name = g('lead-name').value.trim();
+  var email = g('lead-email').value.trim();
+  var phone = g('lead-phone').value.trim();
+  var interest = g('lead-interest').value;
+  var message = g('lead-message').value.trim();
+  var status = g('lead-status');
+  var btn = g('lead-submit');
+  status.innerHTML = '';
+  var emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  if(!name || !emailOk){
+    status.innerHTML = '<div class="lead-msg lead-err">Bitte Name und eine gültige E-Mail-Adresse angeben.</div>';
+    return;
+  }
+  if(!window._sbLead){
+    status.innerHTML = '<div class="lead-msg lead-err">Verbindung nicht verfügbar. Bitte später erneut versuchen oder direkt anrufen.</div>';
+    return;
+  }
+  btn.disabled = true; var oldTxt = btn.textContent; btn.textContent = 'Wird gesendet…';
+  try{
+    var res = await window._sbLead.from('leads').insert({
+      name: name, email: email,
+      phone: phone || null, interest: interest || null, message: message || null,
+      source: 'app-kontakt'
+    });
+    if(res.error) throw res.error;
+    status.innerHTML = '<div class="lead-msg lead-ok">Vielen Dank! Ihre Anfrage wurde gesendet – wir melden uns zeitnah bei Ihnen.</div>';
+    g('lead-name').value=''; g('lead-email').value=''; g('lead-phone').value='';
+    g('lead-interest').value=''; g('lead-message').value='';
+  }catch(e){
+    status.innerHTML = '<div class="lead-msg lead-err">Senden fehlgeschlagen: ' + (e.message || e) + '. Bitte später erneut versuchen.</div>';
+  }finally{
+    btn.disabled = false; btn.textContent = oldTxt;
+  }
+};
 </script>
 <script>
 /* PWA: Service Worker registrieren */
