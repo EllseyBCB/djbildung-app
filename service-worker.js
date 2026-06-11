@@ -1,29 +1,35 @@
 /* D+J Bildung – Service Worker
-   Macht die App installierbar und grundlegend offline-fähig.
-   Bei jeder Code-Änderung die Versionsnummer in CACHE erhöhen (v1 -> v2 ...),
-   damit Nutzer die neue Version bekommen. */
-const CACHE = 'djbildung-v1';
+   Macht die App installierbar und die App-Dateien offline-fähig.
+   WICHTIG: Datenbank-Abfragen (Supabase) und andere Fremd-Dienste werden NIE
+   zwischengespeichert – sie gehen immer frisch ans Netz, damit das Dashboard
+   stets den aktuellen Stand zeigt.
+   Bei Code-Änderungen die Versionsnummer erhöhen (v2 -> v3 ...). */
+const CACHE = 'djbildung-v2';
 
 const CORE = [
   './',
   './index.html',
+  './admin.html',
   './angebotsgenerator.html',
+  './impressum.html',
+  './datenschutz.html',
   './manifest.json',
+  './supabase-config.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-512-maskable.png'
 ];
 
-// Install: Kern-Dateien in den Cache legen
+// Install: Kern-Dateien cachen
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.addAll(CORE))
+      .then((cache) => cache.addAll(CORE).catch(() => {}))
       .then(() => self.skipWaiting())
   );
 });
 
-// Activate: alte Caches aufräumen
+// Activate: ALTE Caches löschen (entfernt auch alte, fälschlich gecachte Daten)
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
@@ -32,48 +38,26 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch-Strategie
+// Fetch
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-  if (req.method !== 'GET') return;
+  if (req.method !== 'GET') return;            // Schreibvorgänge nie anfassen
   const url = new URL(req.url);
 
-  // Seiten (HTML): erst Netz, dann Cache (damit Updates schnell kommen, offline trotzdem läuft)
-  if (req.mode === 'navigate' || req.destination === 'document') {
-    event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, copy));
-          return res;
-        })
-        .catch(() => caches.match(req).then((r) => r || caches.match('./index.html')))
-    );
-    return;
-  }
+  // NUR eigene Dateien behandeln. Alles Fremde (Supabase-Datenbank/Login,
+  // CDN-Bibliotheken, Chat) geht direkt und ungecacht ans Netz -> immer aktuell.
+  if (url.origin !== self.location.origin) return;
 
-  // Gleiche Domain (Icons, Manifest): erst Cache, dann Netz
-  if (url.origin === self.location.origin) {
-    event.respondWith(
-      caches.match(req).then((r) => r || fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(req, copy));
-        return res;
-      }))
-    );
-    return;
-  }
-
-  // Fremde Domains (CDN: jsPDF, QR-Code, Chatbot): erst Cache, dann Netz – ohne hart zu scheitern
+  // Eigene Dateien: erst Netz (aktuell), Cache nur als Offline-Reserve.
   event.respondWith(
-    caches.match(req).then((cached) =>
-      cached || fetch(req).then((res) => {
+    fetch(req)
+      .then((res) => {
         if (res && res.ok) {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put(req, copy));
         }
         return res;
-      }).catch(() => cached)
-    )
+      })
+      .catch(() => caches.match(req).then((r) => r || (req.mode === 'navigate' ? caches.match('./index.html') : undefined)))
   );
 });
