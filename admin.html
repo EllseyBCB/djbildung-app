@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1C1C1E">
+<meta name="robots" content="noindex,nofollow">
+<title>D+J Bildung – Admin</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{
+    --gold:#c9a961;--gold-dark:#a88940;--bg:#F2F2F7;--card:#fff;--text:#1C1C1E;
+    --label:#6C6C70;--sep:#E5E5EA;--blue:#007AFF;--green:#1a6b3a;--green-bg:#eaf5ee;
+    --red:#c0392b;--red-bg:#fceaea;--amber:#8a6d1a;--amber-bg:#fbf3e0;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;
+    background:var(--bg);color:var(--text);min-height:100vh}
+  .hidden{display:none!important}
+  /* ---- Topbar ---- */
+  .topbar{background:#1C1C1E;color:#fff;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px 16px;
+    position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between}
+  .topbar-title{font-size:18px;font-weight:700}
+  .topbar-title span{color:var(--gold)}
+  .topbar-sub{font-size:12px;color:#AEAEB2;margin-top:2px}
+  .btn{font:inherit;border:none;border-radius:10px;padding:10px 16px;font-weight:600;cursor:pointer;font-size:15px}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1C1C1E}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;padding:8px 14px;font-size:14px}
+  .btn-sm{padding:6px 12px;font-size:13px;border-radius:8px}
+  .btn-block{width:100%;padding:14px;font-size:16px}
+  /* ---- Login ---- */
+  .center-wrap{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{background:var(--card);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.08);padding:28px;width:100%;max-width:420px}
+  .card h1{font-size:22px;margin-bottom:6px}
+  .card .muted{color:var(--label);font-size:14px;margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--label);margin-bottom:6px}
+  .field input{width:100%;padding:13px 15px;border:1.5px solid var(--sep);border-radius:10px;font-size:16px;font-family:inherit}
+  .field input:focus{outline:none;border-color:var(--gold)}
+  .switch{text-align:center;margin-top:16px;font-size:14px;color:var(--label)}
+  .switch a{color:var(--blue);font-weight:600;text-decoration:none;cursor:pointer}
+  .msg{padding:12px 14px;border-radius:10px;font-size:14px;margin-bottom:16px;line-height:1.5}
+  .msg-err{background:var(--red-bg);color:var(--red)}
+  .msg-ok{background:var(--green-bg);color:var(--green)}
+  .msg-info{background:#eaf3fb;color:#1a5c96}
+  /* ---- Dashboard ---- */
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  .tabs{display:flex;gap:8px;overflow-x:auto;padding:16px 16px 0;max-width:900px;margin:0 auto}
+  .tab{flex:0 0 auto;background:var(--card);border:1.5px solid var(--sep);border-radius:999px;
+    padding:9px 16px;font-size:14px;font-weight:600;color:var(--label);cursor:pointer;white-space:nowrap}
+  .tab.active{background:#1C1C1E;color:#fff;border-color:#1C1C1E}
+  .tab .badge{display:inline-block;min-width:20px;text-align:center;background:var(--gold);color:#1C1C1E;
+    border-radius:999px;font-size:12px;padding:1px 6px;margin-left:6px}
+  .toolbar{display:flex;align-items:center;justify-content:space-between;margin:18px 0 10px}
+  .toolbar h2{font-size:16px}
+  .item{background:var(--card);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+  .item-name{font-weight:700;font-size:16px}
+  .item-date{font-size:12px;color:var(--label);white-space:nowrap}
+  .item-row{font-size:14px;margin:3px 0;color:#333}
+  .item-row b{color:var(--label);font-weight:600}
+  .item-msg{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:14px;margin:8px 0;white-space:pre-wrap}
+  .item-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .pill-neu{background:#eaf3fb;color:#1a5c96}
+  .pill-in_bearbeitung,.pill-angefragt{background:var(--amber-bg);color:var(--amber)}
+  .pill-erledigt,.pill-bestaetigt,.pill-abgeschlossen{background:var(--green-bg);color:var(--green)}
+  .pill-archiviert,.pill-storniert{background:#eee;color:#666}
+  select.status{font:inherit;font-size:13px;padding:6px 10px;border:1.5px solid var(--sep);border-radius:8px;background:#fff}
+  a.maillink{color:var(--blue);text-decoration:none}
+  .empty{text-align:center;color:var(--label);padding:50px 20px}
+  .loading{text-align:center;color:var(--label);padding:40px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1C1C1E;color:#fff;
+    padding:12px 20px;border-radius:12px;font-size:14px;z-index:200;box-shadow:0 8px 30px rgba(0,0,0,.3);opacity:0;transition:opacity .2s}
+  .toast.show{opacity:1}
+  .footer-note{text-align:center;color:var(--label);font-size:12px;padding:20px}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN / REGISTRIERUNG ============ -->
+<div id="auth-view">
+  <div class="center-wrap">
+    <div class="card">
+      <h1>D+J Bildung <span style="color:var(--gold)">Admin</span></h1>
+      <p class="muted" id="auth-sub">Bitte melde dich an, um dein Dashboard zu sehen.</p>
+      <div id="auth-msg"></div>
+      <form id="auth-form">
+        <div class="field">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="password">Passwort</label>
+          <input type="password" id="password" autocomplete="current-password" minlength="6" required>
+        </div>
+        <button type="submit" class="btn btn-gold btn-block" id="auth-submit">Anmelden</button>
+      </form>
+      <div class="switch">
+        <span id="switch-text">Noch kein Konto?</span>
+        <a id="switch-link">Jetzt registrieren</a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">Geschützter Bereich · nur für berechtigte Personen</p>
+</div>
+
+<!-- ============ KEIN ADMIN ============ -->
+<div id="noadmin-view" class="hidden">
+  <div class="center-wrap">
+    <div class="card">
+      <h1>Kein Admin-Zugriff</h1>
+      <p class="muted">Dein Konto <b id="noadmin-email"></b> ist angemeldet, hat aber keine Admin-Rechte.
+        Wende dich an die Administration oder melde dich mit einem Admin-Konto an.</p>
+      <button class="btn btn-gold btn-block" id="noadmin-logout">Abmelden</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dash-view" class="hidden">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">D+J Bildung <span>Admin</span></div>
+      <div class="topbar-sub" id="dash-user"></div>
+    </div>
+    <button class="btn btn-ghost" id="logout-btn">Abmelden</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="leads">Anfragen <span class="badge" id="c-leads">0</span></div>
+    <div class="tab" data-tab="bookings">Buchungen <span class="badge" id="c-bookings">0</span></div>
+    <div class="tab" data-tab="quotes">Angebote <span class="badge" id="c-quotes">0</span></div>
+  </div>
+
+  <div class="wrap">
+    <div class="toolbar">
+      <h2 id="panel-title">Anfragen</h2>
+      <button class="btn btn-gold btn-sm" id="refresh-btn">Aktualisieren</button>
+    </div>
+    <div id="list"><div class="loading">Lade…</div></div>
+  </div>
+  <p class="footer-note">D+J Bildung Admin-Konsole</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+/* ---------- Setup ---------- */
+const sb = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+let MODE = 'login'; // oder 'signup'
+const $ = (id) => document.getElementById(id);
+
+function toast(text){
+  const t = $('toast'); t.textContent = text; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function authMsg(text, kind){
+  $('auth-msg').innerHTML = text ? '<div class="msg msg-'+kind+'">'+text+'</div>' : '';
+}
+function fmtDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})
+       + ' ' + d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+}
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ---------- Auth UI umschalten ---------- */
+$('switch-link').addEventListener('click', ()=>{
+  MODE = (MODE==='login') ? 'signup' : 'login';
+  const signup = MODE==='signup';
+  $('auth-submit').textContent = signup ? 'Registrieren' : 'Anmelden';
+  $('switch-text').textContent = signup ? 'Schon ein Konto?' : 'Noch kein Konto?';
+  $('switch-link').textContent = signup ? 'Hier anmelden' : 'Jetzt registrieren';
+  $('auth-sub').textContent = signup
+    ? 'Lege dein Admin-Konto an (mit einer freigeschalteten Admin-E-Mail).'
+    : 'Bitte melde dich an, um dein Dashboard zu sehen.';
+  $('password').setAttribute('autocomplete', signup ? 'new-password' : 'current-password');
+  authMsg('', '');
+});
+
+/* ---------- Anmelden / Registrieren ---------- */
+$('auth-form').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const email = $('email').value.trim();
+  const password = $('password').value;
+  $('auth-submit').disabled = true;
+  authMsg('', '');
+  try{
+    if(MODE==='signup'){
+      const { data, error } = await sb.auth.signUp({ email, password });
+      if(error) throw error;
+      if(data.session){
+        authMsg('Konto erstellt – du wirst angemeldet…','ok');
+        // onAuthStateChange übernimmt
+      } else {
+        authMsg('Fast geschafft! Wir haben dir eine <b>Bestätigungs-E-Mail</b> an '+esc(email)+
+          ' geschickt. Bitte den Link darin anklicken und dich danach hier <b>anmelden</b>.','info');
+        MODE='login'; $('auth-submit').textContent='Anmelden';
+      }
+    } else {
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      if(error) throw error;
+    }
+  }catch(err){
+    let m = err.message || 'Es ist ein Fehler aufgetreten.';
+    if(/Invalid login credentials/i.test(m)) m='E-Mail oder Passwort ist falsch.';
+    if(/Email not confirmed/i.test(m)) m='Bitte bestätige zuerst den Link in deiner Bestätigungs-E-Mail.';
+    if(/already registered/i.test(m)) m='Diese E-Mail ist schon registriert. Bitte melde dich an.';
+    authMsg(m,'err');
+  }finally{
+    $('auth-submit').disabled = false;
+  }
+});
+
+/* ---------- Logout ---------- */
+async function doLogout(){ await sb.auth.signOut(); }
+$('logout-btn').addEventListener('click', doLogout);
+$('noadmin-logout').addEventListener('click', doLogout);
+
+/* ---------- Auth-Status reagieren ---------- */
+function show(view){
+  ['auth-view','noadmin-view','dash-view'].forEach(v=>$(v).classList.add('hidden'));
+  $(view).classList.remove('hidden');
+}
+sb.auth.onAuthStateChange((_event, session)=>{ route(session); });
+sb.auth.getSession().then(({data})=>route(data.session));
+
+async function route(session){
+  if(!session){ show('auth-view'); return; }
+  const user = session.user;
+  // Profil & Rolle laden
+  const { data: profile } = await sb.from('profiles').select('role,email,full_name').eq('id', user.id).maybeSingle();
+  if(profile && profile.role === 'admin'){
+    $('dash-user').textContent = 'Angemeldet als ' + (profile.email || user.email);
+    show('dash-view');
+    loadTab(currentTab);
+    refreshCounts();
+  } else {
+    $('noadmin-email').textContent = user.email;
+    show('noadmin-view');
+  }
+}
+
+/* ---------- Dashboard / Tabs ---------- */
+let currentTab = 'leads';
+const TITLES = { leads:'Anfragen', bookings:'Buchungen', quotes:'Angebote' };
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    currentTab = t.dataset.tab;
+    $('panel-title').textContent = TITLES[currentTab];
+    loadTab(currentTab);
+  });
+});
+$('refresh-btn').addEventListener('click', ()=>{ loadTab(currentTab); refreshCounts(); });
+
+async function refreshCounts(){
+  for(const tbl of ['leads','bookings','quotes']){
+    const { count } = await sb.from(tbl).select('*',{count:'exact',head:true});
+    $('c-'+tbl).textContent = count ?? 0;
+  }
+}
+
+async function loadTab(tab){
+  $('list').innerHTML = '<div class="loading">Lade…</div>';
+  const { data, error } = await sb.from(tab).select('*').order('created_at',{ascending:false});
+  if(error){ $('list').innerHTML = '<div class="empty">Fehler beim Laden: '+esc(error.message)+'</div>'; return; }
+  if(!data || !data.length){ $('list').innerHTML = '<div class="empty">Noch keine Einträge.</div>'; return; }
+  if(tab==='leads')    $('list').innerHTML = data.map(renderLead).join('');
+  if(tab==='bookings') $('list').innerHTML = data.map(renderBooking).join('');
+  if(tab==='quotes')   $('list').innerHTML = data.map(renderQuote).join('');
+}
+
+function statusSelect(table, id, current, options){
+  return '<select class="status" onchange="updateStatus(\''+table+'\',\''+id+'\',this.value)">'
+    + options.map(o=>'<option value="'+o+'"'+(o===current?' selected':'')+'>'+o.replace(/_/g,' ')+'</option>').join('')
+    + '</select>';
+}
+
+function renderLead(r){
+  return '<div class="item">'
+    + '<div class="item-top"><div class="item-name">'+esc(r.name||'—')+'</div>'
+    + '<div class="item-date">'+fmtDate(r.created_at)+'</div></div>'
+    + (r.email?'<div class="item-row"><b>E-Mail:</b> <a class="maillink" href="mailto:'+esc(r.email)+'">'+esc(r.email)+'</a></div>':'')
+    + (r.phone?'<div class="item-row"><b>Telefon:</b> <a class="maillink" href="tel:'+esc(r.phone)+'">'+esc(r.phone)+'</a></div>':'')
+    + (r.interest?'<div class="item-row"><b>Interesse:</b> '+esc(r.interest)+'</div>':'')
+    + (r.message?'<div class="item-msg">'+esc(r.message)+'</div>':'')
+    + '<div class="item-actions"><span class="pill pill-'+esc(r.status)+'">'+esc((r.status||'').replace(/_/g,' '))+'</span>'
+    + statusSelect('leads', r.id, r.status, ['neu','in_bearbeitung','erledigt','archiviert'])
+    + '<button class="btn btn-sm" style="background:var(--red-bg);color:var(--red)" onclick="delRow(\'leads\',\''+r.id+'\')">Löschen</button>'
+    + '</div></div>';
+}
+function renderBooking(r){
+  return '<div class="item">'
+    + '<div class="item-top"><div class="item-name">'+esc(r.course||'Buchung')+'</div>'
+    + '<div class="item-date">'+fmtDate(r.created_at)+'</div></div>'
+    + (r.contact_name?'<div class="item-row"><b>Kontakt:</b> '+esc(r.contact_name)+'</div>':'')
+    + (r.contact_email?'<div class="item-row"><b>E-Mail:</b> <a class="maillink" href="mailto:'+esc(r.contact_email)+'">'+esc(r.contact_email)+'</a></div>':'')
+    + (r.contact_phone?'<div class="item-row"><b>Telefon:</b> '+esc(r.contact_phone)+'</div>':'')
+    + (r.preferred_date?'<div class="item-row"><b>Wunschtermin:</b> '+esc(r.preferred_date)+'</div>':'')
+    + (r.participants?'<div class="item-row"><b>Teilnehmer:</b> '+esc(r.participants)+'</div>':'')
+    + (r.note?'<div class="item-msg">'+esc(r.note)+'</div>':'')
+    + '<div class="item-actions"><span class="pill pill-'+esc(r.status)+'">'+esc((r.status||'').replace(/_/g,' '))+'</span>'
+    + statusSelect('bookings', r.id, r.status, ['angefragt','bestaetigt','storniert','abgeschlossen'])
+    + '<button class="btn btn-sm" style="background:var(--red-bg);color:var(--red)" onclick="delRow(\'bookings\',\''+r.id+'\')">Löschen</button>'
+    + '</div></div>';
+}
+function renderQuote(r){
+  const amount = (r.amount!=null) ? Number(r.amount).toLocaleString('de-DE')+' €' : '';
+  return '<div class="item">'
+    + '<div class="item-top"><div class="item-name">'+esc(r.title||'Angebot')+'</div>'
+    + '<div class="item-date">'+fmtDate(r.created_at)+'</div></div>'
+    + (r.customer_name?'<div class="item-row"><b>Kunde:</b> '+esc(r.customer_name)+'</div>':'')
+    + (r.customer_email?'<div class="item-row"><b>E-Mail:</b> <a class="maillink" href="mailto:'+esc(r.customer_email)+'">'+esc(r.customer_email)+'</a></div>':'')
+    + (r.kind?'<div class="item-row"><b>Art:</b> '+esc(r.kind)+'</div>':'')
+    + (amount?'<div class="item-row"><b>Betrag:</b> '+amount+'</div>':'')
+    + '<div class="item-actions">'
+    + '<button class="btn btn-sm" style="background:var(--red-bg);color:var(--red)" onclick="delRow(\'quotes\',\''+r.id+'\')">Löschen</button>'
+    + '</div></div>';
+}
+
+window.updateStatus = async function(table, id, value){
+  const { error } = await sb.from(table).update({status:value}).eq('id', id);
+  toast(error ? ('Fehler: '+error.message) : 'Status gespeichert');
+  if(!error) loadTab(currentTab);
+};
+window.delRow = async function(table, id){
+  if(!confirm('Diesen Eintrag wirklich löschen?')) return;
+  const { error } = await sb.from(table).delete().eq('id', id);
+  toast(error ? ('Fehler: '+error.message) : 'Gelöscht');
+  if(!error){ loadTab(currentTab); refreshCounts(); }
+};
+</script>
+</body>
+</html>
