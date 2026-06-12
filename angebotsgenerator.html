@@ -77,6 +77,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .toggle-btn.active-ja{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black);box-shadow:0 2px 8px rgba(201,169,97,0.25)}
 .toggle-btn.active-nein{background:var(--black);color:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.2)}
 @media(max-width:768px){.form-grid,.form-grid.three{grid-template-columns:1fr}.scenario-grid{grid-template-columns:1fr}.prov-grid{grid-template-columns:1fr 1fr}.btn-row{flex-direction:column}.app-header{padding:20px}.main{padding:20px 12px}.toggle-btns{width:100%}.toggle-btn{flex:1}}
+
+/* ===== EDLER GOLD-AUF-DUNKEL LOOK (nur Bildschirm-UI; das erzeugte PDF bleibt weiss) ===== */
+body{ background:#101010; color:#F3EFE7; }
+.main .card{ background:#1b1b1d; border-color:rgba(201,169,97,0.18); box-shadow:none; }
+.main .card-title{ color:#F3EFE7; }
+.main .card-desc,.main .form-group label,.main .toggle-label{ color:#b8b2a6; }
+.main .form-group input{ background:#161616; color:#F3EFE7; border-color:#2b2924; }
+.main .form-group input:focus{ background:#161616; }
+.main .form-group input::placeholder{ color:#6f6a60; }
+.main .divider{ background:#2b2924; }
+.main .scenario-card{ background:#161616; border-color:#2b2924; }
+.main .scenario-card h4,.main .scenario-card .sub{ color:#9c968b; }
+.main .prov-card{ background:rgba(201,169,97,0.12); border-color:rgba(201,169,97,0.25); }
+.main .prov-card h5,.main .prov-card .val{ color:#e6cd92; }
+.main .prov-card .detail{ color:#9c968b; }
+.main .result-table td{ color:#F3EFE7; border-color:#2b2924; }
+.main .result-table tr:nth-child(even){ background:#161616; }
+.main .result-table tr.highlight td{ color:#e6cd92; }
+.main .foerder-info{ background:rgba(201,169,97,0.08); border-color:rgba(201,169,97,0.22); }
+.main .foerder-info h4{ color:#e6cd92; }
+.main .foerder-info p,.main .optional-info p{ color:#b8b2a6; }
+.main .optional-info{ background:rgba(45,138,86,0.10); border-color:rgba(45,138,86,0.3); }
+.main .optional-info h4{ color:#7bd4a0; }
+.main .toggle-btns{ background:#161616; border-color:#2b2924; }
+.main .toggle-btn{ color:#9c968b; }
+.main .toggle-desc{ color:#9c968b; }
+.main .error-msg{ color:#f0a3a3; }
 </style>
 </head>
 <body>
@@ -535,7 +562,7 @@ body{font-family:'Source Sans 3',sans-serif;background:#1a1a1a;color:var(--text)
     // Auto-Download als PDF via html2pdf
     var container=document.createElement('div');
     container.id='_pdfTemp';
-    container.style.cssText='position:fixed;left:-9999px;top:0;width:1100px;';
+    container.style.cssText='position:fixed;left:-9999px;top:0;width:1100px;background:#ffffff;color:#1a1a1a;';
     container.innerHTML=html;
     document.body.appendChild(container);
     var docEl=container.querySelector('.document')||container;
@@ -571,10 +598,10 @@ function generateProvisionPDF(){
 
     pH2('Vermittlungsvereinbarung');
     doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(60);pP('zwischen');
-    doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text('D+J Consult, Juergen Nedvidek',14,y);y+=5;
+    doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text('D+J Consult, Jürgen Nedvidek',14,y);y+=5;
     doc.setFont('helvetica','normal');doc.setTextColor(100);doc.text('(Provision) und',14,y);y+=5;
     doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text('D+J Bildung, Daniela Nedvidek',14,y);y+=5;
-    doc.setFont('helvetica','normal');doc.setTextColor(100);doc.text('(Dozententaetigkeit)',14,y);y+=8;
+    doc.setFont('helvetica','normal');doc.setTextColor(100);doc.text('(Dozententätigkeit)',14,y);y+=8;
     pP('und');
     const vN=d.vm.f?d.vm.f+', '+d.vm.n:d.vm.n;
     doc.setFont('helvetica','bold');doc.setTextColor(26,26,26);doc.text(vN,14,y);y+=5;
@@ -587,21 +614,21 @@ function generateProvisionPDF(){
 
     pH2('Par. 2 Provision Einlieferung Bildungsgutschein (D+J Consult)');
     if(d.wK){
-        pP('Gefoerderte TN: 1.000 EUR/TN  -  Nicht gefoerderte TN (Kompaktkurs, grundsaetzlich 2 je gef. TN, Schutzklausel: Reduktion wenn Nettozufluss nicht ausreicht): 500 EUR/TN  -  Auszahlung nach Kursstart.');
+        pP('Geförderte TN: 1.000 EUR/TN  -  Nicht geförderte TN (Kompaktkurs, grundsätzlich 2 je gef. TN, Schutzklausel: Reduktion wenn Nettozufluss nicht ausreicht): 500 EUR/TN  -  Auszahlung nach Kursstart.');
     }else{
-        pP('Gefoerderte TN: 1.000 EUR/TN  -  Nicht gefoerderte TN (Kompaktkurs, OPTIONAL): 500 EUR/TN  -  Auszahlung nach Kursstart. Der Kompaktkurs ist fuer das Unternehmen nicht verpflichtend; er wird nur abgerechnet, wenn das Unternehmen die Option aktiv in Anspruch nimmt.');
+        pP('Geförderte TN: 1.000 EUR/TN  -  Nicht geförderte TN (Kompaktkurs, OPTIONAL): 500 EUR/TN  -  Auszahlung nach Kursstart. Der Kompaktkurs ist für das Unternehmen nicht verpflichtend; er wird nur abgerechnet, wenn das Unternehmen die Option aktiv in Anspruch nimmt.');
     }
 
-    pH2('Par. 3 Dozententaetigkeit (D+J Bildung)');
+    pH2('Par. 3 Dozententätigkeit (D+J Bildung)');
     const kompaktLabelPar3 = d.wK
         ? 'Kompakt-TN (2 je gef. TN, ggf. reduziert durch Schutzklausel): '
         : 'Optional Kompakt-TN (max. 2 je gef. TN, Sonderpreis 5.100 EUR/TN, KEINE Pflicht): ';
     const kompaktEndPar3 = d.wK
         ? '\n\n1 Monat = 20 Arbeitstage x 45 Min = 20 UE\n0,5 Monate = 10 Arbeitstage x 45 Min = 10 UE\nWorst Case (0 gef. TN): kein Kompaktkurs, 0 EUR'
-        : '\n\nKompakt-TN sind vollstaendig optional. Dozentenhonorar faellt nur an, wenn das Unternehmen den Kompaktkurs aktiv bucht.\n1 Monat = 20 Arbeitstage x 45 Min = 20 UE\n0,5 Monate = 10 Arbeitstage x 45 Min = 10 UE\nWorst Case (0 gef. TN): kein Kompaktkurs, 0 EUR';
+        : '\n\nKompakt-TN sind vollständig optional. Dozentenhonorar fällt nur an, wenn das Unternehmen den Kompaktkurs aktiv bucht.\n1 Monat = 20 Arbeitstage x 45 Min = 20 UE\n0,5 Monate = 10 Arbeitstage x 45 Min = 10 UE\nWorst Case (0 gef. TN): kein Kompaktkurs, 0 EUR';
     pP('Gef. TN: '+d.dMG+' Mon = '+d.dUG+' UE (a 45 Min) x 75 EUR/UE = '+fE(d.dEG)+'\n'+kompaktLabelPar3+d.dMN+' Mon = '+d.dUN+' UE (a 45 Min) x 75 EUR/UE = '+fE(d.dEN)+kompaktEndPar3);
 
-    pH2('Par. 4 Provisionsuebersicht');
+    pH2('Par. 4 Provisionsübersicht');
     const sc=d.sc,wp=d.wp;
     const tw=188,cols=[62,32,32,32,30],sx=11;
     const drawRow=(cells,isBold,bgColor)=>{
@@ -616,15 +643,15 @@ function generateProvisionPDF(){
     let x=sx;['Position','Worst(0)','Low('+sc[0].g+')','Real('+sc[1].g+')','Best('+sc[2].g+')'].forEach((h,i)=>{doc.text(h,i?x+cols[i]-2:x+2,y,i?{align:'right'}:{});x+=cols[i];});y+=7;
     doc.setTextColor(60);
     drawRow(['Einlieferung BG',fE(wp.pBG),...sc.map(s=>fE(s.pBG))]);
-    drawRow(['Dozententaetigkeit',fE(wp.pD),...sc.map(s=>fE(s.pD))]);
+    drawRow(['Dozententätigkeit',fE(wp.pD),...sc.map(s=>fE(s.pD))]);
     drawRow(['Provision gesamt',fE(wp.pT),...sc.map(s=>fE(s.pT))],true,[252,248,240]);
     drawRow(['Dozenten-UE',wp.ue+' UE',...sc.map(s=>s.ue+' UE')]);
     y+=4;
 
     if(d.wK){
-        pP('Worst Case = 0 gefoerderte TN: kein Kompaktkurs, 0 EUR Kosten fuer das Unternehmen. Schutzklausel: Selbstzahler-Pflicht reduziert sich automatisch, sodass das Saldo fuer das Unternehmen stets <= 0 EUR Belastung bleibt. Ab 15 TN besteht zusaetzlich die Moeglichkeit, den exklusiven Selbstzahlerkurs zu 5.100 EUR/TN fuer bis zu '+d.k.tn+' TN zu buchen.');
+        pP('Worst Case = 0 geförderte TN: kein Kompaktkurs, 0 EUR Kosten für das Unternehmen. Schutzklausel: Selbstzahler-Pflicht reduziert sich automatisch, sodass das Saldo für das Unternehmen stets <= 0 EUR Belastung bleibt. Ab 15 TN besteht zusätzlich die Möglichkeit, den exklusiven Selbstzahlerkurs zu 5.100 EUR/TN für bis zu '+d.k.tn+' TN zu buchen.');
     }else{
-        pP('Tabelle zeigt Provision nur fuer gefoerderte TN (ohne optionalen Kompaktkurs).\nOptionaler Kompaktkurs: +500 EUR/Kompakt-TN (Einlieferung) + Dozentenhonorar ('+fE(d.dEN)+'/Kompakt-TN). Basis: max. 2 Kompakt-TN je gef. TN.\nWorst Case = 0 gefoerderte TN: 0 EUR Kosten fuer das Unternehmen, kein Kompaktkurs. Provision gesichert sobald TN genehmigt.');
+        pP('Tabelle zeigt Provision nur für geförderte TN (ohne optionalen Kompaktkurs).\nOptionaler Kompaktkurs: +500 EUR/Kompakt-TN (Einlieferung) + Dozentenhonorar ('+fE(d.dEN)+'/Kompakt-TN). Basis: max. 2 Kompakt-TN je gef. TN.\nWorst Case = 0 geförderte TN: 0 EUR Kosten für das Unternehmen, kein Kompaktkurs. Provision gesichert sobald TN genehmigt.');
     }
 
     pH2('Par. 5 Vertraulichkeit');
@@ -632,9 +659,9 @@ function generateProvisionPDF(){
 
     y+=10;doc.setDrawColor(200);
     doc.line(14,y,90,y);doc.line(110,y,186,y);y+=5;
-    doc.setFontSize(9);doc.setTextColor(100);doc.text('D+J Consult, Juergen Nedvidek',14,y);doc.text(vN,110,y);y+=5;
+    doc.setFontSize(9);doc.setTextColor(100);doc.text('D+J Consult, Jürgen Nedvidek',14,y);doc.text(vN,110,y);y+=5;
     doc.text('Ort, Datum',14,y);doc.text('Ort, Datum',110,y);y+=14;
-    doc.line(14,y,90,y);y+=5;doc.text('D+J Bildung, Daniela Nedvidek',14,y);y+=5;doc.text('(Dozententaetigkeit gem. Par. 3)',14,y);
+    doc.line(14,y,90,y);y+=5;doc.text('D+J Bildung, Daniela Nedvidek',14,y);y+=5;doc.text('(Dozententätigkeit gem. Par. 3)',14,y);
 
     doc.setFillColor(26,26,26);doc.rect(0,282,210,15,F);doc.setFontSize(7);doc.setTextColor(150);doc.text('D+J Consult - Vertraulich',14,289);
     doc.save('Provision_'+d.vm.n.replace(/[^a-zA-Z0-9äöüÄÖÜß]/g,'_')+'.pdf');
@@ -818,7 +845,7 @@ function generateCashFlowPDF(){
                 rData('4.–12. Rechnung Unternehmen Kompaktkurs (9x, '+ng+' TN x 425 EUR)','Monat 4–12',fE(kk9),fEs(cf),false);
             }
             if(!showKK&&!d.wK&&ng>0){
-                rInfo('Kompaktkurs optional – nicht kalkuliert (max. '+ng+' TN x 5.100 EUR = '+fE(ng*5100)+' moeglich)');
+                rInfo('Kompaktkurs optional – nicht kalkuliert (max. '+ng+' TN x 5.100 EUR = '+fE(ng*5100)+' möglich)');
             }
 
             // ─ Gesamtsaldo ─
@@ -878,9 +905,9 @@ function importData(){
     const errEl=document.getElementById('importError');
     const succEl=document.getElementById('importSuccess');
     errEl.classList.remove('show');succEl.style.display='none';
-    if(!raw){errEl.textContent='Bitte Code einfuegen.';errEl.classList.add('show');return;}
+    if(!raw){errEl.textContent='Bitte Code einfügen.';errEl.classList.add('show');return;}
     let data;
-    try{data=JSON.parse(raw);}catch(e){errEl.textContent='Ungueltiges Format. Bitte den vollstaendigen JSON-Code einfuegen.';errEl.classList.add('show');return;}
+    try{data=JSON.parse(raw);}catch(e){errEl.textContent='Ungültiges Format. Bitte den vollständigen JSON-Code einfügen.';errEl.classList.add('show');return;}
     if(data._format!=='DJ_CONSULT_VERMITTLER_V1'){errEl.textContent='Unbekanntes Format. Bitte Code aus dem Vermittler-Eingabetool verwenden.';errEl.classList.add('show');return;}
     const s=(id,v)=>{if(v!==undefined&&v!==null&&v!=='')document.getElementById(id).value=v;};
     s('kundenFirma',data.kunde.firma);
@@ -906,7 +933,7 @@ function importData(){
     const kpLabel = (kp === 'nein')
         ? '<span style="background:rgba(45,138,86,0.12);color:#2d8a56;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-left:6px">Kompaktkurs: OPTIONAL</span>'
         : '<span style="background:rgba(201,169,97,0.15);color:#b59650;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-left:6px">Kompaktkurs: ZWINGEND</span>';
-    succEl.innerHTML='<strong>Importiert:</strong> Vermittler '+data.vermittler.name+' / Kunde '+data.kunde.firma+' ('+data.kunde.mitarbeitende+' MA, '+data.kunde.teilnehmende+' TN, '+data.kunde.bruttogehalt+' EUR Brutto). Szenarien vorausgefuellt – bitte pruefen.'+kpLabel+' <span style="color:var(--success);font-weight:700">✔ Kein Risiko: Worst Case = 0 €</span>';
+    succEl.innerHTML='<strong>Importiert:</strong> Vermittler '+data.vermittler.name+' / Kunde '+data.kunde.firma+' ('+data.kunde.mitarbeitende+' MA, '+data.kunde.teilnehmende+' TN, '+data.kunde.bruttogehalt+' EUR Brutto). Szenarien vorausgefüllt – bitte prüfen.'+kpLabel+' <span style="color:var(--success);font-weight:700">✔ Kein Risiko: Worst Case = 0 €</span>';
     succEl.style.display='block';
     document.getElementById('kundenFirma').scrollIntoView({behavior:'smooth'});
 }
