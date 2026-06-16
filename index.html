@@ -223,13 +223,23 @@
     .splash-btn{ padding:22px 14px 18px!important; gap:11px!important; }
     .splash-btn-label{ font-size:14px!important; }
 
-    /* Großer Bildschirm: breitere, zentrierte App mit mehrspaltigem Kachelraster */
+    /* Großer Bildschirm: App nutzt die VOLLE Breite */
     @media (min-width:600px){
-      html{ background:#0a0a0a; }
-      body{ max-width:760px; margin-left:auto; margin-right:auto; box-shadow:0 0 90px rgba(0,0,0,0.55); }
-      .tabbar{ left:50%!important; right:auto!important; transform:translateX(-50%); width:100%!important; max-width:760px; }
-      .splash{ min-height:auto; padding-top:calc(var(--safe-top) + 56px); padding-bottom:56px; }
-      .splash-grid{ grid-template-columns:repeat(3,1fr); gap:16px; }
+      html{ background:#101010; }
+      body{ max-width:none; margin:0; box-shadow:none; }
+      .tabbar{ left:0!important; right:0!important; transform:none!important; width:100%!important; max-width:none; }
+      .splash{ min-height:auto; padding:calc(var(--safe-top) + 56px) 5% 56px; }
+      .splash-grid{ grid-template-columns:repeat(3,1fr); gap:18px; max-width:none; }
+      /* Inhaltsabstände etwas großzügiger auf breiten Schirmen */
+      .hero{ padding-left:5%; padding-right:5%; }
+      .section-label{ padding-left:5%; padding-right:5%; }
+      .foerd-card,.slider-card,.metrics,.ue-box,.breakdown-card,.bar-section,.payout-card,
+      .contact-card,.foerd-result,.info-pill,.modul-list,.modul-grid,.stufen-grid,
+      .lead-card,.qr-section{ margin-left:5%; margin-right:5%; }
+      .foerd-btn,.lead-submit-btn{ width:auto; margin-left:5%; margin-right:5%; }
+    }
+    @media (min-width:1100px){
+      .splash-grid{ grid-template-columns:repeat(6,1fr); }
     }
   </style>
 </head>
