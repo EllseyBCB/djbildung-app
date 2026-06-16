@@ -218,8 +218,17 @@
     .stufe-btn-qual{ color:#f0a3a3; }
     .ue-row-lbl{ color:#9ec6f2; }
     /* Elegante, einheitliche Logo-Gold-Icons (statt bunt) */
-    .splash-btn-icon{ background:rgba(201,169,97,0.08)!important; border:1px solid rgba(201,169,97,0.22); }
-    .splash-btn-icon svg{ stroke:#d4b876!important; stroke-width:1.4!important; }
+    .splash-btn-icon{ background:rgba(201,169,97,0.08)!important; border:1px solid rgba(201,169,97,0.22); width:58px!important; height:58px!important; border-radius:16px!important; }
+    .splash-btn-icon svg{ stroke:#d4b876!important; stroke-width:1.4!important; width:30px!important; height:30px!important; }
+    .splash-btn{ padding:22px 14px 18px!important; gap:11px!important; }
+    .splash-btn-label{ font-size:14px!important; }
+
+    /* Auf großen Bildschirmen: App als zentrierte, schmale App-Spalte (wie ein Handy) */
+    @media (min-width:600px){
+      html{ background:#0a0a0a; }
+      body{ max-width:480px; margin-left:auto; margin-right:auto; box-shadow:0 0 80px rgba(0,0,0,0.6); }
+      .tabbar{ left:50%!important; right:auto!important; transform:translateX(-50%); width:100%!important; max-width:480px; }
+    }
   </style>
 </head>
 <body>
@@ -1077,7 +1086,7 @@
     <span class="tab-lbl">Kontakt</span>
   </button>
   <button class="tab" id="tab-rechner" onclick="showScreen('rechner')">
-    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M18.5 6.2A7 7 0 1 0 18.5 17.8"/><line x1="3.5" y1="10.5" x2="14.5" y2="10.5"/><line x1="3.5" y1="13.5" x2="13.5" y2="13.5"/></svg>
     <span class="tab-lbl">Provision</span>
   </button>
 </nav>
