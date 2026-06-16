@@ -4,7 +4,7 @@
    zwischengespeichert – sie gehen immer frisch ans Netz, damit das Dashboard
    stets den aktuellen Stand zeigt.
    Bei Code-Änderungen die Versionsnummer erhöhen (v2 -> v3 ...). */
-const CACHE = 'djbildung-v7';
+const CACHE = 'djbildung-v8';
 
 const CORE = [
   './',

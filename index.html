@@ -223,11 +223,13 @@
     .splash-btn{ padding:22px 14px 18px!important; gap:11px!important; }
     .splash-btn-label{ font-size:14px!important; }
 
-    /* Auf großen Bildschirmen: App als zentrierte, schmale App-Spalte (wie ein Handy) */
+    /* Großer Bildschirm: breitere, zentrierte App mit mehrspaltigem Kachelraster */
     @media (min-width:600px){
       html{ background:#0a0a0a; }
-      body{ max-width:480px; margin-left:auto; margin-right:auto; box-shadow:0 0 80px rgba(0,0,0,0.6); }
-      .tabbar{ left:50%!important; right:auto!important; transform:translateX(-50%); width:100%!important; max-width:480px; }
+      body{ max-width:760px; margin-left:auto; margin-right:auto; box-shadow:0 0 90px rgba(0,0,0,0.55); }
+      .tabbar{ left:50%!important; right:auto!important; transform:translateX(-50%); width:100%!important; max-width:760px; }
+      .splash{ min-height:auto; padding-top:calc(var(--safe-top) + 56px); padding-bottom:56px; }
+      .splash-grid{ grid-template-columns:repeat(3,1fr); gap:16px; }
     }
   </style>
 </head>
@@ -457,9 +459,6 @@
         <div class="splash-btn-label">Kontakt</div>
         <div class="splash-btn-sub">jn@dj-bildung.de</div>
       </button>
-    </div>
-
-    <div class="splash-grid">
       <button class="splash-btn" onclick="showScreen('rechner')">
         <div class="splash-btn-icon" style="background:rgba(239,159,39,0.20);">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="1.8"><path d="M18.5 6.2A7 7 0 1 0 18.5 17.8"/><line x1="3.5" y1="10.5" x2="14.5" y2="10.5"/><line x1="3.5" y1="13.5" x2="13.5" y2="13.5"/></svg>
